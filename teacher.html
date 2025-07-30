@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard - Campus Connect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h2>Campus Connect</h2>
+                </div>
+                <div class="user-info">
+                    <p>Teacher Name</p>
+                    <span class="role">teacher</span>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <div class="nav-section-title">Dashboard</div>
+                    <a href="teacher.html" class="nav-item active">
+                        <i class="fas fa-home"></i>
+                        <span>Overview</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Academic</div>
+                    <a href="#grades" class="nav-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Manage Grades</span>
+                    </a>
+                    <a href="#submissions" class="nav-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Student Submissions</span>
+                    </a>
+                    <a href="#assignments" class="nav-item">
+                        <i class="fas fa-tasks"></i>
+                        <span>Manage Assignments</span>
+                    </a>
+                    <a href="#students" class="nav-item">
+                        <i class="fas fa-user-graduate"></i>
+                        <span>Student Profiles</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Teaching</div>
+                    <a href="#schedule" class="nav-item">
+                        <i class="fas fa-calendar"></i>
+                        <span>Class Schedule</span>
+                    </a>
+                    <a href="#announcements" class="nav-item">
+                        <i class="fas fa-bullhorn"></i>
+                        <span>Post Announcements</span>
+                    </a>
+                    <a href="#virtual-class" class="nav-item">
+                        <i class="fas fa-video"></i>
+                        <span>Virtual Classes</span>
+                    </a>
+                </div>
+            </nav>
+
+            <a href="#" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1>Teacher Dashboard</h1>
+                <div class="header-actions">
+                    <button class="btn btn-secondary">
+                        <i class="fas fa-bell"></i>
+                        Notifications
+                    </button>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-plus"></i>
+                        Quick Action
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Overview -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">156</div>
+                    <div class="stat-label">Total Students</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">Active Courses</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">23</div>
+                    <div class="stat-label">Pending Reviews</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">4.2</div>
+                    <div class="stat-label">Average Rating</div>
+                </div>
+            </div>
+
+            <!-- Upload and Edit Student Marks -->
+            <section id="grades" class="dashboard-section">
+                <h2>Manage Student Grades</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon blue">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div>
+                                <div class="card-title">Grade Management</div>
+                                <div class="card-subtitle">Upload and edit student marks</div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <form id="gradeForm">
+                                <div class="form-group">
+                                    <label class="form-label">Select Course</label>
+                                    <select class="form-input">
+                                        <option>Computer Science Fundamentals</option>
+                                        <option>Data Structures & Algorithms</option>
+                                        <option>Database Systems</option>
+                                        <option>Software Engineering</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Assignment/Exam</label>
+                                    <select class="form-input">
+                                        <option>Midterm Exam</option>
+                                        <option>Final Exam</option>
+                                        <option>Assignment 1</option>
+                                        <option>Assignment 2</option>
+                                        <option>Project</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Upload Grade File</label>
+                                    <input type="file" class="form-input" accept=".csv,.xlsx">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Upload Grades</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon green">
+                                <i class="fas fa-edit"></i>
+                            </div>
+                            <div>
+                                <div class="card-title">Edit Individual Grades</div>
+                                <div class="card-subtitle">Modify specific student grades</div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="table-container">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Student</th>
+                                            <th>Course</th>
+                                            <th>Assignment</th>
+                                            <th>Grade</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>John Smith</td>
+                                            <td>CS101</td>
+                                            <td>Midterm Exam</td>
+                                            <td>85%</td>
+                                            <td><button class="btn btn-secondary btn-sm">Edit</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sarah Johnson</td>
+                                            <td>CS201</td>
+                                            <td>Assignment 1</td>
+                                            <td>92%</td>
+                                            <td><button class="btn btn-secondary btn-sm">Edit</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mike Davis</td>
+                                            <td>CS301</td>
+                                            <td>Project</td>
+                                            <td>78%</td>
+                                            <td><button class="btn btn-secondary btn-sm">Edit</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Monitor Student Submissions -->
+            <section id="submissions" class="dashboard-section">
+                <h2>Student Submissions</h2>
+                <div class="card-grid" id="submissionsContainer">
+                    <!-- Submissions will be loaded dynamically -->
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon orange">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <div class="card-title">Submission Statistics</div>
+                            <div class="card-subtitle">Overview of student submissions</div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-number">45</div>
+                                <div class="stat-label">Submitted</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">12</div>
+                                <div class="stat-label">Pending</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">8</div>
+                                <div class="stat-label">Late</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">3</div>
+                                <div class="stat-label">Missing</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- View Classroom Schedules -->
+            <section id="schedule" class="dashboard-section">
+                <h2>Classroom Schedules</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon purple">
+                                <i class="fas fa-calendar"></i>
+                            </div>
+                            <div>
+                                <div class="card-title">My Schedule</div>
+                                <div class="card-subtitle">Your teaching schedule</div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="schedule-list">
+                                <div class="schedule-item">
+                                    <div class="schedule-time">
+                                        <span class="time">09:00 - 10:30</span>
+                                        <span class="day">Monday</span>
+                                    </div>
+                                    <div class="schedule-info">
+                                        <h4>Computer Science Fundamentals</h4>
+                                        <p>Room: Lab 1 • Students: 45</p>
+                                    </div>
+                                    <button class="btn btn-primary btn-sm">View Details</button>
+                                </div>
+                                <div class="schedule-item">
+                                    <div class="schedule-time">
+                                        <span class="time">11:00 - 12:30</span>
+                                        <span class="day">Monday</span>
+                                    </div>
+                                    <div class="schedule-info">
+                                        <h4>Data Structures & Algorithms</h4>
+                                        <p>Room: Lecture Hall A • Students: 38</p>
+                                    </div>
+                                    <button class="btn btn-primary btn-sm">View Details</button>
+                                </div>
+                                <div class="schedule-item">
+                                    <div class="schedule-time">
+                                        <span class="time">14:00 - 15:30</span>
+                                        <span class="day">Tuesday</span>
+                                    </div>
+                                    <div class="schedule-info">
+                                        <h4>Database Systems</h4>
+                                        <p>Room: Lab 2 • Students: 42</p>
+                                    </div>
+                                    <button class="btn btn-primary btn-sm">View Details</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon teal">
+                                <i class="fas fa-door-open"></i>
+                            </div>
+                            <div>
+                                <div class="card-title">Room Availability</div>
+                                <div class="card-subtitle">Check classroom availability</div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <form>
+                                <div class="form-group">
+                                    <label class="form-label">Date</label>
+                                    <input type="date" class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Time</label>
+                                    <input type="time" class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Duration</label>
+                                    <select class="form-input">
+                                        <option>1 hour</option>
+                                        <option>1.5 hours</option>
+                                        <option>2 hours</option>
+                                        <option>3 hours</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Check Availability</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Post Announcements -->
+            <section id="announcements" class="dashboard-section">
+                <h2>Post Announcements</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon red">
+                                <i class="fas fa-bullhorn"></i>
+                            </div>
+                            <div>
+                                <div class="card-title">Create Announcement</div>
+                                <div class="card-subtitle">Post announcements to your students</div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <form id="announcementForm">
+                                <div class="form-group">
+                                    <label class="form-label">Title</label>
+                                    <input type="text" class="form-input" placeholder="Enter announcement title">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Course</label>
+                                    <select class="form-input">
+                                        <option>All Courses</option>
+                                        <option>Computer Science Fundamentals</option>
+                                        <option>Data Structures & Algorithms</option>
+                                        <option>Database Systems</option>
+                                        <option>Software Engineering</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Priority</label>
+                                    <select class="form-input">
+                                        <option>Normal</option>
+                                        <option>Important</option>
+                                        <option>Urgent</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Message</label>
+                                    <textarea class="form-textarea" placeholder="Enter your announcement message"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Attachment</label>
+                                    <input type="file" class="form-input" multiple>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Post Announcement</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon orange">
+                                <i class="fas fa-history"></i>
+                            </div>
+                            <div>
+                                <div class="card-title">Recent Announcements</div>
+                                <div class="card-subtitle">Your recent posts</div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="announcement-list">
+                                <div class="announcement-item">
+                                    <div class="announcement-header">
+                                        <h4>Assignment Deadline Extended</h4>
+                                        <span class="badge important">Important</span>
+                                    </div>
+                                    <p>The deadline for Assignment 3 has been extended to Friday, January 20th.</p>
+                                    <small>Posted 2 hours ago</small>
+                                </div>
+                                <div class="announcement-item">
+                                    <div class="announcement-header">
+                                        <h4>Office Hours This Week</h4>
+                                        <span class="badge normal">Normal</span>
+                                    </div>
+                                    <p>Office hours will be held on Wednesday from 2-4 PM in Room 205.</p>
+                                    <small>Posted 1 day ago</small>
+                                </div>
+                                <div class="announcement-item">
+                                    <div class="announcement-header">
+                                        <h4>Exam Schedule Update</h4>
+                                        <span class="badge urgent">Urgent</span>
+                                    </div>
+                                    <p>The midterm exam has been rescheduled to next Monday at 10 AM.</p>
+                                    <small>Posted 3 days ago</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Access Student Profiles -->
+            <section id="students" class="dashboard-section">
+                <h2>Student Profiles</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon green">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                            <div>
+                                <div class="card-title">Student Directory</div>
+                                <div class="card-subtitle">Browse student profiles</div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="search-box">
+                                <input type="text" class="form-input" placeholder="Search students by name or ID">
+                            </div>
+                            <div class="table-container">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Student ID</th>
+                                            <th>Name</th>
+                                            <th>Course</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>STU001</td>
+                                            <td>John Smith</td>
+                                            <td>Computer Science</td>
+                                            <td><span class="badge success">Active</span></td>
+                                            <td><button class="btn btn-primary btn-sm">View Profile</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>STU002</td>
+                                            <td>Sarah Johnson</td>
+                                            <td>Computer Science</td>
+                                            <td><span class="badge success">Active</span></td>
+                                            <td><button class="btn btn-primary btn-sm">View Profile</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>STU003</td>
+                                            <td>Mike Davis</td>
+                                            <td>Computer Science</td>
+                                            <td><span class="badge warning">Warning</span></td>
+                                            <td><button class="btn btn-primary btn-sm">View Profile</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>STU004</td>
+                                            <td>Emily Wilson</td>
+                                            <td>Computer Science</td>
+                                            <td><span class="badge success">Active</span></td>
+                                            <td><button class="btn btn-primary btn-sm">View Profile</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon blue">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <div>
+                                <div class="card-title">Performance Analytics</div>
+                                <div class="card-subtitle">Student performance overview</div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="performance-stats">
+                                <div class="performance-item">
+                                    <span class="performance-label">Average Grade</span>
+                                    <span class="performance-value">82.5%</span>
+                                </div>
+                                <div class="performance-item">
+                                    <span class="performance-label">Attendance Rate</span>
+                                    <span class="performance-value">89%</span>
+                                </div>
+                                <div class="performance-item">
+                                    <span class="performance-label">Assignment Completion</span>
+                                    <span class="performance-value">94%</span>
+                                </div>
+                                <div class="performance-item">
+                                    <span class="performance-label">Students at Risk</span>
+                                    <span class="performance-value">3</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Manage Assignments -->
+            <section id="assignments" class="dashboard-section">
+                <h2>Manage Assignments</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon purple">
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                            <div>
+                                <div class="card-title">Create Assignment</div>
+                                <div class="card-subtitle">Create new assignments for your courses</div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <form>
+                                <div class="form-group">
+                                    <label class="form-label">Course</label>
+                                    <select class="form-input">
+                                        <option>Computer Science Fundamentals</option>
+                                        <option>Data Structures & Algorithms</option>
+                                        <option>Database Systems</option>
+                                        <option>Software Engineering</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Assignment Title</label>
+                                    <input type="text" class="form-input" placeholder="Enter assignment title">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Description</label>
+                                    <textarea class="form-textarea" placeholder="Describe the assignment requirements"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Due Date</label>
+                                    <input type="datetime-local" class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Total Points</label>
+                                    <input type="number" class="form-input" placeholder="100">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Attachments</label>
+                                    <input type="file" class="form-input" multiple>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Create Assignment</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon orange">
+                                <i class="fas fa-list"></i>
+                            </div>
+                            <div>
+                                <div class="card-title">Active Assignments</div>
+                                <div class="card-subtitle">Manage current assignments</div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="assignment-list">
+                                <div class="assignment-item">
+                                    <div class="assignment-info">
+                                        <h4>Final Project</h4>
+                                        <p>Software Engineering • Due: Jan 25, 2024</p>
+                                        <span class="submission-count">45/50 submitted</span>
+                                    </div>
+                                    <div class="assignment-actions">
+                                        <button class="btn btn-primary btn-sm">View Submissions</button>
+                                        <button class="btn btn-secondary btn-sm">Edit</button>
+                                    </div>
+                                </div>
+                                <div class="assignment-item">
+                                    <div class="assignment-info">
+                                        <h4>Database Design Report</h4>
+                                        <p>Database Systems • Due: Jan 20, 2024</p>
+                                        <span class="submission-count">38/42 submitted</span>
+                                    </div>
+                                    <div class="assignment-actions">
+                                        <button class="btn btn-primary btn-sm">View Submissions</button>
+                                        <button class="btn btn-secondary btn-sm">Edit</button>
+                                    </div>
+                                </div>
+                                <div class="assignment-item">
+                                    <div class="assignment-info">
+                                        <h4>Algorithm Analysis</h4>
+                                        <p>Data Structures • Due: Jan 18, 2024</p>
+                                        <span class="submission-count">35/38 submitted</span>
+                                    </div>
+                                    <div class="assignment-actions">
+                                        <button class="btn btn-primary btn-sm">View Submissions</button>
+                                        <button class="btn btn-secondary btn-sm">Edit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Host Virtual Classes -->
+            <section id="virtual-class" class="dashboard-section">
+                <h2>Virtual Classes</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon red">
+                                <i class="fas fa-video"></i>
+                            </div>
+                            <div>
+                                <div class="card-title">Schedule Virtual Class</div>
+                                <div class="card-subtitle">Create online learning sessions</div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <form>
+                                <div class="form-group">
+                                    <label class="form-label">Class Title</label>
+                                    <input type="text" class="form-input" placeholder="Enter class title">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Course</label>
+                                    <select class="form-input">
+                                        <option>Computer Science Fundamentals</option>
+                                        <option>Data Structures & Algorithms</option>
+                                        <option>Database Systems</option>
+                                        <option>Software Engineering</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Date & Time</label>
+                                    <input type="datetime-local" class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Duration</label>
+                                    <select class="form-input">
+                                        <option>30 minutes</option>
+                                        <option>1 hour</option>
+                                        <option>1.5 hours</option>
+                                        <option>2 hours</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Platform</label>
+                                    <select class="form-input">
+                                        <option>Zoom</option>
+                                        <option>Microsoft Teams</option>
+                                        <option>Google Meet</option>
+                                        <option>WebEx</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Meeting Link</label>
+                                    <input type="url" class="form-input" placeholder="Enter meeting URL">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Schedule Class</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon green">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <div>
+                                <div class="card-title">Upcoming Virtual Classes</div>
+                                <div class="card-subtitle">Your scheduled online sessions</div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="virtual-class-list">
+                                <div class="virtual-class-item">
+                                    <div class="class-info">
+                                        <h4>Database Systems - Q&A Session</h4>
+                                        <p>Jan 20, 2024 • 2:00 PM - 3:30 PM</p>
+                                        <span class="platform">Zoom • 42 students registered</span>
+                                    </div>
+                                    <div class="class-actions">
+                                        <button class="btn btn-primary btn-sm">Join Now</button>
+                                        <button class="btn btn-secondary btn-sm">Edit</button>
+                                    </div>
+                                </div>
+                                <div class="virtual-class-item">
+                                    <div class="class-info">
+                                        <h4>Software Engineering - Project Review</h4>
+                                        <p>Jan 22, 2024 • 10:00 AM - 11:30 AM</p>
+                                        <span class="platform">Microsoft Teams • 38 students registered</span>
+                                    </div>
+                                    <div class="class-actions">
+                                        <button class="btn btn-secondary btn-sm">Join Later</button>
+                                        <button class="btn btn-secondary btn-sm">Edit</button>
+                                    </div>
+                                </div>
+                                <div class="virtual-class-item">
+                                    <div class="class-info">
+                                        <h4>Data Structures - Lab Session</h4>
+                                        <p>Jan 25, 2024 • 1:00 PM - 2:30 PM</p>
+                                        <span class="platform">Google Meet • 45 students registered</span>
+                                    </div>
+                                    <div class="class-actions">
+                                        <button class="btn btn-secondary btn-sm">Join Later</button>
+                                        <button class="btn btn-secondary btn-sm">Edit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="auth.js"></script>
+</body>
+</html>
