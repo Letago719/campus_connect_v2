@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dining - Campus Connect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h2>Campus Connect</h2>
+                </div>
+                <div class="user-info">
+                    <p>Student Name</p>
+                    <span class="role">student</span>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <div class="nav-section-title">Dashboard</div>
+                    <a href="../dashboards/student.html" class="nav-item">
+                        <i class="fas fa-home"></i>
+                        <span>Overview</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Academic</div>
+                    <a href="modules.html" class="nav-item">
+                        <i class="fas fa-book"></i>
+                        <span>My Modules</span>
+                    </a>
+                    <a href="performance.html" class="nav-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Performance</span>
+                    </a>
+                    <a href="upload-assignment.html" class="nav-item">
+                        <i class="fas fa-upload"></i>
+                        <span>Submit Assignment</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Campus Life</div>
+                    <a href="book-room.html" class="nav-item">
+                        <i class="fas fa-door-open"></i>
+                        <span>Book Room</span>
+                    </a>
+                    <a href="communities.html" class="nav-item">
+                        <i class="fas fa-users"></i>
+                        <span>Communities</span>
+                    </a>
+                    <a href="dining.html" class="nav-item active">
+                        <i class="fas fa-utensils"></i>
+                        <span>Dining</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Information</div>
+                    <a href="announcements.html" class="nav-item">
+                        <i class="fas fa-bullhorn"></i>
+                        <span>Announcements</span>
+                    </a>
+                </div>
+            </nav>
+
+            <a href="#" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1>Dining Services</h1>
+                <div class="header-actions">
+                    <button class="btn btn-secondary">
+                        <i class="fas fa-history"></i>
+                        Order History
+                    </button>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-plus"></i>
+                        Add Funds
+                    </button>
+                </div>
+            </div>
+
+            <!-- Wallet Balance -->
+            <div class="stats-grid">
+                <div class="stat-card wallet-card">
+                    <div class="stat-number">$127.50</div>
+                    <div class="stat-label">Wallet Balance</div>
+                    <button class="btn btn-primary btn-sm wallet-btn">
+                        <i class="fas fa-plus"></i>
+                        Add Funds
+                    </button>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">$45.20</div>
+                    <div class="stat-label">This Week's Spending</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Orders This Month</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">$8.50</div>
+                    <div class="stat-label">Average Order</div>
+                </div>
+            </div>
+
+            <!-- Dining Locations -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon orange">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div>
+                        <h3 class="card-title">Dining Locations</h3>
+                        <p class="card-subtitle">Campus restaurants and cafes</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="location-tabs">
+                        <button class="location-tab active" onclick="showLocation('main-hall')">Main Dining Hall</button>
+                        <button class="location-tab" onclick="showLocation('student-cafe')">Student Café</button>
+                        <button class="location-tab" onclick="showLocation('library-coffee')">Library Coffee Shop</button>
+                        <button class="location-tab" onclick="showLocation('food-court')">Food Court</button>
+                    </div>
+
+                    <div class="location-content" id="main-hall">
+                        <div class="location-info">
+                            <div class="location-header">
+                                <h4>Main Dining Hall</h4>
+                                <div class="location-status open">
+                                    <i class="fas fa-clock"></i>
+                                    <span>Open until 9:00 PM</span>
+                                </div>
+                            </div>
+                            <p>Full-service dining hall with international cuisine, salad bar, and daily specials.</p>
+                            <div class="location-details">
+                                <span><i class="fas fa-clock"></i> Mon-Sun: 7:00 AM - 9:00 PM</span>
+                                <span><i class="fas fa-map-marker-alt"></i> Student Center, Ground Floor</span>
+                                <span><i class="fas fa-phone"></i> (555) 123-4567</span>
+                            </div>
+                        </div>
+
+                        <div class="menu-section">
+                            <h5>Today's Menu</h5>
+                            <div class="menu-grid">
+                                <div class="menu-item">
+                                    <div class="menu-item-image">
+                                        <i class="fas fa-hamburger"></i>
+                                    </div>
+                                    <div class="menu-item-info">
+                                        <h6>Classic Burger</h6>
+                                        <p>Beef patty, lettuce, tomato, cheese</p>
+                                        <div class="menu-item-price">$8.50</div>
+                                    </div>
+                                    <button class="btn btn-primary btn-sm">Order</button>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="menu-item-image">
+                                        <i class="fas fa-pizza-slice"></i>
+                                    </div>
+                                    <div class="menu-item-info">
+                                        <h6>Margherita Pizza</h6>
+                                        <p>Fresh mozzarella, basil, tomato sauce</p>
+                                        <div class="menu-item-price">$12.00</div>
+                                    </div>
+                                    <button class="btn btn-primary btn-sm">Order</button>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="menu-item-image">
+                                        <i class="fas fa-leaf"></i>
+                                    </div>
+                                    <div class="menu-item-info">
+                                        <h6>Caesar Salad</h6>
+                                        <p>Romaine lettuce, croutons, parmesan</p>
+                                        <div class="menu-item-price">$6.75</div>
+                                    </div>
+                                    <button class="btn btn-primary btn-sm">Order</button>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="menu-item-image">
+                                        <i class="fas fa-drumstick-bite"></i>
+                                    </div>
+                                    <div class="menu-item-info">
+                                        <h6>Grilled Chicken</h6>
+                                        <p>With rice and vegetables</p>
+                                        <div class="menu-item-price">$9.25</div>
+                                    </div>
+                                    <button class="btn btn-primary btn-sm">Order</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="location-content" id="student-cafe" style="display: none;">
+                        <div class="location-info">
+                            <div class="location-header">
+                                <h4>Student Café</h4>
+                                <div class="location-status open">
+                                    <i class="fas fa-clock"></i>
+                                    <span>Open until 11:00 PM</span>
+                                </div>
+                            </div>
+                            <p>Casual dining with sandwiches, snacks, and beverages. Perfect for quick meals between classes.</p>
+                            <div class="location-details">
+                                <span><i class="fas fa-clock"></i> Mon-Sun: 8:00 AM - 11:00 PM</span>
+                                <span><i class="fas fa-map-marker-alt"></i> Building A, 1st Floor</span>
+                                <span><i class="fas fa-phone"></i> (555) 123-4568</span>
+                            </div>
+                        </div>
+
+                        <div class="menu-section">
+                            <h5>Popular Items</h5>
+                            <div class="menu-grid">
+                                <div class="menu-item">
+                                    <div class="menu-item-image">
+                                        <i class="fas fa-bread-slice"></i>
+                                    </div>
+                                    <div class="menu-item-info">
+                                        <h6>Club Sandwich</h6>
+                                        <p>Turkey, bacon, lettuce, tomato</p>
+                                        <div class="menu-item-price">$7.50</div>
+                                    </div>
+                                    <button class="btn btn-primary btn-sm">Order</button>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="menu-item-image">
+                                        <i class="fas fa-coffee"></i>
+                                    </div>
+                                    <div class="menu-item-info">
+                                        <h6>Cappuccino</h6>
+                                        <p>Espresso with steamed milk foam</p>
+                                        <div class="menu-item-price">$3.75</div>
+                                    </div>
+                                    <button class="btn btn-primary btn-sm">Order</button>
+                                </div>
+                                <div class="menu-item">
+                                    <div class="menu-item-image">
+                                        <i class="fas fa-cookie-bite"></i>
+                                    </div>
+                                    <div class="menu-item-info">
+                                        <h6>Chocolate Muffin</h6>
+                                        <p>Fresh baked with chocolate chips</p>
+                                        <div class="menu-item-price">$2.50</div>
+                                    </div>
+                                    <button class="btn btn-primary btn-sm">Order</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="location-content" id="library-coffee" style="display: none;">
+                        <div class="location-info">
+                            <div class="location-header">
+                                <h4>Library Coffee Shop</h4>
+                                <div class="location-status closed">
+                                    <i class="fas fa-clock"></i>
+                                    <span>Closed - Opens 7:00 AM</span>
+                                </div>
+                            </div>
+                            <p>Quiet coffee shop perfect for studying. Specialty coffee drinks and light snacks.</p>
+                            <div class="location-details">
+                                <span><i class="fas fa-clock"></i> Mon-Fri: 7:00 AM - 10:00 PM</span>
+                                <span><i class="fas fa-map-marker-alt"></i> Library, 2nd Floor</span>
+                                <span><i class="fas fa-phone"></i> (555) 123-4569</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="location-content" id="food-court" style="display: none;">
+                        <div class="location-info">
+                            <div class="location-header">
+                                <h4>Food Court</h4>
+                                <div class="location-status open">
+                                    <i class="fas fa-clock"></i>
+                                    <span>Open until 8:00 PM</span>
+                                </div>
+                            </div>
+                            <p>Multiple food vendors offering diverse cuisines from around the world.</p>
+                            <div class="location-details">
+                                <span><i class="fas fa-clock"></i> Mon-Sun: 11:00 AM - 8:00 PM</span>
+                                <span><i class="fas fa-map-marker-alt"></i> Student Union, 3rd Floor</span>
+                                <span><i class="fas fa-phone"></i> (555) 123-4570</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Orders -->
+            <div class="table-container">
+                <div class="table-header">
+                    <h3>Recent Orders</h3>
+                    <div class="table-actions">
+                        <button class="btn btn-secondary btn-sm">
+                            <i class="fas fa-download"></i>
+                            Export
+                        </button>
+                    </div>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Location</th>
+                            <th>Items</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="date-info">
+                                    <span>Feb 22, 2024</span>
+                                    <small>12:30 PM</small>
+                                </div>
+                            </td>
+                            <td>Main Dining Hall</td>
+                            <td>
+                                <div class="order-items">
+                                    <span>Classic Burger, Fries, Coke</span>
+                                    <small>3 items</small>
+                                </div>
+                            </td>
+                            <td>$11.75</td>
+                            <td><span class="status-badge delivered">Delivered</span></td>
+                            <td>
+                                <button class="btn btn-secondary btn-sm">
+                                    <i class="fas fa-receipt"></i>
+                                    Receipt
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="date-info">
+                                    <span>Feb 21, 2024</span>
+                                    <small>8:15 AM</small>
+                                </div>
+                            </td>
+                            <td>Student Café</td>
+                            <td>
+                                <div class="order-items">
+                                    <span>Cappuccino, Blueberry Muffin</span>
+                                    <small>2 items</small>
+                                </div>
+                            </td>
+                            <td>$6.25</td>
+                            <td><span class="status-badge delivered">Delivered</span></td>
+                            <td>
+                                <button class="btn btn-secondary btn-sm">
+                                    <i class="fas fa-receipt"></i>
+                                    Receipt
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="date-info">
+                                    <span>Feb 20, 2024</span>
+                                    <small>6:45 PM</small>
+                                </div>
+                            </td>
+                            <td>Food Court</td>
+                            <td>
+                                <div class="order-items">
+                                    <span>Pad Thai, Spring Rolls</span>
+                                    <small>2 items</small>
+                                </div>
+                            </td>
+                            <td>$13.50</td>
+                            <td><span class="status-badge delivered">Delivered</span></td>
+                            <td>
+                                <button class="btn btn-secondary btn-sm">
+                                    <i class="fas fa-receipt"></i>
+                                    Receipt
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Meal Plans -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon green">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <div>
+                        <h3 class="card-title">Meal Plan Information</h3>
+                        <p class="card-subtitle">Your current meal plan details</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="meal-plan-info">
+                        <div class="plan-details">
+                            <h4>Premium Meal Plan</h4>
+                            <p>Unlimited dining hall access + $200 flex dollars per semester</p>
+                            <div class="plan-stats">
+                                <div class="plan-stat">
+                                    <span class="stat-label">Flex Dollars Remaining</span>
+                                    <span class="stat-value">$127.50</span>
+                                </div>
+                                <div class="plan-stat">
+                                    <span class="stat-label">Plan Expires</span>
+                                    <span class="stat-value">May 15, 2024</span>
+                                </div>
+                                <div class="plan-stat">
+                                    <span class="stat-label">Guest Passes</span>
+                                    <span class="stat-value">3 remaining</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="plan-actions">
+                            <button class="btn btn-primary">
+                                <i class="fas fa-plus"></i>
+                                Add Flex Dollars
+                            </button>
+                            <button class="btn btn-secondary">
+                                <i class="fas fa-gift"></i>
+                                Buy Guest Pass
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/auth.js"></script>
+    <script>
+        function showLocation(locationId) {
+            // Hide all location content
+            document.querySelectorAll('.location-content').forEach(content => {
+                content.style.display = 'none';
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.location-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected location content
+            document.getElementById(locationId).style.display = 'block';
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // Handle order functionality
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.btn') && e.target.textContent.includes('Order')) {
+                const btn = e.target.closest('.btn');
+                const menuItem = btn.closest('.menu-item');
+                const itemName = menuItem.querySelector('h6').textContent;
+                const itemPrice = menuItem.querySelector('.menu-item-price').textContent;
+                
+                // Simulate ordering
+                btn.innerHTML = '<div class="loading"></div><span>Ordering...</span>';
+                btn.disabled = true;
+                
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fas fa-check"></i> Ordered';
+                    btn.classList.remove('btn-primary');
+                    btn.classList.add('btn-success');
+                    
+                    showSuccessMessage(`${itemName} ordered for ${itemPrice}!`);
+                    
+                    // Update wallet balance (simulate)
+                    const walletBalance = document.querySelector('.wallet-card .stat-number');
+                    const currentBalance = parseFloat(walletBalance.textContent.replace('$', ''));
+                    const orderAmount = parseFloat(itemPrice.replace('$', ''));
+                    const newBalance = currentBalance - orderAmount;
+                    walletBalance.textContent = `$${newBalance.toFixed(2)}`;
+                    
+                    setTimeout(() => {
+                        btn.innerHTML = '<i class="fas fa-utensils"></i> Order';
+                        btn.classList.remove('btn-success');
+                        btn.classList.add('btn-primary');
+                        btn.disabled = false;
+                    }, 3000);
+                }, 2000);
+            }
+        });
+    </script>
+    <style>
+        .wallet-card {
+            position: relative;
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white;
+        }
+
+        .wallet-card .stat-number,
+        .wallet-card .stat-label {
+            color: white;
+        }
+
+        .wallet-btn {
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+        }
+
+        .wallet-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .location-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .location-tab {
+            padding: 10px 16px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            background: rgba(255, 255, 255, 0.9);
+            color: #667eea;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .location-tab:hover {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .location-tab.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-color: transparent;
+        }
+
+        .location-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .location-header h4 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .location-status {
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .location-status.open {
+            background: rgba(72, 187, 120, 0.1);
+            color: #48bb78;
+        }
+
+        .location-status.closed {
+            background: rgba(245, 101, 101, 0.1);
+            color: #f56565;
+        }
+
+        .location-info {
+            margin-bottom: 24px;
+        }
+
+        .location-info p {
+            margin: 8px 0 16px 0;
+            color: #4a5568;
+            line-height: 1.5;
+        }
+
+        .location-details {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            font-size: 14px;
+            color: #718096;
+        }
+
+        .location-details span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .menu-section h5 {
+            margin: 0 0 16px 0;
+            font-size: 18px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            background: rgba(0, 0, 0, 0.02);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-item-image {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        .menu-item-info {
+            flex: 1;
+        }
+
+        .menu-item-info h6 {
+            margin: 0 0 4px 0;
+            font-size: 16px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .menu-item-info p {
+            margin: 0 0 8px 0;
+            font-size: 14px;
+            color: #718096;
+        }
+
+        .menu-item-price {
+            font-size: 16px;
+            font-weight: 700;
+            color: #48bb78;
+        }
+
+        .order-items {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .order-items span {
+            font-weight: 500;
+            color: #2d3748;
+        }
+
+        .order-items small {
+            color: #718096;
+            font-size: 12px;
+        }
+
+        .status-badge.delivered {
+            background: rgba(72, 187, 120, 0.1);
+            color: #48bb78;
+        }
+
+        .meal-plan-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .plan-details {
+            flex: 1;
+        }
+
+        .plan-details h4 {
+            margin: 0 0 8px 0;
+            font-size: 20px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .plan-details p {
+            margin: 0 0 20px 0;
+            color: #4a5568;
+        }
+
+        .plan-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+        }
+
+        .plan-stat {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #718096;
+        }
+
+        .stat-value {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .plan-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .location-tabs {
+                justify-content: center;
+            }
+
+            .location-details {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .meal-plan-info {
+                flex-direction: column;
+            }
+
+            .plan-actions {
+                width: 100%;
+            }
+        }
+    </style>
+</body>
+</html>

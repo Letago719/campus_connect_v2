@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard - Campus Connect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h2>Campus Connect</h2>
+                </div>
+                <div class="user-info">
+                    <p>Teacher Name</p>
+                    <span class="role">teacher</span>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <div class="nav-section-title">Dashboard</div>
+                    <a href="teacher.html" class="nav-item active">
+                        <i class="fas fa-home"></i>
+                        <span>Overview</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Teaching</div>
+                    <a href="../teacher/submissions.html" class="nav-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Submissions</span>
+                    </a>
+                    <a href="../teacher/attendance.html" class="nav-item">
+                        <i class="fas fa-user-check"></i>
+                        <span>Attendance</span>
+                    </a>
+                    <a href="../teacher/post-assignment.html" class="nav-item">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Post Assignment</span>
+                    </a>
+                    <a href="../teacher/performance.html" class="nav-item">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Student Performance</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Communication</div>
+                    <a href="../teacher/announcements.html" class="nav-item">
+                        <i class="fas fa-bullhorn"></i>
+                        <span>Announcements</span>
+                    </a>
+                    <a href="../teacher/messages.html" class="nav-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>Messages</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Schedule</div>
+                    <a href="../teacher/schedule.html" class="nav-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>My Schedule</span>
+                    </a>
+                </div>
+            </nav>
+
+            <a href="#" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1>Teacher Dashboard</h1>
+                <div class="header-actions">
+                    <button class="btn btn-secondary">
+                        <i class="fas fa-calendar"></i>
+                        Today's Schedule
+                    </button>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-plus"></i>
+                        Quick Action
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Overview -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Active Courses</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">127</div>
+                    <div class="stat-label">Total Students</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">23</div>
+                    <div class="stat-label">Pending Submissions</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">89%</div>
+                    <div class="stat-label">Average Attendance</div>
+                </div>
+            </div>
+
+            <!-- Quick Actions Grid -->
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon blue">
+                            <i class="fas fa-file-upload"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Recent Submissions</h3>
+                            <p class="card-subtitle">Latest student submissions</p>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="submission-list">
+                            <div class="submission-item">
+                                <div class="submission-info">
+                                    <strong>Database Design Project</strong>
+                                    <span>CS301 • John Smith</span>
+                                </div>
+                                <div class="submission-time">2 hours ago</div>
+                                <div class="submission-actions">
+                                    <button class="btn btn-primary btn-sm">Review</button>
+                                </div>
+                            </div>
+                            <div class="submission-item">
+                                <div class="submission-info">
+                                    <strong>Algorithm Analysis</strong>
+                                    <span>CS201 • Sarah Johnson</span>
+                                </div>
+                                <div class="submission-time">4 hours ago</div>
+                                <div class="submission-actions">
+                                    <button class="btn btn-primary btn-sm">Review</button>
+                                </div>
+                            </div>
+                            <div class="submission-item">
+                                <div class="submission-info">
+                                    <strong>Programming Assignment 3</strong>
+                                    <span>CS101 • Mike Davis</span>
+                                </div>
+                                <div class="submission-time">6 hours ago</div>
+                                <div class="submission-actions">
+                                    <button class="btn btn-secondary btn-sm">Graded</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="../teacher/submissions.html" class="btn btn-primary">View All Submissions</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon green">
+                            <i class="fas fa-calendar-day"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Today's Classes</h3>
+                            <p class="card-subtitle">Your teaching schedule</p>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="class-schedule">
+                            <div class="class-item">
+                                <div class="class-time">09:00 - 10:30</div>
+                                <div class="class-info">
+                                    <strong>CS101 - Introduction to Programming</strong>
+                                    <span>Room A101 • 35 students</span>
+                                </div>
+                                <div class="class-status current">Current</div>
+                            </div>
+                            <div class="class-item">
+                                <div class="class-time">11:00 - 12:30</div>
+                                <div class="class-info">
+                                    <strong>CS301 - Database Systems</strong>
+                                    <span>Room C301 • 28 students</span>
+                                </div>
+                                <div class="class-status upcoming">Upcoming</div>
+                            </div>
+                            <div class="class-item">
+                                <div class="class-time">14:00 - 15:30</div>
+                                <div class="class-info">
+                                    <strong>CS401 - Software Engineering</strong>
+                                    <span>Room D102 • 32 students</span>
+                                </div>
+                                <div class="class-status upcoming">Upcoming</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="../teacher/schedule.html" class="btn btn-secondary">Full Schedule</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon orange">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Class Performance</h3>
+                            <p class="card-subtitle">Student progress overview</p>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="performance-overview">
+                            <div class="performance-item">
+                                <div class="course-name">CS101</div>
+                                <div class="performance-stats">
+                                    <div class="stat">
+                                        <span class="stat-label">Avg Grade</span>
+                                        <span class="stat-value grade-good">85%</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-label">Attendance</span>
+                                        <span class="stat-value">92%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="performance-item">
+                                <div class="course-name">CS201</div>
+                                <div class="performance-stats">
+                                    <div class="stat">
+                                        <span class="stat-label">Avg Grade</span>
+                                        <span class="stat-value grade-average">78%</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-label">Attendance</span>
+                                        <span class="stat-value">87%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="performance-item">
+                                <div class="course-name">CS301</div>
+                                <div class="performance-stats">
+                                    <div class="stat">
+                                        <span class="stat-label">Avg Grade</span>
+                                        <span class="stat-value grade-excellent">91%</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-label">Attendance</span>
+                                        <span class="stat-value">95%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="../teacher/performance.html" class="btn btn-primary">Detailed Analytics</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon purple">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Quick Actions</h3>
+                            <p class="card-subtitle">Common teaching tasks</p>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="quick-actions">
+                            <button class="action-btn" onclick="window.location.href='../teacher/post-assignment.html'">
+                                <i class="fas fa-plus-circle"></i>
+                                <span>Post Assignment</span>
+                            </button>
+                            <button class="action-btn" onclick="window.location.href='../teacher/attendance.html'">
+                                <i class="fas fa-user-check"></i>
+                                <span>Mark Attendance</span>
+                            </button>
+                            <button class="action-btn" onclick="window.location.href='../teacher/announcements.html'">
+                                <i class="fas fa-bullhorn"></i>
+                                <span>Post Announcement</span>
+                            </button>
+                            <button class="action-btn" onclick="window.location.href='../teacher/messages.html'">
+                                <i class="fas fa-envelope"></i>
+                                <span>Message Students</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notifications -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon red">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <div>
+                        <h3 class="card-title">Recent Notifications</h3>
+                        <p class="card-subtitle">Important updates and reminders</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="notification-list">
+                        <div class="notification-item priority-high">
+                            <div class="notification-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="notification-content">
+                                <strong>Grade Submission Deadline</strong>
+                                <p>Midterm grades must be submitted by March 1st, 2024</p>
+                                <small>2 days remaining</small>
+                            </div>
+                            <div class="notification-actions">
+                                <button class="btn btn-primary btn-sm">Submit Grades</button>
+                            </div>
+                        </div>
+                        <div class="notification-item priority-normal">
+                            <div class="notification-icon">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <div class="notification-content">
+                                <strong>Faculty Meeting</strong>
+                                <p>Department meeting scheduled for tomorrow at 2:00 PM</p>
+                                <small>1 day remaining</small>
+                            </div>
+                            <div class="notification-actions">
+                                <button class="btn btn-secondary btn-sm">Add to Calendar</button>
+                            </div>
+                        </div>
+                        <div class="notification-item priority-low">
+                            <div class="notification-icon">
+                                <i class="fas fa-calendar"></i>
+                            </div>
+                            <div class="notification-content">
+                                <strong>Course Evaluation</strong>
+                                <p>Student course evaluations are now available for review</p>
+                                <small>3 days ago</small>
+                            </div>
+                            <div class="notification-actions">
+                                <button class="btn btn-secondary btn-sm">View Results</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/auth.js"></script>
+    <style>
+        /* Additional styles for teacher dashboard components */
+        .submission-list, .class-schedule, .notification-list {
+            space-y: 12px;
+        }
+
+        .submission-item, .class-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .submission-item:last-child, .class-item:last-child {
+            border-bottom: none;
+        }
+
+        .submission-info, .class-info {
+            flex: 1;
+        }
+
+        .submission-info strong, .class-info strong {
+            display: block;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 4px;
+        }
+
+        .submission-info span, .class-info span {
+            font-size: 12px;
+            color: #718096;
+        }
+
+        .submission-time {
+            font-size: 12px;
+            color: #a0aec0;
+            min-width: 80px;
+        }
+
+        .class-time {
+            font-size: 12px;
+            font-weight: 600;
+            color: #667eea;
+            min-width: 90px;
+        }
+
+        .class-status {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .class-status.current {
+            background: rgba(72, 187, 120, 0.1);
+            color: #48bb78;
+        }
+
+        .class-status.upcoming {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+        }
+
+        .performance-overview {
+            space-y: 16px;
+        }
+
+        .performance-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            margin-bottom: 16px;
+        }
+
+        .performance-item:last-child {
+            border-bottom: none;
+        }
+
+        .course-name {
+            font-weight: 600;
+            color: #2d3748;
+            font-size: 16px;
+        }
+
+        .performance-stats {
+            display: flex;
+            gap: 20px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-label {
+            display: block;
+            font-size: 11px;
+            color: #718096;
+            margin-bottom: 4px;
+        }
+
+        .stat-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .stat-value.grade-excellent { color: #48bb78; }
+        .stat-value.grade-good { color: #667eea; }
+        .stat-value.grade-average { color: #ed8936; }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .action-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding: 16px;
+            background: rgba(102, 126, 234, 0.1);
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #667eea;
+        }
+
+        .action-btn:hover {
+            background: rgba(102, 126, 234, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .action-btn i {
+            font-size: 20px;
+        }
+
+        .action-btn span {
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .notification-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 16px;
+            background: rgba(0, 0, 0, 0.02);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            border-left: 4px solid transparent;
+        }
+
+        .notification-item.priority-high {
+            border-left-color: #f56565;
+        }
+
+        .notification-item.priority-normal {
+            border-left-color: #667eea;
+        }
+
+        .notification-item.priority-low {
+            border-left-color: #48bb78;
+        }
+
+        .notification-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: white;
+        }
+
+        .priority-high .notification-icon {
+            background: #f56565;
+        }
+
+        .priority-normal .notification-icon {
+            background: #667eea;
+        }
+
+        .priority-low .notification-icon {
+            background: #48bb78;
+        }
+
+        .notification-content {
+            flex: 1;
+        }
+
+        .notification-content strong {
+            display: block;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 4px;
+        }
+
+        .notification-content p {
+            margin: 0 0 4px 0;
+            color: #4a5568;
+            font-size: 14px;
+        }
+
+        .notification-content small {
+            color: #a0aec0;
+            font-size: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .performance-stats {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .notification-item {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</body>
+</html>

@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages - Campus Connect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h2>Campus Connect</h2>
+                </div>
+                <div class="user-info">
+                    <p>Teacher Name</p>
+                    <span class="role">teacher</span>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <div class="nav-section-title">Dashboard</div>
+                    <a href="../dashboards/teacher.html" class="nav-item">
+                        <i class="fas fa-home"></i>
+                        <span>Overview</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Teaching</div>
+                    <a href="submissions.html" class="nav-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Submissions</span>
+                    </a>
+                    <a href="attendance.html" class="nav-item">
+                        <i class="fas fa-user-check"></i>
+                        <span>Attendance</span>
+                    </a>
+                    <a href="post-assignment.html" class="nav-item">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Post Assignment</span>
+                    </a>
+                    <a href="performance.html" class="nav-item">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Student Performance</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Communication</div>
+                    <a href="announcements.html" class="nav-item">
+                        <i class="fas fa-bullhorn"></i>
+                        <span>Announcements</span>
+                    </a>
+                    <a href="messages.html" class="nav-item active">
+                        <i class="fas fa-envelope"></i>
+                        <span>Messages</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Schedule</div>
+                    <a href="schedule.html" class="nav-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>My Schedule</span>
+                    </a>
+                </div>
+            </nav>
+
+            <a href="#" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1>Messages</h1>
+                <div class="header-actions">
+                    <button class="btn btn-secondary">
+                        <i class="fas fa-archive"></i>
+                        Archive
+                    </button>
+                    <button class="btn btn-primary" onclick="showComposeModal()">
+                        <i class="fas fa-plus"></i>
+                        Compose
+                    </button>
+                </div>
+            </div>
+
+            <div class="messages-container">
+                <!-- Messages Sidebar -->
+                <div class="messages-sidebar">
+                    <div class="message-filters">
+                        <div class="filter-tabs">
+                            <button class="filter-tab active" data-filter="all">All Messages</button>
+                            <button class="filter-tab" data-filter="unread">Unread (3)</button>
+                            <button class="filter-tab" data-filter="important">Important</button>
+                            <button class="filter-tab" data-filter="archived">Archived</button>
+                        </div>
+                    </div>
+
+                    <div class="message-list">
+                        <div class="message-item active unread" data-message="1">
+                            <div class="message-avatar">JS</div>
+                            <div class="message-preview">
+                                <div class="message-header">
+                                    <strong>John Smith</strong>
+                                    <span class="message-time">2 hours ago</span>
+                                </div>
+                                <div class="message-subject">Question about Assignment 3</div>
+                                <div class="message-snippet">Hi Professor, I have a question about the database design assignment...</div>
+                            </div>
+                            <div class="message-indicators">
+                                <span class="unread-indicator"></span>
+                            </div>
+                        </div>
+
+                        <div class="message-item unread" data-message="2">
+                            <div class="message-avatar">SJ</div>
+                            <div class="message-preview">
+                                <div class="message-header">
+                                    <strong>Sarah Johnson</strong>
+                                    <span class="message-time">5 hours ago</span>
+                                </div>
+                                <div class="message-subject">Lab Session Clarification</div>
+                                <div class="message-snippet">Could you please clarify the requirements for the lab report...</div>
+                            </div>
+                            <div class="message-indicators">
+                                <span class="unread-indicator"></span>
+                            </div>
+                        </div>
+
+                        <div class="message-item" data-message="3">
+                            <div class="message-avatar">MD</div>
+                            <div class="message-preview">
+                                <div class="message-header">
+                                    <strong>Mike Davis</strong>
+                                    <span class="message-time">1 day ago</span>
+                                </div>
+                                <div class="message-subject">Extension Request</div>
+                                <div class="message-snippet">I'm writing to request an extension for the programming assignment...</div>
+                            </div>
+                        </div>
+
+                        <div class="message-item unread" data-message="4">
+                            <div class="message-avatar">EB</div>
+                            <div class="message-preview">
+                                <div class="message-header">
+                                    <strong>Emily Brown</strong>
+                                    <span class="message-time">2 days ago</span>
+                                </div>
+                                <div class="message-subject">Office Hours Availability</div>
+                                <div class="message-snippet">Are you available for office hours this Thursday...</div>
+                            </div>
+                            <div class="message-indicators">
+                                <span class="unread-indicator"></span>
+                            </div>
+                        </div>
+
+                        <div class="message-item" data-message="5">
+                            <div class="message-avatar">AW</div>
+                            <div class="message-preview">
+                                <div class="message-header">
+                                    <strong>Alex Wilson</strong>
+                                    <span class="message-time">3 days ago</span>
+                                </div>
+                                <div class="message-subject">Thank you for the feedback</div>
+                                <div class="message-snippet">Thank you for the detailed feedback on my project proposal...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Message Content -->
+                <div class="message-content">
+                    <div class="message-header-bar">
+                        <div class="message-actions">
+                            <button class="btn btn-secondary btn-sm" onclick="replyToMessage()">
+                                <i class="fas fa-reply"></i>
+                                Reply
+                            </button>
+                            <button class="btn btn-secondary btn-sm" onclick="forwardMessage()">
+                                <i class="fas fa-share"></i>
+                                Forward
+                            </button>
+                            <button class="btn btn-secondary btn-sm" onclick="archiveMessage()">
+                                <i class="fas fa-archive"></i>
+                                Archive
+                            </button>
+                            <button class="btn btn-secondary btn-sm" onclick="deleteMessage()">
+                                <i class="fas fa-trash"></i>
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="message-thread" id="messageThread">
+                        <div class="message-bubble received">
+                            <div class="message-sender">
+                                <div class="sender-avatar">JS</div>
+                                <div class="sender-info">
+                                    <strong>John Smith</strong>
+                                    <span class="sender-email">john.smith@student.usercampus.ac.za</span>
+                                    <span class="message-timestamp">Today at 2:30 PM</span>
+                                </div>
+                            </div>
+                            <div class="message-body">
+                                <h4>Question about Assignment 3</h4>
+                                <p>Hi Professor,</p>
+                                <p>I have a question about the database design assignment. In the requirements, it mentions that we need to create an ER diagram, but I'm not sure about the level of detail expected.</p>
+                                <p>Specifically:</p>
+                                <ul>
+                                    <li>Should we include all attributes for each entity?</li>
+                                    <li>Do we need to show cardinality for all relationships?</li>
+                                    <li>Are weak entities required for this assignment?</li>
+                                </ul>
+                                <p>I want to make sure I'm on the right track before I submit. Thank you for your time!</p>
+                                <p>Best regards,<br>John Smith</p>
+                            </div>
+                        </div>
+
+                        <div class="message-bubble sent">
+                            <div class="message-sender">
+                                <div class="sender-info">
+                                    <strong>You</strong>
+                                    <span class="message-timestamp">Today at 3:15 PM</span>
+                                </div>
+                                <div class="sender-avatar teacher">TA</div>
+                            </div>
+                            <div class="message-body">
+                                <p>Hi John,</p>
+                                <p>Great questions! Here are the answers to your questions about the ER diagram:</p>
+                                <ol>
+                                    <li><strong>Attributes:</strong> Yes, please include all major attributes for each entity. You don't need to include every possible attribute, but focus on the key ones that are relevant to the business requirements.</li>
+                                    <li><strong>Cardinality:</strong> Absolutely! Showing cardinality (1:1, 1:M, M:N) is essential for understanding the relationships between entities.</li>
+                                    <li><strong>Weak entities:</strong> Only if they naturally arise from your design. Don't force them, but if you identify entities that depend on others for their existence, please include them.</li>
+                                </ol>
+                                <p>I've also uploaded a sample ER diagram to the course materials that might help guide you. Feel free to come to office hours if you need further clarification.</p>
+                                <p>Best,<br>Professor</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="reply-section">
+                        <div class="reply-form">
+                            <textarea class="reply-input" placeholder="Type your reply..."></textarea>
+                            <div class="reply-actions">
+                                <button class="btn btn-secondary btn-sm">
+                                    <i class="fas fa-paperclip"></i>
+                                    Attach
+                                </button>
+                                <button class="btn btn-primary btn-sm" onclick="sendReply()">
+                                    <i class="fas fa-paper-plane"></i>
+                                    Send
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Compose Message Modal -->
+    <div class="modal" id="composeModal" style="display: none;">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3>Compose Message</h3>
+                <button class="modal-close" onclick="closeComposeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="composeForm">
+                    <div class="form-group">
+                        <label class="form-label">Recipients *</label>
+                        <div class="recipient-selector">
+                            <select class="form-select" id="recipientType" onchange="updateRecipientOptions()">
+                                <option value="individual">Individual Student</option>
+                                <option value="course">Entire Course</option>
+                                <option value="group">Student Group</option>
+                                <option value="multiple">Multiple Students</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="recipientDetails">
+                        <label class="form-label">Select Student</label>
+                        <select class="form-select" id="studentSelect">
+                            <option value="">Choose a student</option>
+                            <option value="john.smith@student.usercampus.ac.za">John Smith (CS301)</option>
+                            <option value="sarah.johnson@student.usercampus.ac.za">Sarah Johnson (CS201)</option>
+                            <option value="mike.davis@student.usercampus.ac.za">Mike Davis (CS101)</option>
+                            <option value="emily.brown@student.usercampus.ac.za">Emily Brown (CS201)</option>
+                            <option value="alex.wilson@student.usercampus.ac.za">Alex Wilson (CS401)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Subject *</label>
+                        <input type="text" class="form-input" id="messageSubject" placeholder="Enter message subject" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Message *</label>
+                        <textarea class="form-textarea" id="messageContent" rows="8" placeholder="Type your message..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Priority</label>
+                        <select class="form-select" id="messagePriority">
+                            <option value="normal">Normal</option>
+                            <option value="high">High Priority</option>
+                            <option value="urgent">Urgent</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Options</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-item">
+                                <input type="checkbox" id="requestReadReceipt">
+                                <span class="checkmark"></span>
+                                Request read receipt
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" id="scheduleMessage">
+                                <span class="checkmark"></span>
+                                Schedule for later
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeComposeModal()">Cancel</button>
+                <button class="btn btn-secondary" onclick="saveDraft()">
+                    <i class="fas fa-save"></i>
+                    Save Draft
+                </button>
+                <button class="btn btn-primary" onclick="sendMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                    Send Message
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/auth.js"></script>
+    <script>
+        // Message data
+        const messages = {
+            1: {
+                sender: 'John Smith',
+                subject: 'Question about Assignment 3',
+                content: 'Full message content...',
+                time: '2 hours ago',
+                unread: true
+            },
+            2: {
+                sender: 'Sarah Johnson',
+                subject: 'Lab Session Clarification',
+                content: 'Full message content...',
+                time: '5 hours ago',
+                unread: true
+            }
+            // Add more messages...
+        };
+
+        // Initialize message functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeMessageList();
+            initializeFilters();
+        });
+
+        function initializeMessageList() {
+            const messageItems = document.querySelectorAll('.message-item');
+            messageItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Remove active class from all items
+                    messageItems.forEach(i => i.classList.remove('active'));
+                    // Add active class to clicked item
+                    this.classList.add('active');
+                    // Remove unread status
+                    this.classList.remove('unread');
+                    // Load message content
+                    loadMessage(this.dataset.message);
+                });
+            });
+        }
+
+        function initializeFilters() {
+            const filterTabs = document.querySelectorAll('.filter-tab');
+            filterTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    filterTabs.forEach(t => t.classList.remove('active'));
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    // Apply filter
+                    filterMessages(this.dataset.filter);
+                });
+            });
+        }
+
+        function filterMessages(filter) {
+            const messageItems = document.querySelectorAll('.message-item');
+            messageItems.forEach(item => {
+                let show = true;
+                
+                switch(filter) {
+                    case 'unread':
+                        show = item.classList.contains('unread');
+                        break;
+                    case 'important':
+                        show = item.classList.contains('important');
+                        break;
+                    case 'archived':
+                        show = item.classList.contains('archived');
+                        break;
+                    case 'all':
+                    default:
+                        show = true;
+                        break;
+                }
+                
+                item.style.display = show ? 'flex' : 'none';
+            });
+        }
+
+        function loadMessage(messageId) {
+            // In a real app, load message content from server
+            console.log('Loading message:', messageId);
+        }
+
+        function showComposeModal() {
+            document.getElementById('composeModal').style.display = 'flex';
+        }
+
+        function closeComposeModal() {
+            document.getElementById('composeModal').style.display = 'none';
+            document.getElementById('composeForm').reset();
+        }
+
+        function updateRecipientOptions() {
+            const recipientType = document.getElementById('recipientType').value;
+            const recipientDetails = document.getElementById('recipientDetails');
+            
+            // Update recipient selection based on type
+            // This would be more complex in a real application
+            console.log('Updating recipient options for:', recipientType);
+        }
+
+        function sendMessage() {
+            const subject = document.getElementById('messageSubject').value;
+            const content = document.getElementById('messageContent').value;
+            
+            if (!subject || !content) {
+                showErrorMessage('Please fill in subject and message content');
+                return;
+            }
+            
+            showSuccessMessage('Message sent successfully!');
+            closeComposeModal();
+        }
+
+        function saveDraft() {
+            showSuccessMessage('Message saved as draft');
+            closeComposeModal();
+        }
+
+        function sendReply() {
+            const replyText = document.querySelector('.reply-input').value;
+            if (!replyText.trim()) {
+                showErrorMessage('Please enter a reply message');
+                return;
+            }
+            
+            showSuccessMessage('Reply sent successfully!');
+            document.querySelector('.reply-input').value = '';
+        }
+
+        function replyToMessage() {
+            document.querySelector('.reply-input').focus();
+        }
+
+        function forwardMessage() {
+            showComposeModal();
+            // Pre-fill with forwarded content
+        }
+
+        function archiveMessage() {
+            showSuccessMessage('Message archived');
+        }
+
+        function deleteMessage() {
+            if (confirm('Are you sure you want to delete this message?')) {
+                showSuccessMessage('Message deleted');
+            }
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('composeModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeComposeModal();
+            }
+        });
+    </script>
+    <style>
+        .messages-container {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            height: calc(100vh - 200px);
+            gap: 20px;
+        }
+
+        .messages-sidebar {
+            background: rgba(0, 0, 0, 0.02);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .message-filters {
+            padding: 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .filter-tabs {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .filter-tab {
+            padding: 8px 12px;
+            border: none;
+            background: transparent;
+            text-align: left;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            color: #4a5568;
+        }
+
+        .filter-tab.active,
+        .filter-tab:hover {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+        }
+
+        .message-list {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .message-item {
+            display: flex;
+            gap: 12px;
+            padding: 16px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        .message-item:hover {
+            background: rgba(0, 0, 0, 0.02);
+        }
+
+        .message-item.active {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .message-item.unread {
+            background: rgba(102, 126, 234, 0.05);
+        }
+
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .message-preview {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .message-header strong {
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .message-time {
+            font-size: 12px;
+            color: #a0aec0;
+        }
+
+        .message-subject {
+            font-weight: 500;
+            color: #4a5568;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .message-snippet {
+            font-size: 12px;
+            color: #718096;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .message-indicators {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .unread-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #667eea;
+        }
+
+        .message-content {
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .message-header-bar {
+            padding: 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .message-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .message-thread {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .message-bubble {
+            margin-bottom: 20px;
+            max-width: 80%;
+        }
+
+        .message-bubble.received {
+            margin-right: auto;
+        }
+
+        .message-bubble.sent {
+            margin-left: auto;
+        }
+
+        .message-sender {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .message-bubble.sent .message-sender {
+            flex-direction: row-reverse;
+        }
+
+        .sender-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 12px;
+        }
+
+        .sender-avatar.teacher {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+        }
+
+        .sender-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .message-bubble.sent .sender-info {
+            align-items: flex-end;
+        }
+
+        .sender-info strong {
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .sender-email {
+            font-size: 11px;
+            color: #a0aec0;
+        }
+
+        .message-timestamp {
+            font-size: 11px;
+            color: #a0aec0;
+        }
+
+        .message-body {
+            background: rgba(0, 0, 0, 0.02);
+            padding: 16px;
+            border-radius: 12px;
+            line-height: 1.6;
+        }
+
+        .message-bubble.sent .message-body {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .message-body h4 {
+            margin: 0 0 12px 0;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .message-body p {
+            margin: 0 0 12px 0;
+            color: #4a5568;
+        }
+
+        .message-body ul, .message-body ol {
+            margin: 0 0 12px 20px;
+            color: #4a5568;
+        }
+
+        .reply-section {
+            padding: 20px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .reply-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .reply-input {
+            min-height: 80px;
+            padding: 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        .reply-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            display: none;
+        }
+
+        .checkmark {
+            width: 18px;
+            height: 18px;
+            border: 2px solid #cbd5e0;
+            border-radius: 4px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-item input[type="checkbox"]:checked + .checkmark {
+            background: #667eea;
+            border-color: #667eea;
+        }
+
+        .checkbox-item input[type="checkbox"]:checked + .checkmark::after {
+            content: '✓';
+            position: absolute;
+            top: -2px;
+            left: 2px;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .modal-content.large {
+            width: 90%;
+            max-width: 700px;
+        }
+
+        @media (max-width: 768px) {
+            .messages-container {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+
+            .messages-sidebar {
+                order: 2;
+                max-height: 300px;
+            }
+
+            .message-content {
+                order: 1;
+                min-height: 400px;
+            }
+
+            .message-actions {
+                flex-wrap: wrap;
+                gap: 4px;
+            }
+
+            .message-bubble {
+                max-width: 95%;
+            }
+        }
+    </style>
+</body>
+</html>

@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Announcements - Campus Connect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h2>Campus Connect</h2>
+                </div>
+                <div class="user-info">
+                    <p>Student Name</p>
+                    <span class="role">student</span>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <div class="nav-section-title">Dashboard</div>
+                    <a href="../dashboards/student.html" class="nav-item">
+                        <i class="fas fa-home"></i>
+                        <span>Overview</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Academic</div>
+                    <a href="modules.html" class="nav-item">
+                        <i class="fas fa-book"></i>
+                        <span>My Modules</span>
+                    </a>
+                    <a href="performance.html" class="nav-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Performance</span>
+                    </a>
+                    <a href="upload-assignment.html" class="nav-item">
+                        <i class="fas fa-upload"></i>
+                        <span>Submit Assignment</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Campus Life</div>
+                    <a href="book-room.html" class="nav-item">
+                        <i class="fas fa-door-open"></i>
+                        <span>Book Room</span>
+                    </a>
+                    <a href="communities.html" class="nav-item">
+                        <i class="fas fa-users"></i>
+                        <span>Communities</span>
+                    </a>
+                    <a href="dining.html" class="nav-item">
+                        <i class="fas fa-utensils"></i>
+                        <span>Dining</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Information</div>
+                    <a href="announcements.html" class="nav-item active">
+                        <i class="fas fa-bullhorn"></i>
+                        <span>Announcements</span>
+                    </a>
+                </div>
+            </nav>
+
+            <a href="#" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1>Announcements</h1>
+                <div class="header-actions">
+                    <button class="btn btn-secondary">
+                        <i class="fas fa-filter"></i>
+                        Filter
+                    </button>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-bell"></i>
+                        Notifications
+                    </button>
+                </div>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="filter-tabs">
+                <button class="filter-tab active" onclick="filterAnnouncements('all')">All Announcements</button>
+                <button class="filter-tab" onclick="filterAnnouncements('academic')">Academic</button>
+                <button class="filter-tab" onclick="filterAnnouncements('events')">Events</button>
+                <button class="filter-tab" onclick="filterAnnouncements('facilities')">Facilities</button>
+                <button class="filter-tab" onclick="filterAnnouncements('emergency')">Emergency</button>
+            </div>
+
+            <!-- Urgent Announcements -->
+            <div class="card urgent-card">
+                <div class="card-header">
+                    <div class="card-icon red">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div>
+                        <h3 class="card-title">Urgent Announcements</h3>
+                        <p class="card-subtitle">Important updates requiring immediate attention</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="announcement urgent" data-category="emergency">
+                        <div class="announcement-header">
+                            <div class="announcement-priority urgent">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <span>URGENT</span>
+                            </div>
+                            <div class="announcement-date">2 hours ago</div>
+                        </div>
+                        <h4>Campus Network Maintenance</h4>
+                        <p>The campus network will undergo scheduled maintenance tonight from 11 PM to 3 AM. Internet and WiFi services will be temporarily unavailable during this period.</p>
+                        <div class="announcement-footer">
+                            <span class="announcement-category emergency">Emergency</span>
+                            <div class="announcement-actions">
+                                <button class="btn btn-secondary btn-sm">
+                                    <i class="fas fa-bookmark"></i>
+                                    Save
+                                </button>
+                                <button class="btn btn-primary btn-sm">
+                                    <i class="fas fa-share"></i>
+                                    Share
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- All Announcements -->
+            <div class="announcements-list">
+                <div class="announcement" data-category="academic">
+                    <div class="announcement-header">
+                        <div class="announcement-priority high">
+                            <i class="fas fa-circle"></i>
+                            <span>HIGH</span>
+                        </div>
+                        <div class="announcement-date">1 day ago</div>
+                    </div>
+                    <h4>Midterm Examination Schedule Released</h4>
+                    <p>The midterm examination schedule for all Computer Science courses has been published. Exams will be conducted from March 1-5, 2024. Students are advised to check their individual timetables on the student portal.</p>
+                    <div class="announcement-details">
+                        <div class="detail-item">
+                            <i class="fas fa-calendar"></i>
+                            <span>March 1-5, 2024</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-user"></i>
+                            <span>Posted by: Academic Office</span>
+                        </div>
+                    </div>
+                    <div class="announcement-footer">
+                        <span class="announcement-category academic">Academic</span>
+                        <div class="announcement-actions">
+                            <button class="btn btn-secondary btn-sm">
+                                <i class="fas fa-bookmark"></i>
+                                Save
+                            </button>
+                            <button class="btn btn-primary btn-sm">
+                                <i class="fas fa-external-link-alt"></i>
+                                View Schedule
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="announcement" data-category="events">
+                    <div class="announcement-header">
+                        <div class="announcement-priority normal">
+                            <i class="fas fa-circle"></i>
+                            <span>NORMAL</span>
+                        </div>
+                        <div class="announcement-date">2 days ago</div>
+                    </div>
+                    <h4>Annual Tech Symposium 2024</h4>
+                    <p>Join us for the Annual Tech Symposium featuring keynote speakers from leading tech companies, workshops on emerging technologies, and networking opportunities. Registration is now open for all students.</p>
+                    <div class="announcement-details">
+                        <div class="detail-item">
+                            <i class="fas fa-calendar"></i>
+                            <span>March 15, 2024</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Main Auditorium</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-ticket-alt"></i>
+                            <span>Free Registration</span>
+                        </div>
+                    </div>
+                    <div class="announcement-footer">
+                        <span class="announcement-category events">Events</span>
+                        <div class="announcement-actions">
+                            <button class="btn btn-secondary btn-sm">
+                                <i class="fas fa-bookmark"></i>
+                                Save
+                            </button>
+                            <button class="btn btn-primary btn-sm">
+                                <i class="fas fa-user-plus"></i>
+                                Register
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="announcement" data-category="facilities">
+                    <div class="announcement-header">
+                        <div class="announcement-priority normal">
+                            <i class="fas fa-circle"></i>
+                            <span>NORMAL</span>
+                        </div>
+                        <div class="announcement-date">3 days ago</div>
+                    </div>
+                    <h4>Library Extended Hours During Exam Period</h4>
+                    <p>The university library will extend its operating hours during the upcoming examination period. The library will be open 24/7 from February 28 to March 10 to provide students with additional study space and resources.</p>
+                    <div class="announcement-details">
+                        <div class="detail-item">
+                            <i class="fas fa-clock"></i>
+                            <span>24/7 Access</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-calendar"></i>
+                            <span>Feb 28 - Mar 10</span>
+                        </div>
+                    </div>
+                    <div class="announcement-footer">
+                        <span class="announcement-category facilities">Facilities</span>
+                        <div class="announcement-actions">
+                            <button class="btn btn-secondary btn-sm">
+                                <i class="fas fa-bookmark"></i>
+                                Save
+                            </button>
+                            <button class="btn btn-primary btn-sm">
+                                <i class="fas fa-info-circle"></i>
+                                More Info
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="announcement" data-category="academic">
+                    <div class="announcement-header">
+                        <div class="announcement-priority high">
+                            <i class="fas fa-circle"></i>
+                            <span>HIGH</span>
+                        </div>
+                        <div class="announcement-date">4 days ago</div>
+                    </div>
+                    <h4>Course Registration for Summer Semester</h4>
+                    <p>Registration for summer semester courses is now open. Students can register for courses through the student portal. Early registration is recommended as popular courses fill up quickly.</p>
+                    <div class="announcement-details">
+                        <div class="detail-item">
+                            <i class="fas fa-calendar"></i>
+                            <span>Registration Open</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Deadline: March 20</span>
+                        </div>
+                    </div>
+                    <div class="announcement-footer">
+                        <span class="announcement-category academic">Academic</span>
+                        <div class="announcement-actions">
+                            <button class="btn btn-secondary btn-sm">
+                                <i class="fas fa-bookmark"></i>
+                                Save
+                            </button>
+                            <button class="btn btn-primary btn-sm">
+                                <i class="fas fa-edit"></i>
+                                Register Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="announcement" data-category="events">
+                    <div class="announcement-header">
+                        <div class="announcement-priority normal">
+                            <i class="fas fa-circle"></i>
+                            <span>NORMAL</span>
+                        </div>
+                        <div class="announcement-date">5 days ago</div>
+                    </div>
+                    <h4>Career Fair 2024</h4>
+                    <p>Connect with top employers at our annual Career Fair. Over 50 companies will be present to discuss internship and full-time opportunities. Bring your resume and dress professionally.</p>
+                    <div class="announcement-details">
+                        <div class="detail-item">
+                            <i class="fas fa-calendar"></i>
+                            <span>March 8, 2024</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Student Center</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-building"></i>
+                            <span>50+ Companies</span>
+                        </div>
+                    </div>
+                    <div class="announcement-footer">
+                        <span class="announcement-category events">Events</span>
+                        <div class="announcement-actions">
+                            <button class="btn btn-secondary btn-sm">
+                                <i class="fas fa-bookmark"></i>
+                                Save
+                            </button>
+                            <button class="btn btn-primary btn-sm">
+                                <i class="fas fa-list"></i>
+                                View Companies
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="announcement" data-category="facilities">
+                    <div class="announcement-header">
+                        <div class="announcement-priority low">
+                            <i class="fas fa-circle"></i>
+                            <span>LOW</span>
+                        </div>
+                        <div class="announcement-date">1 week ago</div>
+                    </div>
+                    <h4>New Study Spaces Available</h4>
+                    <p>New collaborative study spaces have been added to Building D, 3rd floor. These spaces feature modern furniture, whiteboards, and charging stations. Booking is available through the room reservation system.</p>
+                    <div class="announcement-details">
+                        <div class="detail-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Building D, 3rd Floor</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-users"></i>
+                            <span>4-8 Person Capacity</span>
+                        </div>
+                    </div>
+                    <div class="announcement-footer">
+                        <span class="announcement-category facilities">Facilities</span>
+                        <div class="announcement-actions">
+                            <button class="btn btn-secondary btn-sm">
+                                <i class="fas fa-bookmark"></i>
+                                Save
+                            </button>
+                            <button class="btn btn-primary btn-sm">
+                                <i class="fas fa-calendar-plus"></i>
+                                Book Room
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Load More -->
+            <div class="load-more-container">
+                <button class="btn btn-secondary">
+                    <i class="fas fa-chevron-down"></i>
+                    Load More Announcements
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/auth.js"></script>
+    <script>
+        function filterAnnouncements(category) {
+            // Update active tab
+            document.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Filter announcements
+            const announcements = document.querySelectorAll('.announcement');
+            announcements.forEach(announcement => {
+                if (category === 'all' || announcement.dataset.category === category) {
+                    announcement.style.display = 'block';
+                } else {
+                    announcement.style.display = 'none';
+                }
+            });
+        }
+
+        // Handle save functionality
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.btn') && e.target.textContent.includes('Save')) {
+                const btn = e.target.closest('.btn');
+                const announcement = btn.closest('.announcement');
+                const title = announcement.querySelector('h4').textContent;
+                
+                // Toggle save state
+                if (btn.textContent.includes('Save')) {
+                    btn.innerHTML = '<i class="fas fa-bookmark"></i> Saved';
+                    btn.classList.remove('btn-secondary');
+                    btn.classList.add('btn-success');
+                    showSuccessMessage(`"${title}" saved to your bookmarks!`);
+                } else {
+                    btn.innerHTML = '<i class="fas fa-bookmark"></i> Save';
+                    btn.classList.remove('btn-success');
+                    btn.classList.add('btn-secondary');
+                }
+            }
+        });
+
+        // Auto-refresh announcements every 5 minutes
+        setInterval(() => {
+            // In a real app, this would fetch new announcements from the server
+            console.log('Checking for new announcements...');
+        }, 300000);
+    </script>
+    <style>
+        .filter-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .filter-tab {
+            padding: 10px 16px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            background: rgba(255, 255, 255, 0.9);
+            color: #667eea;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .filter-tab:hover {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .filter-tab.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-color: transparent;
+        }
+
+        .urgent-card {
+            border-left: 4px solid #f56565;
+            margin-bottom: 30px;
+        }
+
+        .announcements-list {
+            space-y: 20px;
+        }
+
+        .announcement {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .announcement:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .announcement.urgent {
+            border-left: 4px solid #f56565;
+        }
+
+        .announcement-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .announcement-priority {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .announcement-priority.urgent {
+            background: rgba(245, 101, 101, 0.1);
+            color: #f56565;
+        }
+
+        .announcement-priority.high {
+            background: rgba(237, 137, 54, 0.1);
+            color: #ed8936;
+        }
+
+        .announcement-priority.normal {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+        }
+
+        .announcement-priority.low {
+            background: rgba(72, 187, 120, 0.1);
+            color: #48bb78;
+        }
+
+        .announcement-date {
+            font-size: 12px;
+            color: #a0aec0;
+            font-weight: 500;
+        }
+
+        .announcement h4 {
+            margin: 0 0 12px 0;
+            font-size: 20px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .announcement p {
+            margin: 0 0 16px 0;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        .announcement-details {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            color: #718096;
+        }
+
+        .detail-item i {
+            color: #667eea;
+        }
+
+        .announcement-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 16px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .announcement-category {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .announcement-category.academic {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+        }
+
+        .announcement-category.events {
+            background: rgba(159, 122, 234, 0.1);
+            color: #9f7aea;
+        }
+
+        .announcement-category.facilities {
+            background: rgba(79, 209, 199, 0.1);
+            color: #4fd1c7;
+        }
+
+        .announcement-category.emergency {
+            background: rgba(245, 101, 101, 0.1);
+            color: #f56565;
+        }
+
+        .announcement-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .load-more-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .filter-tabs {
+                justify-content: center;
+            }
+
+            .announcement-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .announcement-details {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .announcement-footer {
+                flex-direction: column;
+                gap: 12px;
+                align-items: flex-start;
+            }
+
+            .announcement-actions {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</body>
+</html>

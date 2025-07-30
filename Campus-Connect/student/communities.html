@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Communities - Campus Connect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h2>Campus Connect</h2>
+                </div>
+                <div class="user-info">
+                    <p>Student Name</p>
+                    <span class="role">student</span>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <div class="nav-section-title">Dashboard</div>
+                    <a href="../dashboards/student.html" class="nav-item">
+                        <i class="fas fa-home"></i>
+                        <span>Overview</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Academic</div>
+                    <a href="modules.html" class="nav-item">
+                        <i class="fas fa-book"></i>
+                        <span>My Modules</span>
+                    </a>
+                    <a href="performance.html" class="nav-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Performance</span>
+                    </a>
+                    <a href="upload-assignment.html" class="nav-item">
+                        <i class="fas fa-upload"></i>
+                        <span>Submit Assignment</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Campus Life</div>
+                    <a href="book-room.html" class="nav-item">
+                        <i class="fas fa-door-open"></i>
+                        <span>Book Room</span>
+                    </a>
+                    <a href="communities.html" class="nav-item active">
+                        <i class="fas fa-users"></i>
+                        <span>Communities</span>
+                    </a>
+                    <a href="dining.html" class="nav-item">
+                        <i class="fas fa-utensils"></i>
+                        <span>Dining</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Information</div>
+                    <a href="announcements.html" class="nav-item">
+                        <i class="fas fa-bullhorn"></i>
+                        <span>Announcements</span>
+                    </a>
+                </div>
+            </nav>
+
+            <a href="#" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1>Communities</h1>
+                <div class="header-actions">
+                    <button class="btn btn-secondary">
+                        <i class="fas fa-star"></i>
+                        My Communities
+                    </button>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-plus"></i>
+                        Create Community
+                    </button>
+                </div>
+            </div>
+
+            <!-- Community Categories -->
+            <div class="category-tabs">
+                <button class="tab-btn active" onclick="showCategory('all')">All Communities</button>
+                <button class="tab-btn" onclick="showCategory('academic')">Academic</button>
+                <button class="tab-btn" onclick="showCategory('sports')">Sports</button>
+                <button class="tab-btn" onclick="showCategory('arts')">Arts & Culture</button>
+                <button class="tab-btn" onclick="showCategory('tech')">Technology</button>
+                <button class="tab-btn" onclick="showCategory('social')">Social</button>
+            </div>
+
+            <!-- Featured Communities -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon purple">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div>
+                        <h3 class="card-title">Featured Communities</h3>
+                        <p class="card-subtitle">Most active and popular communities</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="featured-grid">
+                        <div class="featured-community">
+                            <div class="community-avatar tech">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div class="community-info">
+                                <h4>Coding Club</h4>
+                                <p>Learn programming together</p>
+                                <div class="community-stats">
+                                    <span><i class="fas fa-users"></i> 247 members</span>
+                                    <span><i class="fas fa-calendar"></i> Weekly meetups</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary btn-sm">Join</button>
+                        </div>
+                        <div class="featured-community">
+                            <div class="community-avatar sports">
+                                <i class="fas fa-futbol"></i>
+                            </div>
+                            <div class="community-info">
+                                <h4>Soccer Club</h4>
+                                <p>University soccer team</p>
+                                <div class="community-stats">
+                                    <span><i class="fas fa-users"></i> 89 members</span>
+                                    <span><i class="fas fa-trophy"></i> Competitive</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary btn-sm">Join</button>
+                        </div>
+                        <div class="featured-community">
+                            <div class="community-avatar arts">
+                                <i class="fas fa-music"></i>
+                            </div>
+                            <div class="community-info">
+                                <h4>Music Society</h4>
+                                <p>For music lovers and musicians</p>
+                                <div class="community-stats">
+                                    <span><i class="fas fa-users"></i> 156 members</span>
+                                    <span><i class="fas fa-microphone"></i> Performances</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary btn-sm">Join</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- All Communities -->
+            <div class="card-grid" id="communitiesGrid">
+                <!-- Academic Communities -->
+                <div class="card community-card" data-category="academic">
+                    <div class="card-header">
+                        <div class="card-icon blue">
+                            <i class="fas fa-microscope"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Science Research Club</h3>
+                            <p class="card-subtitle">Academic • Research</p>
+                        </div>
+                        <div class="community-badge academic">Academic</div>
+                    </div>
+                    <div class="card-content">
+                        <p>Join fellow students in cutting-edge research projects across various scientific disciplines.</p>
+                        <div class="community-details">
+                            <div class="detail-row">
+                                <span class="label">Members:</span>
+                                <span class="value">78 students</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">Meeting:</span>
+                                <span class="value">Fridays 3:00 PM</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">Location:</span>
+                                <span class="value">Science Building Lab 201</span>
+                            </div>
+                        </div>
+                        <div class="community-tags">
+                            <span class="tag">Research</span>
+                            <span class="tag">Science</span>
+                            <span class="tag">Innovation</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-secondary btn-sm">
+                            <i class="fas fa-eye"></i>
+                            View Details
+                        </button>
+                        <button class="btn btn-primary btn-sm">
+                            <i class="fas fa-user-plus"></i>
+                            Join Community
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sports Communities -->
+                <div class="card community-card" data-category="sports">
+                    <div class="card-header">
+                        <div class="card-icon green">
+                            <i class="fas fa-basketball-ball"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Basketball Team</h3>
+                            <p class="card-subtitle">Sports • Competitive</p>
+                        </div>
+                        <div class="community-badge sports">Sports</div>
+                    </div>
+                    <div class="card-content">
+                        <p>Competitive basketball team representing the university in inter-collegiate tournaments.</p>
+                        <div class="community-details">
+                            <div class="detail-row">
+                                <span class="label">Members:</span>
+                                <span class="value">24 players</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">Practice:</span>
+                                <span class="value">Mon, Wed, Fri 6:00 PM</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">Location:</span>
+                                <span class="value">Sports Complex Court 1</span>
+                            </div>
+                        </div>
+                        <div class="community-tags">
+                            <span class="tag">Basketball</span>
+                            <span class="tag">Competitive</span>
+                            <span class="tag">Fitness</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-secondary btn-sm">
+                            <i class="fas fa-eye"></i>
+                            View Details
+                        </button>
+                        <button class="btn btn-primary btn-sm">
+                            <i class="fas fa-user-plus"></i>
+                            Join Community
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Arts Communities -->
+                <div class="card community-card" data-category="arts">
+                    <div class="card-header">
+                        <div class="card-icon orange">
+                            <i class="fas fa-theater-masks"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Drama Society</h3>
+                            <p class="card-subtitle">Arts • Performance</p>
+                        </div>
+                        <div class="community-badge arts">Arts</div>
+                    </div>
+                    <div class="card-content">
+                        <p>Express yourself through theater, drama, and performing arts with fellow creative students.</p>
+                        <div class="community-details">
+                            <div class="detail-row">
+                                <span class="label">Members:</span>
+                                <span class="value">45 artists</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">Rehearsal:</span>
+                                <span class="value">Tuesdays & Thursdays 7:00 PM</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">Location:</span>
+                                <span class="value">Arts Center Theater</span>
+                            </div>
+                        </div>
+                        <div class="community-tags">
+                            <span class="tag">Theater</span>
+                            <span class="tag">Performance</span>
+                            <span class="tag">Creative</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-secondary btn-sm">
+                            <i class="fas fa-eye"></i>
+                            View Details
+                        </button>
+                        <button class="btn btn-primary btn-sm">
+                            <i class="fas fa-user-plus"></i>
+                            Join Community
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Technology Communities -->
+                <div class="card community-card" data-category="tech">
+                    <div class="card-header">
+                        <div class="card-icon purple">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">AI & Robotics Club</h3>
+                            <p class="card-subtitle">Technology • Innovation</p>
+                        </div>
+                        <div class="community-badge tech">Technology</div>
+                    </div>
+                    <div class="card-content">
+                        <p>Explore artificial intelligence, machine learning, and robotics through hands-on projects.</p>
+                        <div class="community-details">
+                            <div class="detail-row">
+                                <span class="label">Members:</span>
+                                <span class="value">134 engineers</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">Workshop:</span>
+                                <span class="value">Saturdays 2:00 PM</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">Location:</span>
+                                <span class="value">Engineering Lab 305</span>
+                            </div>
+                        </div>
+                        <div class="community-tags">
+                            <span class="tag">AI</span>
+                            <span class="tag">Robotics</span>
+                            <span class="tag">Innovation</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-secondary btn-sm">
+                            <i class="fas fa-eye"></i>
+                            View Details
+                        </button>
+                        <button class="btn btn-primary btn-sm">
+                            <i class="fas fa-user-plus"></i>
+                            Join Community
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Social Communities -->
+                <div class="card community-card" data-category="social">
+                    <div class="card-header">
+                        <div class="card-icon teal">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Volunteer Corps</h3>
+                            <p class="card-subtitle">Social • Community Service</p>
+                        </div>
+                        <div class="community-badge social">Social</div>
+                    </div>
+                    <div class="card-content">
+                        <p>Make a difference in the community through volunteer work and social impact projects.</p>
+                        <div class="community-details">
+                            <div class="detail-row">
+                                <span class="label">Members:</span>
+                                <span class="value">189 volunteers</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">Meeting:</span>
+                                <span class="value">Sundays 10:00 AM</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">Location:</span>
+                                <span class="value">Student Center Room 150</span>
+                            </div>
+                        </div>
+                        <div class="community-tags">
+                            <span class="tag">Volunteer</span>
+                            <span class="tag">Community</span>
+                            <span class="tag">Impact</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-secondary btn-sm">
+                            <i class="fas fa-eye"></i>
+                            View Details
+                        </button>
+                        <button class="btn btn-primary btn-sm">
+                            <i class="fas fa-user-plus"></i>
+                            Join Community
+                        </button>
+                    </div>
+                </div>
+
+                <!-- More communities -->
+                <div class="card community-card" data-category="sports">
+                    <div class="card-header">
+                        <div class="card-icon red">
+                            <i class="fas fa-running"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Running Club</h3>
+                            <p class="card-subtitle">Sports • Fitness</p>
+                        </div>
+                        <div class="community-badge sports">Sports</div>
+                    </div>
+                    <div class="card-content">
+                        <p>Join runners of all levels for regular runs, marathons, and fitness challenges.</p>
+                        <div class="community-details">
+                            <div class="detail-row">
+                                <span class="label">Members:</span>
+                                <span class="value">67 runners</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">Run:</span>
+                                <span class="value">Daily 6:00 AM</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">Location:</span>
+                                <span class="value">Campus Track</span>
+                            </div>
+                        </div>
+                        <div class="community-tags">
+                            <span class="tag">Running</span>
+                            <span class="tag">Fitness</span>
+                            <span class="tag">Health</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-secondary btn-sm">
+                            <i class="fas fa-eye"></i>
+                            View Details
+                        </button>
+                        <button class="btn btn-primary btn-sm">
+                            <i class="fas fa-user-plus"></i>
+                            Join Community
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- My Communities -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon blue">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div>
+                        <h3 class="card-title">My Communities</h3>
+                        <p class="card-subtitle">Communities you've joined</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="my-communities-list">
+                        <div class="my-community-item">
+                            <div class="community-avatar tech">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div class="community-info">
+                                <h4>Coding Club</h4>
+                                <p>Member since Jan 2024 • 247 members</p>
+                            </div>
+                            <div class="community-actions">
+                                <button class="btn btn-secondary btn-sm">
+                                    <i class="fas fa-comments"></i>
+                                    Chat
+                                </button>
+                                <button class="btn btn-primary btn-sm">
+                                    <i class="fas fa-calendar"></i>
+                                    Events
+                                </button>
+                            </div>
+                        </div>
+                        <div class="my-community-item">
+                            <div class="community-avatar social">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <div class="community-info">
+                                <h4>Volunteer Corps</h4>
+                                <p>Member since Dec 2023 • 189 volunteers</p>
+                            </div>
+                            <div class="community-actions">
+                                <button class="btn btn-secondary btn-sm">
+                                    <i class="fas fa-comments"></i>
+                                    Chat
+                                </button>
+                                <button class="btn btn-primary btn-sm">
+                                    <i class="fas fa-calendar"></i>
+                                    Events
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/auth.js"></script>
+    <script>
+        function showCategory(category) {
+            // Update tab buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Filter communities
+            const communityCards = document.querySelectorAll('.community-card');
+            communityCards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Add join functionality
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.btn') && e.target.textContent.includes('Join')) {
+                const btn = e.target.closest('.btn');
+                const communityCard = btn.closest('.community-card') || btn.closest('.featured-community');
+                const communityName = communityCard.querySelector('h4, .card-title').textContent;
+                
+                // Simulate joining
+                btn.innerHTML = '<div class="loading"></div><span>Joining...</span>';
+                btn.disabled = true;
+                
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fas fa-check"></i> Joined';
+                    btn.classList.remove('btn-primary');
+                    btn.classList.add('btn-success');
+                    
+                    showSuccessMessage(`Successfully joined ${communityName}!`);
+                    
+                    setTimeout(() => {
+                        btn.innerHTML = '<i class="fas fa-users"></i> Member';
+                        btn.disabled = false;
+                    }, 2000);
+                }, 1500);
+            }
+        });
+    </script>
+    <style>
+        .category-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 12px 20px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            background: rgba(255, 255, 255, 0.9);
+            color: #667eea;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover {
+            background: rgba(102, 126, 234, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-color: transparent;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .featured-community {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            background: rgba(0, 0, 0, 0.02);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .featured-community:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .community-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: white;
+        }
+
+        .community-avatar.tech { background: linear-gradient(135deg, #667eea, #764ba2); }
+        .community-avatar.sports { background: linear-gradient(135deg, #48bb78, #38a169); }
+        .community-avatar.arts { background: linear-gradient(135deg, #ed8936, #dd6b20); }
+        .community-avatar.academic { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+        .community-avatar.social { background: linear-gradient(135deg, #4fd1c7, #38b2ac); }
+
+        .community-info {
+            flex: 1;
+        }
+
+        .community-info h4 {
+            margin: 0 0 4px 0;
+            font-size: 16px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .community-info p {
+            margin: 0 0 8px 0;
+            font-size: 14px;
+            color: #718096;
+        }
+
+        .community-stats {
+            display: flex;
+            gap: 16px;
+            font-size: 12px;
+            color: #a0aec0;
+        }
+
+        .community-stats span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .community-card {
+            border-left: 4px solid #667eea;
+        }
+
+        .community-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .community-badge.academic { background: rgba(79, 172, 254, 0.1); color: #4facfe; }
+        .community-badge.sports { background: rgba(72, 187, 120, 0.1); color: #48bb78; }
+        .community-badge.arts { background: rgba(237, 137, 54, 0.1); color: #ed8936; }
+        .community-badge.tech { background: rgba(102, 126, 234, 0.1); color: #667eea; }
+        .community-badge.social { background: rgba(79, 209, 199, 0.1); color: #4fd1c7; }
+
+        .community-details {
+            margin: 16px 0;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .detail-row .label {
+            font-weight: 500;
+            color: #4a5568;
+        }
+
+        .detail-row .value {
+            color: #2d3748;
+        }
+
+        .community-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+
+        .tag {
+            padding: 4px 8px;
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .my-communities-list {
+            space-y: 16px;
+        }
+
+        .my-community-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            background: rgba(0, 0, 0, 0.02);
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+
+        .community-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-success {
+            background: rgba(72, 187, 120, 0.1);
+            color: #48bb78;
+            border: 1px solid rgba(72, 187, 120, 0.2);
+        }
+
+        .btn-success:hover {
+            background: rgba(72, 187, 120, 0.2);
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 768px) {
+            .category-tabs {
+                justify-content: center;
+            }
+
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-community {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .my-community-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .community-actions {
+                justify-content: center;
+            }
+        }
+    </style>
+</body>
+</html>

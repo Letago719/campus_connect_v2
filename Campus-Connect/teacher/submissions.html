@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submissions - Campus Connect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h2>Campus Connect</h2>
+                </div>
+                <div class="user-info">
+                    <p>Teacher Name</p>
+                    <span class="role">teacher</span>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <div class="nav-section-title">Dashboard</div>
+                    <a href="../dashboards/teacher.html" class="nav-item">
+                        <i class="fas fa-home"></i>
+                        <span>Overview</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Teaching</div>
+                    <a href="submissions.html" class="nav-item active">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Submissions</span>
+                    </a>
+                    <a href="attendance.html" class="nav-item">
+                        <i class="fas fa-user-check"></i>
+                        <span>Attendance</span>
+                    </a>
+                    <a href="post-assignment.html" class="nav-item">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Post Assignment</span>
+                    </a>
+                    <a href="performance.html" class="nav-item">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Student Performance</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Communication</div>
+                    <a href="announcements.html" class="nav-item">
+                        <i class="fas fa-bullhorn"></i>
+                        <span>Announcements</span>
+                    </a>
+                    <a href="messages.html" class="nav-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>Messages</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Schedule</div>
+                    <a href="schedule.html" class="nav-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>My Schedule</span>
+                    </a>
+                </div>
+            </nav>
+
+            <a href="#" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1>Student Submissions</h1>
+                <div class="header-actions">
+                    <button class="btn btn-secondary">
+                        <i class="fas fa-download"></i>
+                        Export Grades
+                    </button>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-filter"></i>
+                        Filter
+                    </button>
+                </div>
+            </div>
+
+            <!-- Filter Controls -->
+            <div class="card">
+                <div class="card-content">
+                    <div class="filter-row">
+                        <div class="filter-group">
+                            <label class="filter-label">Course</label>
+                            <select class="form-select" id="courseFilter">
+                                <option value="">All Courses</option>
+                                <option value="CS101">CS101 - Introduction to Programming</option>
+                                <option value="CS201">CS201 - Data Structures</option>
+                                <option value="CS301">CS301 - Database Systems</option>
+                                <option value="CS401">CS401 - Software Engineering</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">Status</label>
+                            <select class="form-select" id="statusFilter">
+                                <option value="">All Status</option>
+                                <option value="pending">Pending Review</option>
+                                <option value="graded">Graded</option>
+                                <option value="late">Late Submission</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">Assignment</label>
+                            <select class="form-select" id="assignmentFilter">
+                                <option value="">All Assignments</option>
+                                <option value="assignment1">Programming Assignment 1</option>
+                                <option value="assignment2">Database Design Project</option>
+                                <option value="assignment3">Algorithm Analysis</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <button class="btn btn-primary" onclick="applyFilters()">
+                                <i class="fas fa-search"></i>
+                                Apply Filters
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submissions Table -->
+            <div class="table-container">
+                <div class="table-header">
+                    <h3>All Submissions</h3>
+                    <div class="table-actions">
+                        <button class="btn btn-secondary btn-sm">
+                            <i class="fas fa-download"></i>
+                            Export
+                        </button>
+                    </div>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Student</th>
+                            <th>Assignment</th>
+                            <th>Course</th>
+                            <th>Submitted</th>
+                            <th>Status</th>
+                            <th>Grade</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-course="CS301" data-status="pending" data-assignment="assignment2">
+                            <td>
+                                <div class="student-info">
+                                    <div class="student-avatar">JS</div>
+                                    <div>
+                                        <strong>John Smith</strong>
+                                        <small>john.smith@student.usercampus.ac.za</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="assignment-info">
+                                    <strong>Database Design Project</strong>
+                                    <small>Due: Feb 25, 2024</small>
+                                </div>
+                            </td>
+                            <td>CS301</td>
+                            <td>
+                                <div class="submission-time">
+                                    <span>Feb 23, 2024</span>
+                                    <small>10:30 AM</small>
+                                </div>
+                            </td>
+                            <td><span class="status-badge pending">Pending Review</span></td>
+                            <td><span class="grade-badge ungraded">Not Graded</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn btn-primary btn-sm" onclick="reviewSubmission('john-smith', 'db-project')">
+                                        <i class="fas fa-eye"></i>
+                                        Review
+                                    </button>
+                                    <button class="btn btn-secondary btn-sm">
+                                        <i class="fas fa-download"></i>
+                                        Download
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr data-course="CS201" data-status="pending" data-assignment="assignment3">
+                            <td>
+                                <div class="student-info">
+                                    <div class="student-avatar">SJ</div>
+                                    <div>
+                                        <strong>Sarah Johnson</strong>
+                                        <small>sarah.johnson@student.usercampus.ac.za</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="assignment-info">
+                                    <strong>Algorithm Analysis Report</strong>
+                                    <small>Due: Mar 5, 2024</small>
+                                </div>
+                            </td>
+                            <td>CS201</td>
+                            <td>
+                                <div class="submission-time">
+                                    <span>Feb 22, 2024</span>
+                                    <small>3:45 PM</small>
+                                </div>
+                            </td>
+                            <td><span class="status-badge pending">Pending Review</span></td>
+                            <td><span class="grade-badge ungraded">Not Graded</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn btn-primary btn-sm" onclick="reviewSubmission('sarah-johnson', 'algo-analysis')">
+                                        <i class="fas fa-eye"></i>
+                                        Review
+                                    </button>
+                                    <button class="btn btn-secondary btn-sm">
+                                        <i class="fas fa-download"></i>
+                                        Download
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr data-course="CS101" data-status="graded" data-assignment="assignment1">
+                            <td>
+                                <div class="student-info">
+                                    <div class="student-avatar">MD</div>
+                                    <div>
+                                        <strong>Mike Davis</strong>
+                                        <small>mike.davis@student.usercampus.ac.za</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="assignment-info">
+                                    <strong>Programming Assignment 1</strong>
+                                    <small>Due: Feb 15, 2024</small>
+                                </div>
+                            </td>
+                            <td>CS101</td>
+                            <td>
+                                <div class="submission-time">
+                                    <span>Feb 14, 2024</span>
+                                    <small>11:20 PM</small>
+                                </div>
+                            </td>
+                            <td><span class="status-badge graded">Graded</span></td>
+                            <td><span class="grade-badge grade-b">85%</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn btn-secondary btn-sm">
+                                        <i class="fas fa-edit"></i>
+                                        Edit Grade
+                                    </button>
+                                    <button class="btn btn-secondary btn-sm">
+                                        <i class="fas fa-comment"></i>
+                                        Feedback
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr data-course="CS201" data-status="late" data-assignment="assignment1">
+                            <td>
+                                <div class="student-info">
+                                    <div class="student-avatar">EB</div>
+                                    <div>
+                                        <strong>Emily Brown</strong>
+                                        <small>emily.brown@student.usercampus.ac.za</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="assignment-info">
+                                    <strong>Data Structures Project</strong>
+                                    <small>Due: Feb 20, 2024</small>
+                                </div>
+                            </td>
+                            <td>CS201</td>
+                            <td>
+                                <div class="submission-time late">
+                                    <span>Feb 22, 2024</span>
+                                    <small>2 days late</small>
+                                </div>
+                            </td>
+                            <td><span class="status-badge late">Late Submission</span></td>
+                            <td><span class="grade-badge ungraded">Not Graded</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn btn-primary btn-sm" onclick="reviewSubmission('emily-brown', 'data-structures')">
+                                        <i class="fas fa-eye"></i>
+                                        Review
+                                    </button>
+                                    <button class="btn btn-secondary btn-sm">
+                                        <i class="fas fa-download"></i>
+                                        Download
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr data-course="CS401" data-status="graded" data-assignment="assignment1">
+                            <td>
+                                <div class="student-info">
+                                    <div class="student-avatar">AW</div>
+                                    <div>
+                                        <strong>Alex Wilson</strong>
+                                        <small>alex.wilson@student.usercampus.ac.za</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="assignment-info">
+                                    <strong>Software Requirements Document</strong>
+                                    <small>Due: Feb 18, 2024</small>
+                                </div>
+                            </td>
+                            <td>CS401</td>
+                            <td>
+                                <div class="submission-time">
+                                    <span>Feb 17, 2024</span>
+                                    <small>2:15 PM</small>
+                                </div>
+                            </td>
+                            <td><span class="status-badge graded">Graded</span></td>
+                            <td><span class="grade-badge grade-a">92%</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn btn-secondary btn-sm">
+                                        <i class="fas fa-edit"></i>
+                                        Edit Grade
+                                    </button>
+                                    <button class="btn btn-secondary btn-sm">
+                                        <i class="fas fa-comment"></i>
+                                        Feedback
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- Review Modal -->
+    <div class="modal" id="reviewModal" style="display: none;">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3>Review Submission</h3>
+                <button class="modal-close" onclick="closeReviewModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="review-container">
+                    <div class="submission-details">
+                        <div class="detail-row">
+                            <span class="label">Student:</span>
+                            <span class="value" id="reviewStudent">John Smith</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">Assignment:</span>
+                            <span class="value" id="reviewAssignment">Database Design Project</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">Course:</span>
+                            <span class="value" id="reviewCourse">CS301</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">Submitted:</span>
+                            <span class="value" id="reviewDate">Feb 23, 2024 at 10:30 AM</span>
+                        </div>
+                    </div>
+
+                    <div class="grading-section">
+                        <div class="form-group">
+                            <label class="form-label">Grade (%)</label>
+                            <input type="number" class="form-input" id="gradeInput" min="0" max="100" placeholder="Enter grade">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Feedback</label>
+                            <textarea class="form-textarea" id="feedbackInput" placeholder="Provide feedback to the student..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Rubric Evaluation</label>
+                            <div class="rubric-items">
+                                <div class="rubric-item">
+                                    <span class="rubric-label">Code Quality</span>
+                                    <select class="form-select rubric-select">
+                                        <option value="">Select Rating</option>
+                                        <option value="excellent">Excellent (90-100%)</option>
+                                        <option value="good">Good (80-89%)</option>
+                                        <option value="satisfactory">Satisfactory (70-79%)</option>
+                                        <option value="needs-improvement">Needs Improvement (60-69%)</option>
+                                        <option value="unsatisfactory">Unsatisfactory (0-59%)</option>
+                                    </select>
+                                </div>
+                                <div class="rubric-item">
+                                    <span class="rubric-label">Documentation</span>
+                                    <select class="form-select rubric-select">
+                                        <option value="">Select Rating</option>
+                                        <option value="excellent">Excellent (90-100%)</option>
+                                        <option value="good">Good (80-89%)</option>
+                                        <option value="satisfactory">Satisfactory (70-79%)</option>
+                                        <option value="needs-improvement">Needs Improvement (60-69%)</option>
+                                        <option value="unsatisfactory">Unsatisfactory (0-59%)</option>
+                                    </select>
+                                </div>
+                                <div class="rubric-item">
+                                    <span class="rubric-label">Functionality</span>
+                                    <select class="form-select rubric-select">
+                                        <option value="">Select Rating</option>
+                                        <option value="excellent">Excellent (90-100%)</option>
+                                        <option value="good">Good (80-89%)</option>
+                                        <option value="satisfactory">Satisfactory (70-79%)</option>
+                                        <option value="needs-improvement">Needs Improvement (60-69%)</option>
+                                        <option value="unsatisfactory">Unsatisfactory (0-59%)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeReviewModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="submitGrade()">
+                    <i class="fas fa-check"></i>
+                    Submit Grade
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/auth.js"></script>
+    <script>
+        function applyFilters() {
+            const courseFilter = document.getElementById('courseFilter').value;
+            const statusFilter = document.getElementById('statusFilter').value;
+            const assignmentFilter = document.getElementById('assignmentFilter').value;
+            
+            const rows = document.querySelectorAll('tbody tr');
+            
+            rows.forEach(row => {
+                let show = true;
+                
+                if (courseFilter && row.dataset.course !== courseFilter) show = false;
+                if (statusFilter && row.dataset.status !== statusFilter) show = false;
+                if (assignmentFilter && row.dataset.assignment !== assignmentFilter) show = false;
+                
+                row.style.display = show ? 'table-row' : 'none';
+            });
+        }
+
+        function reviewSubmission(studentId, assignmentId) {
+            document.getElementById('reviewModal').style.display = 'flex';
+        }
+
+        function closeReviewModal() {
+            document.getElementById('reviewModal').style.display = 'none';
+            document.getElementById('gradeInput').value = '';
+            document.getElementById('feedbackInput').value = '';
+        }
+
+        function submitGrade() {
+            const grade = document.getElementById('gradeInput').value;
+            const feedback = document.getElementById('feedbackInput').value;
+            
+            if (!grade) {
+                alert('Please enter a grade');
+                return;
+            }
+            
+            // Simulate grade submission
+            showSuccessMessage('Grade submitted successfully!');
+            closeReviewModal();
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('reviewModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeReviewModal();
+            }
+        });
+    </script>
+    <style>
+        .filter-row {
+            display: flex;
+            gap: 20px;
+            align-items: end;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .filter-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .student-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .student-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .student-info strong {
+            display: block;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .student-info small {
+            color: #718096;
+            font-size: 12px;
+        }
+
+        .assignment-info strong {
+            display: block;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .assignment-info small {
+            color: #718096;
+            font-size: 12px;
+        }
+
+        .submission-time {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .submission-time span {
+            font-weight: 500;
+            color: #2d3748;
+        }
+
+        .submission-time small {
+            color: #718096;
+            font-size: 12px;
+        }
+
+        .submission-time.late span {
+            color: #f56565;
+        }
+
+        .submission-time.late small {
+            color: #f56565;
+            font-weight: 600;
+        }
+
+        .status-badge.pending {
+            background: rgba(237, 137, 54, 0.1);
+            color: #ed8936;
+        }
+
+        .status-badge.graded {
+            background: rgba(72, 187, 120, 0.1);
+            color: #48bb78;
+        }
+
+        .status-badge.late {
+            background: rgba(245, 101, 101, 0.1);
+            color: #f56565;
+        }
+
+        .grade-badge {
+            padding: 4px 8px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .grade-badge.grade-a {
+            background: rgba(72, 187, 120, 0.1);
+            color: #48bb78;
+        }
+
+        .grade-badge.grade-b {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+        }
+
+        .grade-badge.ungraded {
+            background: rgba(160, 174, 192, 0.1);
+            color: #a0aec0;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .modal-content.large {
+            width: 90%;
+            max-width: 800px;
+        }
+
+        .review-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .submission-details {
+            background: rgba(0, 0, 0, 0.02);
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .detail-row .label {
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .detail-row .value {
+            color: #2d3748;
+        }
+
+        .grading-section {
+            space-y: 20px;
+        }
+
+        .rubric-items {
+            space-y: 12px;
+        }
+
+        .rubric-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .rubric-label {
+            font-weight: 500;
+            color: #4a5568;
+            min-width: 120px;
+        }
+
+        .rubric-select {
+            flex: 1;
+            margin-left: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .filter-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .review-container {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .rubric-item {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+            }
+
+            .rubric-select {
+                margin-left: 0;
+            }
+        }
+    </style>
+</body>
+</html>

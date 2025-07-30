@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Room - Campus Connect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h2>Campus Connect</h2>
+                </div>
+                <div class="user-info">
+                    <p>Student Name</p>
+                    <span class="role">student</span>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <div class="nav-section-title">Dashboard</div>
+                    <a href="../dashboards/student.html" class="nav-item">
+                        <i class="fas fa-home"></i>
+                        <span>Overview</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Academic</div>
+                    <a href="modules.html" class="nav-item">
+                        <i class="fas fa-book"></i>
+                        <span>My Modules</span>
+                    </a>
+                    <a href="performance.html" class="nav-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Performance</span>
+                    </a>
+                    <a href="upload-assignment.html" class="nav-item">
+                        <i class="fas fa-upload"></i>
+                        <span>Submit Assignment</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Campus Life</div>
+                    <a href="book-room.html" class="nav-item active">
+                        <i class="fas fa-door-open"></i>
+                        <span>Book Room</span>
+                    </a>
+                    <a href="communities.html" class="nav-item">
+                        <i class="fas fa-users"></i>
+                        <span>Communities</span>
+                    </a>
+                    <a href="dining.html" class="nav-item">
+                        <i class="fas fa-utensils"></i>
+                        <span>Dining</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Information</div>
+                    <a href="announcements.html" class="nav-item">
+                        <i class="fas fa-bullhorn"></i>
+                        <span>Announcements</span>
+                    </a>
+                </div>
+            </nav>
+
+            <a href="#" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1>Book Room</h1>
+                <div class="header-actions">
+                    <button class="btn btn-secondary">
+                        <i class="fas fa-calendar"></i>
+                        My Bookings
+                    </button>
+                    <button class="btn btn-primary" onclick="showBookingForm()">
+                        <i class="fas fa-plus"></i>
+                        New Booking
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quick Filters -->
+            <div class="card">
+                <div class="card-content">
+                    <div class="filter-row">
+                        <div class="filter-group">
+                            <label class="filter-label">Room Type</label>
+                            <select class="form-select" id="roomTypeFilter">
+                                <option value="">All Types</option>
+                                <option value="study">Study Room</option>
+                                <option value="lecture">Lecture Hall</option>
+                                <option value="lab">Computer Lab</option>
+                                <option value="meeting">Meeting Room</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">Capacity</label>
+                            <select class="form-select" id="capacityFilter">
+                                <option value="">Any Size</option>
+                                <option value="1-4">1-4 People</option>
+                                <option value="5-10">5-10 People</option>
+                                <option value="11-25">11-25 People</option>
+                                <option value="26+">26+ People</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">Building</label>
+                            <select class="form-select" id="buildingFilter">
+                                <option value="">All Buildings</option>
+                                <option value="A">Building A</option>
+                                <option value="B">Building B</option>
+                                <option value="C">Building C</option>
+                                <option value="D">Building D</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <button class="btn btn-primary" onclick="applyFilters()">
+                                <i class="fas fa-search"></i>
+                                Search
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Available Rooms -->
+            <div class="card-grid" id="roomsGrid">
+                <div class="card room-card" data-type="study" data-capacity="4" data-building="A">
+                    <div class="card-header">
+                        <div class="card-icon blue">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Study Room A101</h3>
+                            <p class="card-subtitle">Building A • 1st Floor</p>
+                        </div>
+                        <div class="room-status available">
+                            <span>Available</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="room-details">
+                            <div class="detail-item">
+                                <i class="fas fa-users"></i>
+                                <span>Capacity: 4 people</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-wifi"></i>
+                                <span>Free WiFi</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-tv"></i>
+                                <span>Smart TV</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-plug"></i>
+                                <span>Power Outlets</span>
+                            </div>
+                        </div>
+                        <div class="availability-slots">
+                            <h4>Today's Availability</h4>
+                            <div class="time-slots">
+                                <span class="time-slot available">09:00-10:00</span>
+                                <span class="time-slot available">10:00-11:00</span>
+                                <span class="time-slot booked">11:00-12:00</span>
+                                <span class="time-slot available">12:00-13:00</span>
+                                <span class="time-slot available">14:00-15:00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary" onclick="bookRoom('A101', 'Study Room A101')">
+                            <i class="fas fa-calendar-plus"></i>
+                            Book Now
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card room-card" data-type="lecture" data-capacity="50" data-building="B">
+                    <div class="card-header">
+                        <div class="card-icon green">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Lecture Hall B205</h3>
+                            <p class="card-subtitle">Building B • 2nd Floor</p>
+                        </div>
+                        <div class="room-status available">
+                            <span>Available</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="room-details">
+                            <div class="detail-item">
+                                <i class="fas fa-users"></i>
+                                <span>Capacity: 50 people</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-microphone"></i>
+                                <span>Audio System</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-video"></i>
+                                <span>Projector</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-wifi"></i>
+                                <span>Free WiFi</span>
+                            </div>
+                        </div>
+                        <div class="availability-slots">
+                            <h4>Today's Availability</h4>
+                            <div class="time-slots">
+                                <span class="time-slot booked">09:00-10:00</span>
+                                <span class="time-slot available">10:00-11:00</span>
+                                <span class="time-slot available">11:00-12:00</span>
+                                <span class="time-slot booked">12:00-13:00</span>
+                                <span class="time-slot available">14:00-15:00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary" onclick="bookRoom('B205', 'Lecture Hall B205')">
+                            <i class="fas fa-calendar-plus"></i>
+                            Book Now
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card room-card" data-type="lab" data-capacity="30" data-building="C">
+                    <div class="card-header">
+                        <div class="card-icon orange">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Computer Lab C301</h3>
+                            <p class="card-subtitle">Building C • 3rd Floor</p>
+                        </div>
+                        <div class="room-status limited">
+                            <span>Limited</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="room-details">
+                            <div class="detail-item">
+                                <i class="fas fa-users"></i>
+                                <span>Capacity: 30 people</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-desktop"></i>
+                                <span>30 Computers</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-code"></i>
+                                <span>Dev Software</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-print"></i>
+                                <span>Printer Access</span>
+                            </div>
+                        </div>
+                        <div class="availability-slots">
+                            <h4>Today's Availability</h4>
+                            <div class="time-slots">
+                                <span class="time-slot booked">09:00-10:00</span>
+                                <span class="time-slot booked">10:00-11:00</span>
+                                <span class="time-slot available">11:00-12:00</span>
+                                <span class="time-slot booked">12:00-13:00</span>
+                                <span class="time-slot available">14:00-15:00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary" onclick="bookRoom('C301', 'Computer Lab C301')">
+                            <i class="fas fa-calendar-plus"></i>
+                            Book Now
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card room-card" data-type="meeting" data-capacity="8" data-building="D">
+                    <div class="card-header">
+                        <div class="card-icon purple">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Meeting Room D102</h3>
+                            <p class="card-subtitle">Building D • 1st Floor</p>
+                        </div>
+                        <div class="room-status available">
+                            <span>Available</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="room-details">
+                            <div class="detail-item">
+                                <i class="fas fa-users"></i>
+                                <span>Capacity: 8 people</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-video"></i>
+                                <span>Video Conferencing</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-marker"></i>
+                                <span>Whiteboard</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-coffee"></i>
+                                <span>Refreshments</span>
+                            </div>
+                        </div>
+                        <div class="availability-slots">
+                            <h4>Today's Availability</h4>
+                            <div class="time-slots">
+                                <span class="time-slot available">09:00-10:00</span>
+                                <span class="time-slot available">10:00-11:00</span>
+                                <span class="time-slot available">11:00-12:00</span>
+                                <span class="time-slot available">12:00-13:00</span>
+                                <span class="time-slot booked">14:00-15:00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary" onclick="bookRoom('D102', 'Meeting Room D102')">
+                            <i class="fas fa-calendar-plus"></i>
+                            Book Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- My Bookings -->
+            <div class="table-container">
+                <div class="table-header">
+                    <h3>My Current Bookings</h3>
+                    <div class="table-actions">
+                        <button class="btn btn-secondary btn-sm">
+                            <i class="fas fa-download"></i>
+                            Export
+                        </button>
+                    </div>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Room</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Purpose</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="room-info">
+                                    <strong>Study Room A101</strong>
+                                    <small>Building A • 1st Floor</small>
+                                </div>
+                            </td>
+                            <td>Feb 23, 2024</td>
+                            <td>14:00 - 16:00</td>
+                            <td>Group Study Session</td>
+                            <td><span class="status-badge confirmed">Confirmed</span></td>
+                            <td>
+                                <button class="btn btn-secondary btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                    Edit
+                                </button>
+                                <button class="btn btn-danger btn-sm">
+                                    <i class="fas fa-times"></i>
+                                    Cancel
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="room-info">
+                                    <strong>Computer Lab C301</strong>
+                                    <small>Building C • 3rd Floor</small>
+                                </div>
+                            </td>
+                            <td>Feb 25, 2024</td>
+                            <td>10:00 - 12:00</td>
+                            <td>Programming Practice</td>
+                            <td><span class="status-badge pending">Pending</span></td>
+                            <td>
+                                <button class="btn btn-secondary btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                    Edit
+                                </button>
+                                <button class="btn btn-danger btn-sm">
+                                    <i class="fas fa-times"></i>
+                                    Cancel
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- Booking Modal -->
+    <div class="modal" id="bookingModal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Book Room</h3>
+                <button class="modal-close" onclick="closeBookingModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="bookingForm">
+                    <div class="form-group">
+                        <label class="form-label">Room</label>
+                        <input type="text" class="form-input" id="selectedRoom" readonly>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Date</label>
+                            <input type="date" class="form-input" id="bookingDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Start Time</label>
+                            <input type="time" class="form-input" id="startTime" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">End Time</label>
+                            <input type="time" class="form-input" id="endTime" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Purpose</label>
+                        <select class="form-select" id="bookingPurpose" required>
+                            <option value="">Select purpose</option>
+                            <option value="study">Study Session</option>
+                            <option value="group-work">Group Work</option>
+                            <option value="presentation">Presentation Practice</option>
+                            <option value="meeting">Student Meeting</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Description (Optional)</label>
+                        <textarea class="form-textarea" id="bookingDescription" placeholder="Add any additional details..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Number of Attendees</label>
+                        <input type="number" class="form-input" id="attendees" min="1" max="50" required>
+                    </div>
+
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-secondary" onclick="closeBookingModal()">
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-calendar-check"></i>
+                            Confirm Booking
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/auth.js"></script>
+    <script>
+        let selectedRoomId = '';
+        let selectedRoomName = '';
+
+        function showBookingForm() {
+            document.getElementById('bookingModal').style.display = 'flex';
+            // Set default date to today
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('bookingDate').value = today;
+        }
+
+        function closeBookingModal() {
+            document.getElementById('bookingModal').style.display = 'none';
+            document.getElementById('bookingForm').reset();
+        }
+
+        function bookRoom(roomId, roomName) {
+            selectedRoomId = roomId;
+            selectedRoomName = roomName;
+            document.getElementById('selectedRoom').value = roomName;
+            showBookingForm();
+        }
+
+        function applyFilters() {
+            const roomType = document.getElementById('roomTypeFilter').value;
+            const capacity = document.getElementById('capacityFilter').value;
+            const building = document.getElementById('buildingFilter').value;
+            
+            const roomCards = document.querySelectorAll('.room-card');
+            
+            roomCards.forEach(card => {
+                let show = true;
+                
+                if (roomType && card.dataset.type !== roomType) show = false;
+                if (building && card.dataset.building !== building) show = false;
+                
+                if (capacity) {
+                    const roomCapacity = parseInt(card.dataset.capacity);
+                    switch(capacity) {
+                        case '1-4':
+                            if (roomCapacity > 4) show = false;
+                            break;
+                        case '5-10':
+                            if (roomCapacity < 5 || roomCapacity > 10) show = false;
+                            break;
+                        case '11-25':
+                            if (roomCapacity < 11 || roomCapacity > 25) show = false;
+                            break;
+                        case '26+':
+                            if (roomCapacity < 26) show = false;
+                            break;
+                    }
+                }
+                
+                card.style.display = show ? 'block' : 'none';
+            });
+        }
+
+        // Handle booking form submission
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                room: selectedRoomName,
+                date: document.getElementById('bookingDate').value,
+                startTime: document.getElementById('startTime').value,
+                endTime: document.getElementById('endTime').value,
+                purpose: document.getElementById('bookingPurpose').value,
+                description: document.getElementById('bookingDescription').value,
+                attendees: document.getElementById('attendees').value
+            };
+            
+            // Validate times
+            if (formData.startTime >= formData.endTime) {
+                alert('End time must be after start time');
+                return;
+            }
+            
+            // Simulate booking process
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            submitBtn.innerHTML = '<div class="loading"></div><span>Booking...</span>';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                showSuccessMessage('Room booked successfully!');
+                closeBookingModal();
+                
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, 2000);
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('bookingModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeBookingModal();
+            }
+        });
+    </script>
+    <style>
+        .filter-row {
+            display: flex;
+            gap: 20px;
+            align-items: end;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .filter-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .room-card {
+            border-left: 4px solid #667eea;
+        }
+
+        .room-status {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .room-status.available {
+            background: rgba(72, 187, 120, 0.1);
+            color: #48bb78;
+        }
+
+        .room-status.limited {
+            background: rgba(237, 137, 54, 0.1);
+            color: #ed8936;
+        }
+
+        .room-status.booked {
+            background: rgba(245, 101, 101, 0.1);
+            color: #f56565;
+        }
+
+        .room-details {
+            margin-bottom: 20px;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #4a5568;
+        }
+
+        .detail-item i {
+            color: #667eea;
+            width: 16px;
+        }
+
+        .availability-slots h4 {
+            margin: 0 0 12px 0;
+            font-size: 14px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .time-slots {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .time-slot {
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .time-slot.available {
+            background: rgba(72, 187, 120, 0.1);
+            color: #48bb78;
+        }
+
+        .time-slot.booked {
+            background: rgba(245, 101, 101, 0.1);
+            color: #f56565;
+        }
+
+        .room-info strong {
+            display: block;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .room-info small {
+            color: #718096;
+            font-size: 12px;
+        }
+
+        .status-badge.confirmed {
+            background: rgba(72, 187, 120, 0.1);
+            color: #48bb78;
+        }
+
+        .status-badge.pending {
+            background: rgba(237, 137, 54, 0.1);
+            color: #ed8936;
+        }
+
+        .btn-danger {
+            background: rgba(245, 101, 101, 0.1);
+            color: #f56565;
+            border: 1px solid rgba(245, 101, 101, 0.2);
+        }
+
+        .btn-danger:hover {
+            background: rgba(245, 101, 101, 0.2);
+            transform: translateY(-1px);
+        }
+
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 24px 0 24px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            margin-bottom: 24px;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+            color: #2d3748;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: #a0aec0;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .modal-close:hover {
+            background: rgba(0, 0, 0, 0.05);
+            color: #4a5568;
+        }
+
+        .modal-body {
+            padding: 0 24px 24px 24px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        @media (max-width: 768px) {
+            .filter-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 20px;
+            }
+        }
+    </style>
+</body>
+</html>

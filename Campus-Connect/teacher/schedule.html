@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Schedule - Campus Connect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h2>Campus Connect</h2>
+                </div>
+                <div class="user-info">
+                    <p>Teacher Name</p>
+                    <span class="role">teacher</span>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <div class="nav-section-title">Dashboard</div>
+                    <a href="../dashboards/teacher.html" class="nav-item">
+                        <i class="fas fa-home"></i>
+                        <span>Overview</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Teaching</div>
+                    <a href="submissions.html" class="nav-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Submissions</span>
+                    </a>
+                    <a href="attendance.html" class="nav-item">
+                        <i class="fas fa-user-check"></i>
+                        <span>Attendance</span>
+                    </a>
+                    <a href="post-assignment.html" class="nav-item">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Post Assignment</span>
+                    </a>
+                    <a href="performance.html" class="nav-item">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Student Performance</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Communication</div>
+                    <a href="announcements.html" class="nav-item">
+                        <i class="fas fa-bullhorn"></i>
+                        <span>Announcements</span>
+                    </a>
+                    <a href="messages.html" class="nav-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>Messages</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Schedule</div>
+                    <a href="schedule.html" class="nav-item active">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>My Schedule</span>
+                    </a>
+                </div>
+            </nav>
+
+            <a href="#" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1>My Teaching Schedule</h1>
+                <div class="header-actions">
+                    <button class="btn btn-secondary">
+                        <i class="fas fa-download"></i>
+                        Export Schedule
+                    </button>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-plus"></i>
+                        Add Event
+                    </button>
+                </div>
+            </div>
+
+            <!-- Week Navigation -->
+            <div class="card">
+                <div class="card-content">
+                    <div class="week-navigation">
+                        <button class="btn btn-secondary btn-sm" onclick="previousWeek()">
+                            <i class="fas fa-chevron-left"></i>
+                            Previous Week
+                        </button>
+                        <div class="current-week">
+                            <h3 id="currentWeekRange">March 11 - March 17, 2024</h3>
+                            <button class="btn btn-secondary btn-sm" onclick="goToToday()">Today</button>
+                        </div>
+                        <button class="btn btn-secondary btn-sm" onclick="nextWeek()">
+                            Next Week
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">18</div>
+                    <div class="stat-label">Classes This Week</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">Office Hours</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Meetings</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">127</div>
+                    <div class="stat-label">Total Students</div>
+                </div>
+            </div>
+
+            <!-- Schedule Calendar -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Weekly Schedule</h3>
+                    <div class="view-toggles">
+                        <button class="view-toggle active" data-view="week">Week View</button>
+                        <button class="view-toggle" data-view="day">Day View</button>
+                        <button class="view-toggle" data-view="list">List View</button>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="schedule-container" id="weekView">
+                        <div class="schedule-grid">
+                            <!-- Time slots column -->
+                            <div class="time-column">
+                                <div class="time-header"></div>
+                                <div class="time-slot">08:00</div>
+                                <div class="time-slot">09:00</div>
+                                <div class="time-slot">10:00</div>
+                                <div class="time-slot">11:00</div>
+                                <div class="time-slot">12:00</div>
+                                <div class="time-slot">13:00</div>
+                                <div class="time-slot">14:00</div>
+                                <div class="time-slot">15:00</div>
+                                <div class="time-slot">16:00</div>
+                                <div class="time-slot">17:00</div>
+                            </div>
+
+                            <!-- Monday -->
+                            <div class="day-column">
+                                <div class="day-header">
+                                    <div class="day-name">Monday</div>
+                                    <div class="day-date">Mar 11</div>
+                                </div>
+                                <div class="schedule-slot"></div>
+                                <div class="schedule-slot">
+                                    <div class="schedule-event lecture">
+                                        <div class="event-title">CS101 - Intro to Programming</div>
+                                        <div class="event-details">Room A101 • 35 students</div>
+                                        <div class="event-time">09:00 - 10:30</div>
+                                    </div>
+                                </div>
+                                <div class="schedule-slot"></div>
+                                <div class="schedule-slot">
+                                    <div class="schedule-event office-hours">
+                                        <div class="event-title">Office Hours</div>
+                                        <div class="event-details">Room B205</div>
+                                        <div class="event-time">11:00 - 12:00</div>
+                                    </div>
+                                </div>
+                                <div class="schedule-slot"></div>
+                                <div class="schedule-slot"></div>
+                                <div class="schedule-slot">
+                                    <div class="schedule-event lab">
+                                        <div class="event-title">CS301 - Database Lab</div>
+                                        <div class="event-details">Lab C301 • 28 students</div>
+                                        <div class="event-time">14:00 - 15:30</div>
+                                    </div>
+                                </div>
+                                <div class="schedule-slot"></div>
+                                <div class="schedule-slot"></div>
+                                <div class="schedule-slot"></div>
+                            </div>
+
+                            <!-- Tuesday -->
+                            <div class="day-column">
+                                <div class="day-header">
+                                    <div class="day-name">Tuesday</div>
+                                    <div class="day-date">Mar 12</div>
+                                </div>
+                                <div class="schedule-slot"></div>
+                                <div class="schedule-slot"></div>
+                                <div class="schedule-slot">
+                                    <div class="schedule-event lecture">
+                                        <div class="event-title">CS201 - Data Structures</div>
+                                        <div class="event-details">Room B102 • 30 students</div>
+                                        <div class="event-time">10:00 - 11:30</div>
+                                    </div>
+                                </div>
+                                <div class="schedule-slot"></div>
+                                <div class="schedule-slot"></div>
+                                <div class="schedule-slot">
+                                    <div class="schedule-event meeting">
+                                        <div class="event-title">Faculty Meeting</div>
+                                        <div class="event-details">Conference Room</div>
+                                        <div class="event-time">13:00 - 14:00</div>
+                                    </div>
+                                </div>
+                                <div class="schedule-slot">
+                                    <div class="schedule-event lecture">
+                                        <div class="event-title">CS401 - Software Engineering</div>
+                                        <div class="event-details">Room D102 • 32 students</div>
+                                        <div class="event-time">14:00 - 15:30</div>
+                                    </div>
+                                </div>
+                                <div class="schedule-slot"></div>
+                                <div class="schedule-slot"></div>
+                                <div class="schedule-slot"></div>
+                            </div>
+
+                            <!-- Wednesday -->
+                            <div class="day-column">
+                                <div class="day-header">
+                                    <div class="day-name">Wednesday</div>
+                                    <div class="day-date">Mar 13</div>
+                                </div>
+                                <div class="schedule-slot"></div>
+                                <div class="schedule-slot">
+                                    <div class="schedule-event lecture">
+                                        <div class="event-title">CS101 - Intro to Programming</div>
+                                        <div class="event-details">Room A101 • 35 students</div>
+                                        <div class="event-time">09:00 - 10:30</div>
+                                    </div>
+                                </div>
+                                <div class="schedule-slot"></div>
+                                <div class="schedule-slot">
+                                    <div class="schedule-event office-hours">
+                                        <div class="event-title">Office Hours</div>
+                                        <div class="event-details">Room B205</div>
+                                        <div class="event-time">11:00 - 12:00</div>
+                                    </div>
+                                </div>
+                                <div class="schedule-slot"></div>
+                                <div class="schedule-slot"></div>
+                                <div class="schedule-slot"></div>
+                                <div class="schedule-slot">
+                                    <div class="schedule-event lecture">
+                                        <div class="event-title">CS301 - Database Systems</div>
+                                        <div class="event-details">Room C301 • 28 students</div>
+                                        <div class="event-time">15:00 - 16:30</div>
+                                    </div>
+                                </div>
+                                <div class="schedule-slot"></div>
+                                <div class="schedule-slot"></div>
+                            </div>
+
+                            <!-- Thursday -->
+                            <div class="day-column">
+                                <div class="day-header">
+                                    <div class="day-name">Thursday</div>
+                                    <div class="day-date">Mar 14</div>
+                                </div>
+                                <div class="schedule-slot"></div>
+                                <div class="schedule-slot"></div>
+                                <div class="schedule-slot">
+                                    <div class="schedule-event lecture">
+                                        <div class="event-title">CS201 - Data Structures</div>
+                                        <div class="event-details">Room B102 • 30 students</div>
+                                        <div class="event-time">10:00 - 11:30</div>
+                                    </div>
+                                </div>
+                                <div class="schedule-slot"></div>
+                                <div class="schedule-slot"></div>
+                                <div class="schedule-slot"></div>
+                                <div class="schedule-slot">
+                                    <div class="schedule-event lab">
+                                        <div class="event-title">CS201 - Lab Session</div>
+                                        <div class="event-details">Lab B201 • 30 students</div>
+                                        <div class="event-time">14:00 - 15:30</div>
+                                    </div>
+                                </div>
+                                <div class="schedule-slot"></div>
+                                <div class="schedule-slot">
+                                    <div class="schedule-event office-hours">
+                                        <div class="event-title">Office Hours</div>
+                                        <div class="event-details">Room B205</div>
+                                        <div class="event-time">16:00 - 17:00</div>
+                                    </div>
+                                </div>
+                                <div class="schedule-slot"></div>
+                            </div>
+
+                            <!-- Friday -->
+                            <div class="day-column">
+                                <div class="day-header">
+                                    <div class="day-name">Friday</div>
+                                    <div class="day-date">Mar 15</div>
+                                </div>
+                                <div class="schedule-slot"></div>
+                                <div class="schedule-slot">
+                                    <div class="schedule-event lecture">
+                                        <div class="event-title">CS401 - Software Engineering</div>
+                                        <div class="event-details">Room D102 • 32 students</div>
+                                        <div class="event-time">09:00 - 10:30</div>
+                                    </div>
+                                </div>
+                                <div class="schedule-slot"></div>
+                                <div class="schedule-slot"></div>
+                                <div class="schedule-slot"></div>
+                                <div class="schedule-slot"></div>
+                                <div class="schedule-slot">
+                                    <div class="schedule-event meeting">
+                                        <div class="event-title">Research Meeting</div>
+                                        <div class="event-details">Room B205</div>
+                                        <div class="event-time">14:00 - 15:00</div>
+                                    </div>
+                                </div>
+                                <div class="schedule-slot"></div>
+                                <div class="schedule-slot"></div>
+                                <div class="schedule-slot"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upcoming Events -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Upcoming Events</h3>
+                    <div class="card-actions">
+                        <button class="btn btn-secondary btn-sm">
+                            <i class="fas fa-calendar-plus"></i>
+                            Add Event
+                        </button>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="upcoming-events">
+                        <div class="event-item urgent">
+                            <div class="event-indicator"></div>
+                            <div class="event-info">
+                                <div class="event-title">CS301 Midterm Exam</div>
+                                <div class="event-details">
+                                    <span class="event-time"><i class="fas fa-clock"></i> March 20, 2024 at 10:00 AM</span>
+                                    <span class="event-location"><i class="fas fa-map-marker-alt"></i> Room A101</span>
+                                </div>
+                            </div>
+                            <div class="event-actions">
+                                <button class="btn btn-secondary btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                    Edit
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="event-item important">
+                            <div class="event-indicator"></div>
+                            <div class="event-info">
+                                <div class="event-title">Grade Submission Deadline</div>
+                                <div class="event-details">
+                                    <span class="event-time"><i class="fas fa-clock"></i> March 25, 2024 at 11:59 PM</span>
+                                    <span class="event-location"><i class="fas fa-file"></i> Online Portal</span>
+                                </div>
+                            </div>
+                            <div class="event-actions">
+                                <button class="btn btn-primary btn-sm">
+                                    <i class="fas fa-upload"></i>
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="event-item normal">
+                            <div class="event-indicator"></div>
+                            <div class="event-info">
+                                <div class="event-title">Department Seminar</div>
+                                <div class="event-details">
+                                    <span class="event-time"><i class="fas fa-clock"></i> March 28, 2024 at 2:00 PM</span>
+                                    <span class="event-location"><i class="fas fa-map-marker-alt"></i> Conference Room</span>
+                                </div>
+                            </div>
+                            <div class="event-actions">
+                                <button class="btn btn-secondary btn-sm">
+                                    <i class="fas fa-calendar-check"></i>
+                                    RSVP
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="event-item normal">
+                            <div class="event-indicator"></div>
+                            <div class="event-info">
+                                <div class="event-title">CS401 Final Project Presentations</div>
+                                <div class="event-details">
+                                    <span class="event-time"><i class="fas fa-clock"></i> April 5, 2024 at 9:00 AM</span>
+                                    <span class="event-location"><i class="fas fa-map-marker-alt"></i> Room D102</span>
+                                </div>
+                            </div>
+                            <div class="event-actions">
+                                <button class="btn btn-secondary btn-sm">
+                                    <i class="fas fa-users"></i>
+                                    View Groups
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/auth.js"></script>
+    <script>
+        let currentWeekOffset = 0;
+
+        // Initialize view toggles
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeViewToggles();
+            updateWeekDisplay();
+        });
+
+        function initializeViewToggles() {
+            const viewToggles = document.querySelectorAll('.view-toggle');
+            viewToggles.forEach(toggle => {
+                toggle.addEventListener('click', function() {
+                    viewToggles.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    switchView(this.dataset.view);
+                });
+            });
+        }
+
+        function switchView(view) {
+            // In a real app, this would switch between different calendar views
+            console.log('Switching to view:', view);
+            
+            if (view === 'day') {
+                showSuccessMessage('Day view selected');
+            } else if (view === 'list') {
+                showSuccessMessage('List view selected');
+            } else {
+                showSuccessMessage('Week view selected');
+            }
+        }
+
+        function previousWeek() {
+            currentWeekOffset--;
+            updateWeekDisplay();
+        }
+
+        function nextWeek() {
+            currentWeekOffset++;
+            updateWeekDisplay();
+        }
+
+        function goToToday() {
+            currentWeekOffset = 0;
+            updateWeekDisplay();
+        }
+
+        function updateWeekDisplay() {
+            // Calculate the current week dates based on offset
+            const today = new Date();
+            const weekStart = new Date(today);
+            weekStart.setDate(today.getDate() - today.getDay() + (currentWeekOffset * 7));
+            
+            const weekEnd = new Date(weekStart);
+            weekEnd.setDate(weekStart.getDate() + 6);
+            
+            const options = { month: 'long', day: 'numeric', year: 'numeric' };
+            const startStr = weekStart.toLocaleDateString('en-US', options);
+            const endStr = weekEnd.toLocaleDateString('en-US', options);
+            
+            document.getElementById('currentWeekRange').textContent = `${startStr} - ${endStr}`;
+            
+            // Update day headers
+            const dayHeaders = document.querySelectorAll('.day-header');
+            const dayNames = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+            
+            dayHeaders.forEach((header, index) => {
+                const dayDate = new Date(weekStart);
+                dayDate.setDate(weekStart.getDate() + index + 1); // +1 because week starts on Monday
+                
+                const dayName = header.querySelector('.day-name');
+                const dayDateElement = header.querySelector('.day-date');
+                
+                if (dayName && dayDateElement) {
+                    dayName.textContent = dayNames[index];
+                    dayDateElement.textContent = dayDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                }
+            });
+        }
+
+        // Add click handlers for schedule events
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.schedule-event')) {
+                const event = e.target.closest('.schedule-event');
+                const title = event.querySelector('.event-title').textContent;
+                alert(`Event details for: ${title}`);
+            }
+        });
+    </script>
+    <style>
+        .week-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .current-week {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .current-week h3 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .view-toggles {
+            display: flex;
+            gap: 4px;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            padding: 4px;
+        }
+
+        .view-toggle {
+            padding: 8px 16px;
+            border: none;
+            background: transparent;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            font-weight: 500;
+            color: #4a5568;
+        }
+
+        .view-toggle.active,
+        .view-toggle:hover {
+            background: white;
+            color: #667eea;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .schedule-container {
+            overflow-x: auto;
+        }
+
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: 80px repeat(5, 1fr);
+            gap: 1px;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            overflow: hidden;
+            min-width: 800px;
+        }
+
+        .time-column {
+            background: rgba(0, 0, 0, 0.02);
+        }
+
+        .time-header {
+            height: 60px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .time-slot {
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 500;
+            color: #718096;
+            background: white;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .day-column {
+            background: white;
+        }
+
+        .day-header {
+            height: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(102, 126, 234, 0.1);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .day-name {
+            font-weight: 600;
+            color: #2d3748;
+            font-size: 14px;
+        }
+
+        .day-date {
+            font-size: 12px;
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        .schedule-slot {
+            height: 60px;
+            position: relative;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 2px;
+        }
+
+        .schedule-event {
+            height: 100%;
+            border-radius: 6px;
+            padding: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .schedule-event:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .schedule-event.lecture {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.8), rgba(102, 126, 234, 0.6));
+            color: white;
+        }
+
+        .schedule-event.lab {
+            background: linear-gradient(135deg, rgba(72, 187, 120, 0.8), rgba(72, 187, 120, 0.6));
+            color: white;
+        }
+
+        .schedule-event.office-hours {
+            background: linear-gradient(135deg, rgba(237, 137, 54, 0.8), rgba(237, 137, 54, 0.6));
+            color: white;
+        }
+
+        .schedule-event.meeting {
+            background: linear-gradient(135deg, rgba(160, 174, 192, 0.8), rgba(160, 174, 192, 0.6));
+            color: white;
+        }
+
+        .event-title {
+            font-weight: 600;
+            font-size: 12px;
+            margin-bottom: 2px;
+            line-height: 1.2;
+        }
+
+        .event-details {
+            font-size: 10px;
+            opacity: 0.9;
+            margin-bottom: 2px;
+        }
+
+        .event-time {
+            font-size: 10px;
+            opacity: 0.8;
+        }
+
+        .upcoming-events {
+            space-y: 16px;
+        }
+
+        .event-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            background: rgba(0, 0, 0, 0.02);
+            border-radius: 12px;
+            margin-bottom: 16px;
+            border-left: 4px solid transparent;
+        }
+
+        .event-item.urgent {
+            border-left-color: #f56565;
+            background: rgba(245, 101, 101, 0.03);
+        }
+
+        .event-item.important {
+            border-left-color: #ed8936;
+            background: rgba(237, 137, 54, 0.03);
+        }
+
+        .event-item.normal {
+            border-left-color: #667eea;
+            background: rgba(102, 126, 234, 0.03);
+        }
+
+        .event-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .event-item.urgent .event-indicator {
+            background: #f56565;
+        }
+
+        .event-item.important .event-indicator {
+            background: #ed8936;
+        }
+
+        .event-item.normal .event-indicator {
+            background: #667eea;
+        }
+
+        .event-info {
+            flex: 1;
+        }
+
+        .event-item .event-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 8px;
+        }
+
+        .event-item .event-details {
+            display: flex;
+            gap: 20px;
+            font-size: 14px;
+            color: #718096;
+        }
+
+        .event-item .event-details span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .event-item .event-details i {
+            font-size: 12px;
+            color: #a0aec0;
+        }
+
+        .event-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .week-navigation {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .current-week {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+
+            .schedule-grid {
+                grid-template-columns: 60px repeat(5, minmax(120px, 1fr));
+            }
+
+            .event-item {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+            }
+
+            .event-item .event-details {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .schedule-grid {
+                grid-template-columns: 50px repeat(5, minmax(100px, 1fr));
+            }
+
+            .schedule-event {
+                padding: 4px;
+            }
+
+            .event-title {
+                font-size: 10px;
+            }
+
+            .event-details,
+            .event-time {
+                font-size: 9px;
+            }
+        }
+    </style>
+</body>
+</html>

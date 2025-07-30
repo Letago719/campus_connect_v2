@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Performance - Campus Connect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h2>Campus Connect</h2>
+                </div>
+                <div class="user-info">
+                    <p>Teacher Name</p>
+                    <span class="role">teacher</span>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <div class="nav-section-title">Dashboard</div>
+                    <a href="../dashboards/teacher.html" class="nav-item">
+                        <i class="fas fa-home"></i>
+                        <span>Overview</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Teaching</div>
+                    <a href="submissions.html" class="nav-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Submissions</span>
+                    </a>
+                    <a href="attendance.html" class="nav-item">
+                        <i class="fas fa-user-check"></i>
+                        <span>Attendance</span>
+                    </a>
+                    <a href="post-assignment.html" class="nav-item">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Post Assignment</span>
+                    </a>
+                    <a href="performance.html" class="nav-item active">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Student Performance</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Communication</div>
+                    <a href="announcements.html" class="nav-item">
+                        <i class="fas fa-bullhorn"></i>
+                        <span>Announcements</span>
+                    </a>
+                    <a href="messages.html" class="nav-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>Messages</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Schedule</div>
+                    <a href="schedule.html" class="nav-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>My Schedule</span>
+                    </a>
+                </div>
+            </nav>
+
+            <a href="#" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1>Student Performance Analytics</h1>
+                <div class="header-actions">
+                    <button class="btn btn-secondary">
+                        <i class="fas fa-download"></i>
+                        Export Report
+                    </button>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-filter"></i>
+                        Advanced Filters
+                    </button>
+                </div>
+            </div>
+
+            <!-- Course Selection -->
+            <div class="card">
+                <div class="card-content">
+                    <div class="filter-row">
+                        <div class="filter-group">
+                            <label class="filter-label">Course</label>
+                            <select class="form-select" id="courseFilter" onchange="loadCourseData()">
+                                <option value="all">All Courses</option>
+                                <option value="CS101" selected>CS101 - Introduction to Programming</option>
+                                <option value="CS201">CS201 - Data Structures</option>
+                                <option value="CS301">CS301 - Database Systems</option>
+                                <option value="CS401">CS401 - Software Engineering</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">Time Period</label>
+                            <select class="form-select" id="periodFilter">
+                                <option value="current">Current Semester</option>
+                                <option value="month">Last Month</option>
+                                <option value="quarter">Last Quarter</option>
+                                <option value="year">Academic Year</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">Performance Level</label>
+                            <select class="form-select" id="levelFilter">
+                                <option value="all">All Students</option>
+                                <option value="struggling">Struggling (< 60%)</option>
+                                <option value="average">Average (60-79%)</option>
+                                <option value="excellent">Excellent (80%+)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Performance Overview -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">35</div>
+                    <div class="stat-label">Total Students</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">82.4%</div>
+                    <div class="stat-label">Class Average</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">91%</div>
+                    <div class="stat-label">Attendance Rate</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">At Risk Students</div>
+                </div>
+            </div>
+
+            <!-- Charts and Analytics -->
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Grade Distribution</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="grade-distribution">
+                            <div class="grade-bar">
+                                <div class="grade-label">A (90-100%)</div>
+                                <div class="grade-progress">
+                                    <div class="grade-fill grade-a" style="width: 28%"></div>
+                                </div>
+                                <div class="grade-count">10 students</div>
+                            </div>
+                            <div class="grade-bar">
+                                <div class="grade-label">B (80-89%)</div>
+                                <div class="grade-progress">
+                                    <div class="grade-fill grade-b" style="width: 43%"></div>
+                                </div>
+                                <div class="grade-count">15 students</div>
+                            </div>
+                            <div class="grade-bar">
+                                <div class="grade-label">C (70-79%)</div>
+                                <div class="grade-progress">
+                                    <div class="grade-fill grade-c" style="width: 20%"></div>
+                                </div>
+                                <div class="grade-count">7 students</div>
+                            </div>
+                            <div class="grade-bar">
+                                <div class="grade-label">D (60-69%)</div>
+                                <div class="grade-progress">
+                                    <div class="grade-fill grade-d" style="width: 6%"></div>
+                                </div>
+                                <div class="grade-count">2 students</div>
+                            </div>
+                            <div class="grade-bar">
+                                <div class="grade-label">F (< 60%)</div>
+                                <div class="grade-progress">
+                                    <div class="grade-fill grade-f" style="width: 3%"></div>
+                                </div>
+                                <div class="grade-count">1 student</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Assignment Performance Trends</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="trend-chart">
+                            <div class="trend-item">
+                                <div class="assignment-name">Programming Assignment 1</div>
+                                <div class="trend-bar">
+                                    <div class="trend-fill" style="width: 85%; background: #48bb78;"></div>
+                                </div>
+                                <div class="trend-score">85%</div>
+                            </div>
+                            <div class="trend-item">
+                                <div class="assignment-name">Midterm Exam</div>
+                                <div class="trend-bar">
+                                    <div class="trend-fill" style="width: 78%; background: #667eea;"></div>
+                                </div>
+                                <div class="trend-score">78%</div>
+                            </div>
+                            <div class="trend-item">
+                                <div class="assignment-name">Programming Assignment 2</div>
+                                <div class="trend-bar">
+                                    <div class="trend-fill" style="width: 82%; background: #48bb78;"></div>
+                                </div>
+                                <div class="trend-score">82%</div>
+                            </div>
+                            <div class="trend-item">
+                                <div class="assignment-name">Final Project</div>
+                                <div class="trend-bar">
+                                    <div class="trend-fill" style="width: 88%; background: #48bb78;"></div>
+                                </div>
+                                <div class="trend-score">88%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Attendance vs Performance</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="correlation-chart">
+                            <div class="correlation-item">
+                                <div class="attendance-range">95-100% Attendance</div>
+                                <div class="performance-avg">Avg Grade: 89%</div>
+                                <div class="student-count">12 students</div>
+                            </div>
+                            <div class="correlation-item">
+                                <div class="attendance-range">85-94% Attendance</div>
+                                <div class="performance-avg">Avg Grade: 83%</div>
+                                <div class="student-count">15 students</div>
+                            </div>
+                            <div class="correlation-item">
+                                <div class="attendance-range">75-84% Attendance</div>
+                                <div class="performance-avg">Avg Grade: 76%</div>
+                                <div class="student-count">6 students</div>
+                            </div>
+                            <div class="correlation-item">
+                                <div class="attendance-range">< 75% Attendance</div>
+                                <div class="performance-avg">Avg Grade: 62%</div>
+                                <div class="student-count">2 students</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>At-Risk Students</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="at-risk-students">
+                            <div class="risk-student">
+                                <div class="student-avatar">EB</div>
+                                <div class="student-details">
+                                    <strong>Emily Brown</strong>
+                                    <div class="risk-factors">
+                                        <span class="risk-tag attendance">Low Attendance (68%)</span>
+                                        <span class="risk-tag grades">Failing Grade (58%)</span>
+                                    </div>
+                                </div>
+                                <div class="risk-actions">
+                                    <button class="btn btn-primary btn-sm" onclick="contactStudent('emily-brown')">
+                                        <i class="fas fa-envelope"></i>
+                                        Contact
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="risk-student">
+                                <div class="student-avatar">MD</div>
+                                <div class="student-details">
+                                    <strong>Mike Davis</strong>
+                                    <div class="risk-factors">
+                                        <span class="risk-tag submissions">Missing Assignments (2)</span>
+                                        <span class="risk-tag grades">Declining Performance</span>
+                                    </div>
+                                </div>
+                                <div class="risk-actions">
+                                    <button class="btn btn-primary btn-sm" onclick="contactStudent('mike-davis')">
+                                        <i class="fas fa-envelope"></i>
+                                        Contact
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Student Performance -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Individual Student Performance</h3>
+                    <div class="card-actions">
+                        <button class="btn btn-secondary btn-sm">
+                            <i class="fas fa-sort"></i>
+                            Sort by Grade
+                        </button>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="table-container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Student</th>
+                                    <th>Current Grade</th>
+                                    <th>Attendance</th>
+                                    <th>Assignments</th>
+                                    <th>Last Activity</th>
+                                    <th>Trend</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="student-info">
+                                            <div class="student-avatar">JS</div>
+                                            <div>
+                                                <strong>John Smith</strong>
+                                                <small>ST001</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="grade-badge grade-a">92%</span></td>
+                                    <td><span class="attendance-badge excellent">96%</span></td>
+                                    <td><span class="assignment-status complete">5/5</span></td>
+                                    <td>2 hours ago</td>
+                                    <td><span class="trend-indicator up"><i class="fas fa-arrow-up"></i> +3%</span></td>
+                                    <td>
+                                        <button class="btn btn-secondary btn-sm" onclick="viewStudentDetails('john-smith')">
+                                            <i class="fas fa-eye"></i>
+                                            View
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="student-info">
+                                            <div class="student-avatar">SJ</div>
+                                            <div>
+                                                <strong>Sarah Johnson</strong>
+                                                <small>ST002</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="grade-badge grade-b">87%</span></td>
+                                    <td><span class="attendance-badge good">89%</span></td>
+                                    <td><span class="assignment-status complete">5/5</span></td>
+                                    <td>1 day ago</td>
+                                    <td><span class="trend-indicator stable"><i class="fas fa-minus"></i> 0%</span></td>
+                                    <td>
+                                        <button class="btn btn-secondary btn-sm" onclick="viewStudentDetails('sarah-johnson')">
+                                            <i class="fas fa-eye"></i>
+                                            View
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="student-info">
+                                            <div class="student-avatar">EB</div>
+                                            <div>
+                                                <strong>Emily Brown</strong>
+                                                <small>ST004</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="grade-badge grade-f">58%</span></td>
+                                    <td><span class="attendance-badge poor">68%</span></td>
+                                    <td><span class="assignment-status incomplete">3/5</span></td>
+                                    <td>5 days ago</td>
+                                    <td><span class="trend-indicator down"><i class="fas fa-arrow-down"></i> -12%</span></td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm" onclick="contactStudent('emily-brown')">
+                                            <i class="fas fa-exclamation-triangle"></i>
+                                            Alert
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Performance Insights -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>AI-Powered Insights</h3>
+                </div>
+                <div class="card-content">
+                    <div class="insights-list">
+                        <div class="insight-item">
+                            <div class="insight-icon success">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="insight-content">
+                                <strong>Positive Trend</strong>
+                                <p>Class performance has improved by 8% since the last assignment. Students are showing better understanding of core concepts.</p>
+                            </div>
+                        </div>
+                        <div class="insight-item">
+                            <div class="insight-icon warning">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="insight-content">
+                                <strong>Attendance Correlation</strong>
+                                <p>Students with attendance below 75% are performing 25% worse on average. Consider implementing attendance incentives.</p>
+                            </div>
+                        </div>
+                        <div class="insight-item">
+                            <div class="insight-icon info">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div class="insight-content">
+                                <strong>Assignment Difficulty</strong>
+                                <p>The midterm exam showed lower scores. Consider providing additional review materials for similar topics in future assessments.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/auth.js"></script>
+    <script>
+        function loadCourseData() {
+            const course = document.getElementById('courseFilter').value;
+            // Simulate loading course-specific data
+            console.log('Loading data for course:', course);
+        }
+
+        function contactStudent(studentId) {
+            showSuccessMessage(`Email sent to student ${studentId}!`);
+        }
+
+        function viewStudentDetails(studentId) {
+            alert(`Viewing detailed performance for ${studentId}`);
+        }
+    </script>
+    <style>
+        .filter-row {
+            display: flex;
+            gap: 20px;
+            align-items: end;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .filter-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .grade-distribution {
+            space-y: 16px;
+        }
+
+        .grade-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .grade-label {
+            min-width: 100px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #4a5568;
+        }
+
+        .grade-progress {
+            flex: 1;
+            height: 24px;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .grade-fill {
+            height: 100%;
+            border-radius: 12px;
+            transition: width 0.3s ease;
+        }
+
+        .grade-fill.grade-a { background: #48bb78; }
+        .grade-fill.grade-b { background: #667eea; }
+        .grade-fill.grade-c { background: #ed8936; }
+        .grade-fill.grade-d { background: #f6ad55; }
+        .grade-fill.grade-f { background: #f56565; }
+
+        .grade-count {
+            min-width: 80px;
+            text-align: right;
+            font-size: 12px;
+            color: #718096;
+        }
+
+        .trend-chart {
+            space-y: 16px;
+        }
+
+        .trend-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .assignment-name {
+            min-width: 150px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #4a5568;
+        }
+
+        .trend-bar {
+            flex: 1;
+            height: 20px;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .trend-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        .trend-score {
+            min-width: 50px;
+            text-align: right;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .correlation-chart {
+            space-y: 16px;
+        }
+
+        .correlation-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.02);
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .attendance-range {
+            font-weight: 500;
+            color: #4a5568;
+        }
+
+        .performance-avg {
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .student-count {
+            font-size: 12px;
+            color: #718096;
+        }
+
+        .at-risk-students {
+            space-y: 16px;
+        }
+
+        .risk-student {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            background: rgba(245, 101, 101, 0.05);
+            border-left: 4px solid #f56565;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+
+        .student-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .student-details {
+            flex: 1;
+        }
+
+        .student-details strong {
+            display: block;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 8px;
+        }
+
+        .risk-factors {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .risk-tag {
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .risk-tag.attendance {
+            background: rgba(237, 137, 54, 0.1);
+            color: #ed8936;
+        }
+
+        .risk-tag.grades {
+            background: rgba(245, 101, 101, 0.1);
+            color: #f56565;
+        }
+
+        .risk-tag.submissions {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+        }
+
+        .student-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .student-info strong {
+            display: block;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .student-info small {
+            color: #718096;
+            font-size: 12px;
+        }
+
+        .grade-badge {
+            padding: 4px 8px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .grade-badge.grade-a { background: rgba(72, 187, 120, 0.1); color: #48bb78; }
+        .grade-badge.grade-b { background: rgba(102, 126, 234, 0.1); color: #667eea; }
+        .grade-badge.grade-c { background: rgba(237, 137, 54, 0.1); color: #ed8936; }
+        .grade-badge.grade-f { background: rgba(245, 101, 101, 0.1); color: #f56565; }
+
+        .attendance-badge {
+            padding: 4px 8px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .attendance-badge.excellent { background: rgba(72, 187, 120, 0.1); color: #48bb78; }
+        .attendance-badge.good { background: rgba(102, 126, 234, 0.1); color: #667eea; }
+        .attendance-badge.poor { background: rgba(245, 101, 101, 0.1); color: #f56565; }
+
+        .assignment-status {
+            padding: 4px 8px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .assignment-status.complete { background: rgba(72, 187, 120, 0.1); color: #48bb78; }
+        .assignment-status.incomplete { background: rgba(245, 101, 101, 0.1); color: #f56565; }
+
+        .trend-indicator {
+            padding: 4px 8px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .trend-indicator.up { background: rgba(72, 187, 120, 0.1); color: #48bb78; }
+        .trend-indicator.down { background: rgba(245, 101, 101, 0.1); color: #f56565; }
+        .trend-indicator.stable { background: rgba(160, 174, 192, 0.1); color: #a0aec0; }
+
+        .insights-list {
+            space-y: 16px;
+        }
+
+        .insight-item {
+            display: flex;
+            gap: 16px;
+            padding: 16px;
+            background: rgba(0, 0, 0, 0.02);
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+
+        .insight-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: white;
+        }
+
+        .insight-icon.success { background: #48bb78; }
+        .insight-icon.warning { background: #ed8936; }
+        .insight-icon.info { background: #667eea; }
+
+        .insight-content strong {
+            display: block;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 8px;
+        }
+
+        .insight-content p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .filter-row {
+                flex-direction: column;
+            }
+
+            .grade-bar, .trend-item, .correlation-item {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+
+            .risk-student {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .insight-item {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</body>
+</html>
