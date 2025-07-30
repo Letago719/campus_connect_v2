@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance - Campus Connect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h2>Campus Connect</h2>
+                </div>
+                <div class="user-info">
+                    <p>Student Name</p>
+                    <span class="role">student</span>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <div class="nav-section-title">Dashboard</div>
+                    <a href="../dashboards/student.html" class="nav-item">
+                        <i class="fas fa-home"></i>
+                        <span>Overview</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Academic</div>
+                    <a href="modules.html" class="nav-item">
+                        <i class="fas fa-book"></i>
+                        <span>My Modules</span>
+                    </a>
+                    <a href="performance.html" class="nav-item active">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Performance</span>
+                    </a>
+                    <a href="upload-assignment.html" class="nav-item">
+                        <i class="fas fa-upload"></i>
+                        <span>Submit Assignment</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Campus Life</div>
+                    <a href="book-room.html" class="nav-item">
+                        <i class="fas fa-door-open"></i>
+                        <span>Book Room</span>
+                    </a>
+                    <a href="communities.html" class="nav-item">
+                        <i class="fas fa-users"></i>
+                        <span>Communities</span>
+                    </a>
+                    <a href="dining.html" class="nav-item">
+                        <i class="fas fa-utensils"></i>
+                        <span>Dining</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Information</div>
+                    <a href="announcements.html" class="nav-item">
+                        <i class="fas fa-bullhorn"></i>
+                        <span>Announcements</span>
+                    </a>
+                </div>
+            </nav>
+
+            <a href="#" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1>Academic Performance</h1>
+                <div class="header-actions">
+                    <button class="btn btn-secondary">
+                        <i class="fas fa-download"></i>
+                        Export Report
+                    </button>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-chart-bar"></i>
+                        View Analytics
+                    </button>
+                </div>
+            </div>
+
+            <!-- Performance Overview -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">87.5%</div>
+                    <div class="stat-label">Overall GPA</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">18</div>
+                    <div class="stat-label">Credits Completed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">92%</div>
+                    <div class="stat-label">Attendance Rate</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Pending Assignments</div>
+                </div>
+            </div>
+
+            <!-- Grade Breakdown -->
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon blue">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Grade Distribution</h3>
+                            <p class="card-subtitle">Your performance across modules</p>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="grade-chart">
+                            <div class="grade-item">
+                                <div class="grade-info">
+                                    <span class="grade-letter">A</span>
+                                    <span class="grade-range">90-100%</span>
+                                </div>
+                                <div class="grade-bar">
+                                    <div class="grade-fill grade-a" style="width: 40%"></div>
+                                </div>
+                                <span class="grade-count">2 modules</span>
+                            </div>
+                            <div class="grade-item">
+                                <div class="grade-info">
+                                    <span class="grade-letter">B</span>
+                                    <span class="grade-range">80-89%</span>
+                                </div>
+                                <div class="grade-bar">
+                                    <div class="grade-fill grade-b" style="width: 60%"></div>
+                                </div>
+                                <span class="grade-count">3 modules</span>
+                            </div>
+                            <div class="grade-item">
+                                <div class="grade-info">
+                                    <span class="grade-letter">C</span>
+                                    <span class="grade-range">70-79%</span>
+                                </div>
+                                <div class="grade-bar">
+                                    <div class="grade-fill grade-c" style="width: 20%"></div>
+                                </div>
+                                <span class="grade-count">1 module</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon green">
+                            <i class="fas fa-trending-up"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Progress Trend</h3>
+                            <p class="card-subtitle">Your improvement over time</p>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="trend-chart">
+                            <div class="trend-item">
+                                <span class="period">Week 1-2</span>
+                                <div class="trend-bar">
+                                    <div class="trend-fill" style="width: 75%"></div>
+                                </div>
+                                <span class="trend-score">75%</span>
+                            </div>
+                            <div class="trend-item">
+                                <span class="period">Week 3-4</span>
+                                <div class="trend-bar">
+                                    <div class="trend-fill" style="width: 82%"></div>
+                                </div>
+                                <span class="trend-score">82%</span>
+                            </div>
+                            <div class="trend-item">
+                                <span class="period">Week 5-6</span>
+                                <div class="trend-bar">
+                                    <div class="trend-fill" style="width: 88%"></div>
+                                </div>
+                                <span class="trend-score">88%</span>
+                            </div>
+                            <div class="trend-item">
+                                <span class="period">Current</span>
+                                <div class="trend-bar">
+                                    <div class="trend-fill" style="width: 87%"></div>
+                                </div>
+                                <span class="trend-score">87%</span>
+                            </div>
+                        </div>
+                        <div class="trend-summary">
+                            <div class="trend-indicator positive">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>+12% improvement</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module Performance -->
+            <div class="table-container">
+                <div class="table-header">
+                    <h3>Module Performance Details</h3>
+                    <div class="table-actions">
+                        <button class="btn btn-secondary btn-sm">
+                            <i class="fas fa-filter"></i>
+                            Filter
+                        </button>
+                    </div>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Module</th>
+                            <th>Assignments</th>
+                            <th>Quizzes</th>
+                            <th>Midterm</th>
+                            <th>Participation</th>
+                            <th>Current Grade</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="module-info">
+                                    <strong>CS101</strong>
+                                    <small>Introduction to Programming</small>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="grade-cell">
+                                    <span class="grade">92%</span>
+                                    <small>(4/4)</small>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="grade-cell">
+                                    <span class="grade">88%</span>
+                                    <small>(3/3)</small>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="grade-cell">
+                                    <span class="grade">90%</span>
+                                    <small>Completed</small>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="grade-cell">
+                                    <span class="grade">95%</span>
+                                    <small>Excellent</small>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="final-grade grade-a">90%</span>
+                            </td>
+                            <td>
+                                <span class="status-badge on-track">On Track</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="module-info">
+                                    <strong>CS201</strong>
+                                    <small>Data Structures</small>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="grade-cell">
+                                    <span class="grade">85%</span>
+                                    <small>(3/4)</small>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="grade-cell">
+                                    <span class="grade">78%</span>
+                                    <small>(2/3)</small>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="grade-cell">
+                                    <span class="grade">82%</span>
+                                    <small>Completed</small>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="grade-cell">
+                                    <span class="grade">88%</span>
+                                    <small>Good</small>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="final-grade grade-b">82%</span>
+                            </td>
+                            <td>
+                                <span class="status-badge needs-attention">Needs Focus</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="module-info">
+                                    <strong>CS301</strong>
+                                    <small>Database Systems</small>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="grade-cell">
+                                    <span class="grade">95%</span>
+                                    <small>(3/3)</small>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="grade-cell">
+                                    <span class="grade">89%</span>
+                                    <small>(2/2)</small>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="grade-cell">
+                                    <span class="grade pending">Pending</span>
+                                    <small>March 5</small>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="grade-cell">
+                                    <span class="grade">100%</span>
+                                    <small>Excellent</small>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="final-grade grade-a">92%</span>
+                            </td>
+                            <td>
+                                <span class="status-badge excellent">Excellent</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="module-info">
+                                    <strong>CS401</strong>
+                                    <small>Software Engineering</small>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="grade-cell">
+                                    <span class="grade">87%</span>
+                                    <small>(2/3)</small>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="grade-cell">
+                                    <span class="grade">85%</span>
+                                    <small>(1/2)</small>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="grade-cell">
+                                    <span class="grade pending">Pending</span>
+                                    <small>March 8</small>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="grade-cell">
+                                    <span class="grade">92%</span>
+                                    <small>Excellent</small>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="final-grade grade-b">87%</span>
+                            </td>
+                            <td>
+                                <span class="status-badge on-track">On Track</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="module-info">
+                                    <strong>CS501</strong>
+                                    <small>Machine Learning</small>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="grade-cell">
+                                    <span class="grade">89%</span>
+                                    <small>(2/3)</small>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="grade-cell">
+                                    <span class="grade">91%</span>
+                                    <small>(1/2)</small>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="grade-cell">
+                                    <span class="grade pending">Pending</span>
+                                    <small>March 12</small>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="grade-cell">
+                                    <span class="grade">90%</span>
+                                    <small>Excellent</small>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="final-grade grade-b">89%</span>
+                            </td>
+                            <td>
+                                <span class="status-badge on-track">On Track</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="module-info">
+                                    <strong>CS302</strong>
+                                    <small>Cybersecurity</small>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="grade-cell">
+                                    <span class="grade">85%</span>
+                                    <small>(1/2)</small>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="grade-cell">
+                                    <span class="grade">82%</span>
+                                    <small>(1/1)</small>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="grade-cell">
+                                    <span class="grade pending">Pending</span>
+                                    <small>March 15</small>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="grade-cell">
+                                    <span class="grade">94%</span>
+                                    <small>Excellent</small>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="final-grade grade-b">85%</span>
+                            </td>
+                            <td>
+                                <span class="status-badge on-track">On Track</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Recommendations -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon orange">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div>
+                        <h3 class="card-title">Performance Recommendations</h3>
+                        <p class="card-subtitle">AI-powered suggestions to improve your grades</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="recommendations">
+                        <div class="recommendation-item">
+                            <div class="recommendation-icon priority-high">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="recommendation-content">
+                                <h4>Focus on Data Structures</h4>
+                                <p>Your CS201 performance shows room for improvement. Consider attending office hours and reviewing tree algorithms.</p>
+                                <div class="recommendation-actions">
+                                    <button class="btn btn-primary btn-sm">Schedule Study Session</button>
+                                    <button class="btn btn-secondary btn-sm">View Resources</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="recommendation-item">
+                            <div class="recommendation-icon priority-medium">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <div class="recommendation-content">
+                                <h4>Prepare for Upcoming Midterms</h4>
+                                <p>You have 3 midterm exams coming up. Start reviewing materials and create a study schedule.</p>
+                                <div class="recommendation-actions">
+                                    <button class="btn btn-primary btn-sm">Create Study Plan</button>
+                                    <button class="btn btn-secondary btn-sm">Download Materials</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="recommendation-item">
+                            <div class="recommendation-icon priority-low">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="recommendation-content">
+                                <h4>Great Work in Database Systems!</h4>
+                                <p>Your performance in CS301 is excellent. Keep up the good work and help your classmates if possible.</p>
+                                <div class="recommendation-actions">
+                                    <button class="btn btn-secondary btn-sm">Join Study Group</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/auth.js"></script>
+    <style>
+        .grade-chart, .trend-chart {
+            space-y: 16px;
+        }
+
+        .grade-item, .trend-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .grade-info {
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .grade-letter {
+            display: block;
+            font-size: 24px;
+            font-weight: 700;
+            color: #2d3748;
+        }
+
+        .grade-range {
+            font-size: 12px;
+            color: #718096;
+        }
+
+        .grade-bar, .trend-bar {
+            flex: 1;
+            height: 12px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .grade-fill {
+            height: 100%;
+            border-radius: 6px;
+            transition: width 0.3s ease;
+        }
+
+        .grade-a { background: linear-gradient(90deg, #48bb78, #38a169); }
+        .grade-b { background: linear-gradient(90deg, #667eea, #764ba2); }
+        .grade-c { background: linear-gradient(90deg, #ed8936, #dd6b20); }
+
+        .trend-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4facfe, #00f2fe);
+            border-radius: 6px;
+            transition: width 0.3s ease;
+        }
+
+        .grade-count, .trend-score {
+            font-size: 12px;
+            font-weight: 600;
+            color: #4a5568;
+            min-width: 60px;
+            text-align: right;
+        }
+
+        .period {
+            font-size: 12px;
+            font-weight: 600;
+            color: #4a5568;
+            min-width: 80px;
+        }
+
+        .trend-summary {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .trend-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .trend-indicator.positive {
+            color: #48bb78;
+        }
+
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .table-header h3 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .module-info strong {
+            display: block;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .module-info small {
+            color: #718096;
+            font-size: 12px;
+        }
+
+        .grade-cell {
+            text-align: center;
+        }
+
+        .grade-cell .grade {
+            display: block;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .grade-cell small {
+            color: #718096;
+            font-size: 11px;
+        }
+
+        .grade-cell .pending {
+            color: #ed8936;
+        }
+
+        .final-grade {
+            font-size: 16px;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 8px;
+        }
+
+        .final-grade.grade-a {
+            background: rgba(72, 187, 120, 0.1);
+            color: #48bb78;
+        }
+
+        .final-grade.grade-b {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+        }
+
+        .final-grade.grade-c {
+            background: rgba(237, 137, 54, 0.1);
+            color: #ed8936;
+        }
+
+        .status-badge.on-track {
+            background: rgba(72, 187, 120, 0.1);
+            color: #48bb78;
+        }
+
+        .status-badge.excellent {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+        }
+
+        .status-badge.needs-attention {
+            background: rgba(237, 137, 54, 0.1);
+            color: #ed8936;
+        }
+
+        .recommendations {
+            space-y: 20px;
+        }
+
+        .recommendation-item {
+            display: flex;
+            gap: 16px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.02);
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .recommendation-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: white;
+        }
+
+        .recommendation-icon.priority-high {
+            background: linear-gradient(135deg, #f56565, #e53e3e);
+        }
+
+        .recommendation-icon.priority-medium {
+            background: linear-gradient(135deg, #ed8936, #dd6b20);
+        }
+
+        .recommendation-icon.priority-low {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+        }
+
+        .recommendation-content {
+            flex: 1;
+        }
+
+        .recommendation-content h4 {
+            margin: 0 0 8px 0;
+            font-size: 16px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .recommendation-content p {
+            margin: 0 0 12px 0;
+            color: #4a5568;
+            line-height: 1.5;
+        }
+
+        .recommendation-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+    </style>
+</body>
+</html>

@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Announcements - Campus Connect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h2>Campus Connect</h2>
+                </div>
+                <div class="user-info">
+                    <p>Teacher Name</p>
+                    <span class="role">teacher</span>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <div class="nav-section-title">Dashboard</div>
+                    <a href="../dashboards/teacher.html" class="nav-item">
+                        <i class="fas fa-home"></i>
+                        <span>Overview</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Teaching</div>
+                    <a href="submissions.html" class="nav-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Submissions</span>
+                    </a>
+                    <a href="attendance.html" class="nav-item">
+                        <i class="fas fa-user-check"></i>
+                        <span>Attendance</span>
+                    </a>
+                    <a href="post-assignment.html" class="nav-item">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Post Assignment</span>
+                    </a>
+                    <a href="performance.html" class="nav-item">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Student Performance</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Communication</div>
+                    <a href="announcements.html" class="nav-item active">
+                        <i class="fas fa-bullhorn"></i>
+                        <span>Announcements</span>
+                    </a>
+                    <a href="messages.html" class="nav-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>Messages</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Schedule</div>
+                    <a href="schedule.html" class="nav-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>My Schedule</span>
+                    </a>
+                </div>
+            </nav>
+
+            <a href="#" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1>Course Announcements</h1>
+                <div class="header-actions">
+                    <button class="btn btn-secondary">
+                        <i class="fas fa-eye"></i>
+                        Preview Mode
+                    </button>
+                    <button class="btn btn-primary" onclick="showNewAnnouncementModal()">
+                        <i class="fas fa-plus"></i>
+                        New Announcement
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Total Announcements</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Active Announcements</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">89%</div>
+                    <div class="stat-label">Average Read Rate</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">127</div>
+                    <div class="stat-label">Total Recipients</div>
+                </div>
+            </div>
+
+            <!-- Announcement Filters -->
+            <div class="card">
+                <div class="card-content">
+                    <div class="filter-row">
+                        <div class="filter-group">
+                            <label class="filter-label">Course</label>
+                            <select class="form-select" id="courseFilter">
+                                <option value="all">All Courses</option>
+                                <option value="CS101">CS101 - Introduction to Programming</option>
+                                <option value="CS201">CS201 - Data Structures</option>
+                                <option value="CS301">CS301 - Database Systems</option>
+                                <option value="CS401">CS401 - Software Engineering</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">Status</label>
+                            <select class="form-select" id="statusFilter">
+                                <option value="all">All Status</option>
+                                <option value="active">Active</option>
+                                <option value="scheduled">Scheduled</option>
+                                <option value="expired">Expired</option>
+                                <option value="draft">Draft</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">Priority</label>
+                            <select class="form-select" id="priorityFilter">
+                                <option value="all">All Priorities</option>
+                                <option value="urgent">Urgent</option>
+                                <option value="important">Important</option>
+                                <option value="normal">Normal</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Announcements List -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>My Announcements</h3>
+                    <div class="card-actions">
+                        <button class="btn btn-secondary btn-sm">
+                            <i class="fas fa-filter"></i>
+                            Advanced Filters
+                        </button>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="announcements-list">
+                        <div class="announcement-item urgent active">
+                            <div class="announcement-header">
+                                <div class="announcement-meta">
+                                    <span class="priority-badge urgent">Urgent</span>
+                                    <span class="course-tag">CS301</span>
+                                    <span class="status-badge active">Active</span>
+                                </div>
+                                <div class="announcement-date">Posted 2 hours ago</div>
+                            </div>
+                            <div class="announcement-content">
+                                <h4>Database Assignment Due Date Extended</h4>
+                                <p>Due to technical issues with the lab servers, I'm extending the deadline for the Database Design Project by 48 hours. The new due date is March 17th at 11:59 PM.</p>
+                                <div class="announcement-stats">
+                                    <div class="stat-item">
+                                        <i class="fas fa-eye"></i>
+                                        <span>28/28 students viewed</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <i class="fas fa-clock"></i>
+                                        <span>Expires in 5 days</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="announcement-actions">
+                                <button class="btn btn-secondary btn-sm" onclick="editAnnouncement('announcement1')">
+                                    <i class="fas fa-edit"></i>
+                                    Edit
+                                </button>
+                                <button class="btn btn-secondary btn-sm" onclick="viewAnalytics('announcement1')">
+                                    <i class="fas fa-chart-bar"></i>
+                                    Analytics
+                                </button>
+                                <button class="btn btn-secondary btn-sm" onclick="duplicateAnnouncement('announcement1')">
+                                    <i class="fas fa-copy"></i>
+                                    Duplicate
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="announcement-item important active">
+                            <div class="announcement-header">
+                                <div class="announcement-meta">
+                                    <span class="priority-badge important">Important</span>
+                                    <span class="course-tag">CS101</span>
+                                    <span class="status-badge active">Active</span>
+                                </div>
+                                <div class="announcement-date">Posted 1 day ago</div>
+                            </div>
+                            <div class="announcement-content">
+                                <h4>Midterm Exam Schedule and Preparation</h4>
+                                <p>The midterm exam will be held on March 20th in Room A101. The exam will cover chapters 1-8. Please bring your student ID and a blue or black pen. Review sessions will be held on March 18th and 19th.</p>
+                                <div class="announcement-stats">
+                                    <div class="stat-item">
+                                        <i class="fas fa-eye"></i>
+                                        <span>32/35 students viewed</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <i class="fas fa-clock"></i>
+                                        <span>Expires in 12 days</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="announcement-actions">
+                                <button class="btn btn-secondary btn-sm" onclick="editAnnouncement('announcement2')">
+                                    <i class="fas fa-edit"></i>
+                                    Edit
+                                </button>
+                                <button class="btn btn-secondary btn-sm" onclick="viewAnalytics('announcement2')">
+                                    <i class="fas fa-chart-bar"></i>
+                                    Analytics
+                                </button>
+                                <button class="btn btn-secondary btn-sm" onclick="duplicateAnnouncement('announcement2')">
+                                    <i class="fas fa-copy"></i>
+                                    Duplicate
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="announcement-item normal scheduled">
+                            <div class="announcement-header">
+                                <div class="announcement-meta">
+                                    <span class="priority-badge normal">Normal</span>
+                                    <span class="course-tag">CS201</span>
+                                    <span class="status-badge scheduled">Scheduled</span>
+                                </div>
+                                <div class="announcement-date">Scheduled for tomorrow</div>
+                            </div>
+                            <div class="announcement-content">
+                                <h4>Lab Session Room Change</h4>
+                                <p>Tomorrow's lab session (March 15th) will be moved from Room B201 to Room C301 due to maintenance. Please note the new location.</p>
+                                <div class="announcement-stats">
+                                    <div class="stat-item">
+                                        <i class="fas fa-clock"></i>
+                                        <span>Will be published tomorrow at 8:00 AM</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="announcement-actions">
+                                <button class="btn btn-primary btn-sm" onclick="publishNow('announcement3')">
+                                    <i class="fas fa-paper-plane"></i>
+                                    Publish Now
+                                </button>
+                                <button class="btn btn-secondary btn-sm" onclick="editAnnouncement('announcement3')">
+                                    <i class="fas fa-edit"></i>
+                                    Edit
+                                </button>
+                                <button class="btn btn-secondary btn-sm" onclick="cancelScheduled('announcement3')">
+                                    <i class="fas fa-times"></i>
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="announcement-item normal draft">
+                            <div class="announcement-header">
+                                <div class="announcement-meta">
+                                    <span class="priority-badge normal">Normal</span>
+                                    <span class="course-tag">CS401</span>
+                                    <span class="status-badge draft">Draft</span>
+                                </div>
+                                <div class="announcement-date">Created 3 days ago</div>
+                            </div>
+                            <div class="announcement-content">
+                                <h4>Final Project Guidelines</h4>
+                                <p>Detailed guidelines for the final project including requirements, deliverables, and grading rubric. Teams should be formed by...</p>
+                                <div class="announcement-stats">
+                                    <div class="stat-item">
+                                        <i class="fas fa-edit"></i>
+                                        <span>Draft - Not published</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="announcement-actions">
+                                <button class="btn btn-primary btn-sm" onclick="publishAnnouncement('announcement4')">
+                                    <i class="fas fa-paper-plane"></i>
+                                    Publish
+                                </button>
+                                <button class="btn btn-secondary btn-sm" onclick="editAnnouncement('announcement4')">
+                                    <i class="fas fa-edit"></i>
+                                    Edit
+                                </button>
+                                <button class="btn btn-secondary btn-sm" onclick="deleteAnnouncement('announcement4')">
+                                    <i class="fas fa-trash"></i>
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- New Announcement Modal -->
+    <div class="modal" id="newAnnouncementModal" style="display: none;">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3>Create New Announcement</h3>
+                <button class="modal-close" onclick="closeAnnouncementModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="announcementForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Course *</label>
+                            <select class="form-select" id="announcementCourse" required>
+                                <option value="">Select Course</option>
+                                <option value="CS101">CS101 - Introduction to Programming</option>
+                                <option value="CS201">CS201 - Data Structures</option>
+                                <option value="CS301">CS301 - Database Systems</option>
+                                <option value="CS401">CS401 - Software Engineering</option>
+                                <option value="all">All My Courses</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Priority *</label>
+                            <select class="form-select" id="announcementPriority" required>
+                                <option value="normal">Normal</option>
+                                <option value="important">Important</option>
+                                <option value="urgent">Urgent</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Title *</label>
+                        <input type="text" class="form-input" id="announcementTitle" placeholder="Enter announcement title" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Content *</label>
+                        <textarea class="form-textarea" id="announcementContent" rows="6" placeholder="Write your announcement content..." required></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Publish Option</label>
+                            <select class="form-select" id="publishOption" onchange="toggleScheduleFields()">
+                                <option value="now">Publish Now</option>
+                                <option value="schedule">Schedule for Later</option>
+                                <option value="draft">Save as Draft</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="scheduleGroup" style="display: none;">
+                            <label class="form-label">Schedule Date & Time</label>
+                            <input type="datetime-local" class="form-input" id="scheduleDateTime">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Expiry Date (Optional)</label>
+                            <input type="date" class="form-input" id="expiryDate">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Notification Settings</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-item">
+                                    <input type="checkbox" id="emailNotification" checked>
+                                    <span class="checkmark"></span>
+                                    Send Email Notification
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" id="pushNotification" checked>
+                                    <span class="checkmark"></span>
+                                    Send Push Notification
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Additional Options</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-item">
+                                <input type="checkbox" id="pinAnnouncement">
+                                <span class="checkmark"></span>
+                                Pin to Top
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" id="requireAcknowledgment">
+                                <span class="checkmark"></span>
+                                Require Student Acknowledgment
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" id="allowComments">
+                                <span class="checkmark"></span>
+                                Allow Student Comments
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeAnnouncementModal()">Cancel</button>
+                <button class="btn btn-secondary" onclick="previewAnnouncement()">
+                    <i class="fas fa-eye"></i>
+                    Preview
+                </button>
+                <button class="btn btn-primary" onclick="submitAnnouncement()">
+                    <i class="fas fa-paper-plane"></i>
+                    <span id="submitButtonText">Publish</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/auth.js"></script>
+    <script>
+        function showNewAnnouncementModal() {
+            document.getElementById('newAnnouncementModal').style.display = 'flex';
+        }
+
+        function closeAnnouncementModal() {
+            document.getElementById('newAnnouncementModal').style.display = 'none';
+            document.getElementById('announcementForm').reset();
+        }
+
+        function toggleScheduleFields() {
+            const publishOption = document.getElementById('publishOption').value;
+            const scheduleGroup = document.getElementById('scheduleGroup');
+            const submitButtonText = document.getElementById('submitButtonText');
+            
+            if (publishOption === 'schedule') {
+                scheduleGroup.style.display = 'block';
+                submitButtonText.textContent = 'Schedule';
+            } else {
+                scheduleGroup.style.display = 'none';
+                if (publishOption === 'draft') {
+                    submitButtonText.textContent = 'Save Draft';
+                } else {
+                    submitButtonText.textContent = 'Publish';
+                }
+            }
+        }
+
+        function previewAnnouncement() {
+            const title = document.getElementById('announcementTitle').value;
+            const content = document.getElementById('announcementContent').value;
+            
+            if (!title || !content) {
+                showErrorMessage('Please fill in title and content to preview');
+                return;
+            }
+            
+            alert(`Preview:\n\nTitle: ${title}\n\nContent: ${content}`);
+        }
+
+        function submitAnnouncement() {
+            const course = document.getElementById('announcementCourse').value;
+            const title = document.getElementById('announcementTitle').value;
+            const content = document.getElementById('announcementContent').value;
+            const publishOption = document.getElementById('publishOption').value;
+            
+            if (!course || !title || !content) {
+                showErrorMessage('Please fill in all required fields');
+                return;
+            }
+            
+            let message = '';
+            if (publishOption === 'now') {
+                message = 'Announcement published successfully!';
+            } else if (publishOption === 'schedule') {
+                message = 'Announcement scheduled successfully!';
+            } else {
+                message = 'Announcement saved as draft!';
+            }
+            
+            showSuccessMessage(message);
+            closeAnnouncementModal();
+        }
+
+        function editAnnouncement(id) {
+            showNewAnnouncementModal();
+            // In a real app, populate form with existing data
+        }
+
+        function viewAnalytics(id) {
+            alert(`Viewing analytics for announcement ${id}`);
+        }
+
+        function duplicateAnnouncement(id) {
+            showSuccessMessage('Announcement duplicated successfully!');
+        }
+
+        function publishNow(id) {
+            if (confirm('Publish this announcement immediately?')) {
+                showSuccessMessage('Announcement published successfully!');
+            }
+        }
+
+        function publishAnnouncement(id) {
+            if (confirm('Publish this draft announcement?')) {
+                showSuccessMessage('Announcement published successfully!');
+            }
+        }
+
+        function cancelScheduled(id) {
+            if (confirm('Cancel this scheduled announcement?')) {
+                showSuccessMessage('Scheduled announcement cancelled');
+            }
+        }
+
+        function deleteAnnouncement(id) {
+            if (confirm('Are you sure you want to delete this announcement? This action cannot be undone.')) {
+                showSuccessMessage('Announcement deleted successfully');
+            }
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('newAnnouncementModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeAnnouncementModal();
+            }
+        });
+    </script>
+    <style>
+        .filter-row {
+            display: flex;
+            gap: 20px;
+            align-items: end;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .filter-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .announcements-list {
+            space-y: 20px;
+        }
+
+        .announcement-item {
+            background: rgba(0, 0, 0, 0.02);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .announcement-item.urgent {
+            border-left-color: #f56565;
+            background: rgba(245, 101, 101, 0.03);
+        }
+
+        .announcement-item.important {
+            border-left-color: #ed8936;
+            background: rgba(237, 137, 54, 0.03);
+        }
+
+        .announcement-item.normal {
+            border-left-color: #667eea;
+            background: rgba(102, 126, 234, 0.03);
+        }
+
+        .announcement-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .announcement-meta {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .priority-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .priority-badge.urgent {
+            background: rgba(245, 101, 101, 0.1);
+            color: #f56565;
+        }
+
+        .priority-badge.important {
+            background: rgba(237, 137, 54, 0.1);
+            color: #ed8936;
+        }
+
+        .priority-badge.normal {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+        }
+
+        .course-tag {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-badge.active {
+            background: rgba(72, 187, 120, 0.1);
+            color: #48bb78;
+        }
+
+        .status-badge.scheduled {
+            background: rgba(237, 137, 54, 0.1);
+            color: #ed8936;
+        }
+
+        .status-badge.draft {
+            background: rgba(160, 174, 192, 0.1);
+            color: #a0aec0;
+        }
+
+        .status-badge.expired {
+            background: rgba(245, 101, 101, 0.1);
+            color: #f56565;
+        }
+
+        .announcement-date {
+            font-size: 12px;
+            color: #718096;
+        }
+
+        .announcement-content h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 12px;
+        }
+
+        .announcement-content p {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .announcement-stats {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 16px;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: #718096;
+        }
+
+        .stat-item i {
+            color: #a0aec0;
+        }
+
+        .announcement-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            display: none;
+        }
+
+        .checkmark {
+            width: 18px;
+            height: 18px;
+            border: 2px solid #cbd5e0;
+            border-radius: 4px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-item input[type="checkbox"]:checked + .checkmark {
+            background: #667eea;
+            border-color: #667eea;
+        }
+
+        .checkbox-item input[type="checkbox"]:checked + .checkmark::after {
+            content: '✓';
+            position: absolute;
+            top: -2px;
+            left: 2px;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .modal-content.large {
+            width: 90%;
+            max-width: 800px;
+        }
+
+        @media (max-width: 768px) {
+            .filter-row {
+                flex-direction: column;
+            }
+
+            .announcement-header {
+                flex-direction: column;
+                gap: 12px;
+                align-items: flex-start;
+            }
+
+            .announcement-meta {
+                flex-wrap: wrap;
+            }
+
+            .announcement-actions {
+                justify-content: center;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .checkbox-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</body>
+</html>

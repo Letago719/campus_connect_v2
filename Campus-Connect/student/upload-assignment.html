@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Assignment - Campus Connect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h2>Campus Connect</h2>
+                </div>
+                <div class="user-info">
+                    <p>Student Name</p>
+                    <span class="role">student</span>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <div class="nav-section-title">Dashboard</div>
+                    <a href="../dashboards/student.html" class="nav-item">
+                        <i class="fas fa-home"></i>
+                        <span>Overview</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Academic</div>
+                    <a href="modules.html" class="nav-item">
+                        <i class="fas fa-book"></i>
+                        <span>My Modules</span>
+                    </a>
+                    <a href="performance.html" class="nav-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Performance</span>
+                    </a>
+                    <a href="upload-assignment.html" class="nav-item active">
+                        <i class="fas fa-upload"></i>
+                        <span>Submit Assignment</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Campus Life</div>
+                    <a href="book-room.html" class="nav-item">
+                        <i class="fas fa-door-open"></i>
+                        <span>Book Room</span>
+                    </a>
+                    <a href="communities.html" class="nav-item">
+                        <i class="fas fa-users"></i>
+                        <span>Communities</span>
+                    </a>
+                    <a href="dining.html" class="nav-item">
+                        <i class="fas fa-utensils"></i>
+                        <span>Dining</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Information</div>
+                    <a href="announcements.html" class="nav-item">
+                        <i class="fas fa-bullhorn"></i>
+                        <span>Announcements</span>
+                    </a>
+                </div>
+            </nav>
+
+            <a href="#" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1>Submit Assignment</h1>
+                <div class="header-actions">
+                    <button class="btn btn-secondary">
+                        <i class="fas fa-history"></i>
+                        View History
+                    </button>
+                </div>
+            </div>
+
+            <!-- Pending Assignments -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon orange">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div>
+                        <h3 class="card-title">Pending Assignments</h3>
+                        <p class="card-subtitle">Assignments awaiting submission</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="assignment-grid">
+                        <div class="assignment-card pending">
+                            <div class="assignment-header">
+                                <div class="assignment-info">
+                                    <h4>Database Design Project</h4>
+                                    <p>CS301 - Database Systems</p>
+                                </div>
+                                <div class="assignment-due">
+                                    <span class="due-label">Due</span>
+                                    <span class="due-date">Feb 25, 11:59 PM</span>
+                                    <span class="due-status urgent">2 days left</span>
+                                </div>
+                            </div>
+                            <div class="assignment-description">
+                                <p>Design and implement a complete database system for a library management system. Include ER diagrams, normalization, and SQL queries.</p>
+                            </div>
+                            <div class="assignment-actions">
+                                <button class="btn btn-primary" onclick="selectAssignment('db-project')">
+                                    <i class="fas fa-upload"></i>
+                                    Submit Now
+                                </button>
+                                <button class="btn btn-secondary">
+                                    <i class="fas fa-file-alt"></i>
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="assignment-card pending">
+                            <div class="assignment-header">
+                                <div class="assignment-info">
+                                    <h4>Algorithm Analysis Report</h4>
+                                    <p>CS201 - Data Structures</p>
+                                </div>
+                                <div class="assignment-due">
+                                    <span class="due-label">Due</span>
+                                    <span class="due-date">Mar 5, 11:59 PM</span>
+                                    <span class="due-status normal">1 week left</span>
+                                </div>
+                            </div>
+                            <div class="assignment-description">
+                                <p>Analyze the time and space complexity of various sorting algorithms. Provide empirical testing results and theoretical analysis.</p>
+                            </div>
+                            <div class="assignment-actions">
+                                <button class="btn btn-primary" onclick="selectAssignment('algo-analysis')">
+                                    <i class="fas fa-upload"></i>
+                                    Submit Now
+                                </button>
+                                <button class="btn btn-secondary">
+                                    <i class="fas fa-file-alt"></i>
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="assignment-card pending">
+                            <div class="assignment-header">
+                                <div class="assignment-info">
+                                    <h4>Machine Learning Lab 3</h4>
+                                    <p>CS501 - Machine Learning</p>
+                                </div>
+                                <div class="assignment-due">
+                                    <span class="due-label">Due</span>
+                                    <span class="due-date">Mar 10, 11:59 PM</span>
+                                    <span class="due-status normal">2 weeks left</span>
+                                </div>
+                            </div>
+                            <div class="assignment-description">
+                                <p>Implement and train a neural network for image classification using TensorFlow. Submit your code and analysis report.</p>
+                            </div>
+                            <div class="assignment-actions">
+                                <button class="btn btn-primary" onclick="selectAssignment('ml-lab3')">
+                                    <i class="fas fa-upload"></i>
+                                    Submit Now
+                                </button>
+                                <button class="btn btn-secondary">
+                                    <i class="fas fa-file-alt"></i>
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upload Form -->
+            <div class="card upload-form" id="uploadForm" style="display: none;">
+                <div class="card-header">
+                    <div class="card-icon blue">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <div>
+                        <h3 class="card-title">Submit Assignment</h3>
+                        <p class="card-subtitle" id="selectedAssignment">Select an assignment to submit</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <form id="assignmentForm">
+                        <div class="form-group">
+                            <label class="form-label">Assignment Title</label>
+                            <input type="text" class="form-input" id="assignmentTitle" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Student Comment (Optional)</label>
+                            <textarea class="form-textarea" id="studentComment" placeholder="Add any comments or notes about your submission..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Upload Files</label>
+                            <div class="file-upload-area" id="fileUploadArea">
+                                <div class="upload-placeholder">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <h4>Drag and drop files here</h4>
+                                    <p>or click to browse files</p>
+                                    <small>Supported formats: PDF, DOC, DOCX, ZIP, RAR (Max 50MB)</small>
+                                </div>
+                                <input type="file" id="fileInput" multiple accept=".pdf,.doc,.docx,.zip,.rar,.txt,.py,.java,.cpp,.c,.js,.html,.css" style="display: none;">
+                            </div>
+                            <div class="uploaded-files" id="uploadedFiles"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="submission-checklist">
+                                <h4>Submission Checklist</h4>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" id="check1">
+                                    <span class="checkmark"></span>
+                                    I have reviewed my work for completeness
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" id="check2">
+                                    <span class="checkmark"></span>
+                                    All required files are included
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" id="check3">
+                                    <span class="checkmark"></span>
+                                    I understand this submission is final
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" onclick="cancelSubmission()">
+                                <i class="fas fa-times"></i>
+                                Cancel
+                            </button>
+                            <button type="submit" class="btn btn-primary" id="submitBtn" disabled>
+                                <i class="fas fa-upload"></i>
+                                Submit Assignment
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Recent Submissions -->
+            <div class="table-container">
+                <div class="table-header">
+                    <h3>Recent Submissions</h3>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Assignment</th>
+                            <th>Module</th>
+                            <th>Submitted</th>
+                            <th>Status</th>
+                            <th>Grade</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="assignment-info">
+                                    <strong>Web Development Project</strong>
+                                    <small>Final project submission</small>
+                                </div>
+                            </td>
+                            <td>CS101</td>
+                            <td>
+                                <div class="date-info">
+                                    <span>Feb 15, 2024</span>
+                                    <small>10:30 AM</small>
+                                </div>
+                            </td>
+                            <td><span class="status-badge graded">Graded</span></td>
+                            <td><span class="grade-badge grade-b">85%</span></td>
+                            <td>
+                                <button class="btn btn-secondary btn-sm">
+                                    <i class="fas fa-eye"></i>
+                                    View
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="assignment-info">
+                                    <strong>Binary Tree Implementation</strong>
+                                    <small>Programming assignment</small>
+                                </div>
+                            </td>
+                            <td>CS201</td>
+                            <td>
+                                <div class="date-info">
+                                    <span>Feb 20, 2024</span>
+                                    <small>11:45 PM</small>
+                                </div>
+                            </td>
+                            <td><span class="status-badge submitted">Under Review</span></td>
+                            <td><span class="grade-badge pending">Pending</span></td>
+                            <td>
+                                <button class="btn btn-secondary btn-sm">
+                                    <i class="fas fa-eye"></i>
+                                    View
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="assignment-info">
+                                    <strong>Software Requirements Document</strong>
+                                    <small>Documentation assignment</small>
+                                </div>
+                            </td>
+                            <td>CS401</td>
+                            <td>
+                                <div class="date-info">
+                                    <span>Feb 18, 2024</span>
+                                    <small>3:20 PM</small>
+                                </div>
+                            </td>
+                            <td><span class="status-badge graded">Graded</span></td>
+                            <td><span class="grade-badge grade-a">92%</span></td>
+                            <td>
+                                <button class="btn btn-secondary btn-sm">
+                                    <i class="fas fa-eye"></i>
+                                    View
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/auth.js"></script>
+    <script>
+        // Assignment submission functionality
+        let selectedFiles = [];
+        let currentAssignment = null;
+
+        function selectAssignment(assignmentId) {
+            const assignments = {
+                'db-project': {
+                    title: 'Database Design Project',
+                    module: 'CS301 - Database Systems',
+                    due: 'Feb 25, 11:59 PM'
+                },
+                'algo-analysis': {
+                    title: 'Algorithm Analysis Report',
+                    module: 'CS201 - Data Structures',
+                    due: 'Mar 5, 11:59 PM'
+                },
+                'ml-lab3': {
+                    title: 'Machine Learning Lab 3',
+                    module: 'CS501 - Machine Learning',
+                    due: 'Mar 10, 11:59 PM'
+                }
+            };
+
+            currentAssignment = assignments[assignmentId];
+            document.getElementById('assignmentTitle').value = currentAssignment.title;
+            document.getElementById('selectedAssignment').textContent = `${currentAssignment.title} - ${currentAssignment.module}`;
+            document.getElementById('uploadForm').style.display = 'block';
+            document.getElementById('uploadForm').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function cancelSubmission() {
+            document.getElementById('uploadForm').style.display = 'none';
+            document.getElementById('assignmentForm').reset();
+            selectedFiles = [];
+            updateFileList();
+            updateSubmitButton();
+        }
+
+        // File upload handling
+        const fileUploadArea = document.getElementById('fileUploadArea');
+        const fileInput = document.getElementById('fileInput');
+
+        fileUploadArea.addEventListener('click', () => fileInput.click());
+        fileUploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            fileUploadArea.classList.add('dragover');
+        });
+        fileUploadArea.addEventListener('dragleave', () => {
+            fileUploadArea.classList.remove('dragover');
+        });
+        fileUploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            fileUploadArea.classList.remove('dragover');
+            handleFiles(e.dataTransfer.files);
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            handleFiles(e.target.files);
+        });
+
+        function handleFiles(files) {
+            for (let file of files) {
+                if (file.size > 50 * 1024 * 1024) {
+                    alert(`File ${file.name} is too large. Maximum size is 50MB.`);
+                    continue;
+                }
+                
+                if (!selectedFiles.find(f => f.name === file.name)) {
+                    selectedFiles.push(file);
+                }
+            }
+            updateFileList();
+            updateSubmitButton();
+        }
+
+        function removeFile(index) {
+            selectedFiles.splice(index, 1);
+            updateFileList();
+            updateSubmitButton();
+        }
+
+        function updateFileList() {
+            const container = document.getElementById('uploadedFiles');
+            container.innerHTML = '';
+
+            selectedFiles.forEach((file, index) => {
+                const fileItem = document.createElement('div');
+                fileItem.className = 'file-item';
+                fileItem.innerHTML = `
+                    <div class="file-info">
+                        <i class="fas fa-file"></i>
+                        <div class="file-details">
+                            <span class="file-name">${file.name}</span>
+                            <span class="file-size">${formatFileSize(file.size)}</span>
+                        </div>
+                    </div>
+                    <button type="button" class="remove-file" onclick="removeFile(${index})">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+                container.appendChild(fileItem);
+            });
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        // Checkbox validation
+        const checkboxes = document.querySelectorAll('.checkbox-item input[type="checkbox"]');
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', updateSubmitButton);
+        });
+
+        function updateSubmitButton() {
+            const allChecked = Array.from(checkboxes).every(cb => cb.checked);
+            const hasFiles = selectedFiles.length > 0;
+            const submitBtn = document.getElementById('submitBtn');
+            
+            submitBtn.disabled = !(allChecked && hasFiles);
+        }
+
+        // Form submission
+        document.getElementById('assignmentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!currentAssignment || selectedFiles.length === 0) {
+                alert('Please select files to upload.');
+                return;
+            }
+
+            // Simulate file upload
+            const submitBtn = document.getElementById('submitBtn');
+            const originalText = submitBtn.innerHTML;
+            
+            submitBtn.innerHTML = '<div class="loading"></div><span>Uploading...</span>';
+            submitBtn.disabled = true;
+
+            setTimeout(() => {
+                showSuccessMessage('Assignment submitted successfully!');
+                cancelSubmission();
+                
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, 3000);
+        });
+    </script>
+    <style>
+        .assignment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .assignment-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 20px;
+            border-left: 4px solid #ed8936;
+            transition: all 0.3s ease;
+        }
+
+        .assignment-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .assignment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .assignment-info h4 {
+            margin: 0 0 4px 0;
+            font-size: 16px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .assignment-info p {
+            margin: 0;
+            font-size: 14px;
+            color: #718096;
+        }
+
+        .assignment-due {
+            text-align: right;
+        }
+
+        .due-label {
+            font-size: 12px;
+            color: #718096;
+            display: block;
+        }
+
+        .due-date {
+            font-size: 14px;
+            font-weight: 600;
+            color: #2d3748;
+            display: block;
+        }
+
+        .due-status {
+            font-size: 12px;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-top: 4px;
+        }
+
+        .due-status.urgent {
+            background: rgba(245, 101, 101, 0.1);
+            color: #f56565;
+        }
+
+        .due-status.normal {
+            background: rgba(72, 187, 120, 0.1);
+            color: #48bb78;
+        }
+
+        .assignment-description {
+            margin-bottom: 16px;
+        }
+
+        .assignment-description p {
+            font-size: 14px;
+            color: #4a5568;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .assignment-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .file-upload-area {
+            border: 2px dashed #cbd5e0;
+            border-radius: 12px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .file-upload-area:hover,
+        .file-upload-area.dragover {
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.05);
+        }
+
+        .upload-placeholder i {
+            font-size: 48px;
+            color: #a0aec0;
+            margin-bottom: 16px;
+        }
+
+        .upload-placeholder h4 {
+            margin: 0 0 8px 0;
+            font-size: 18px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .upload-placeholder p {
+            margin: 0 0 8px 0;
+            color: #718096;
+        }
+
+        .upload-placeholder small {
+            color: #a0aec0;
+            font-size: 12px;
+        }
+
+        .uploaded-files {
+            margin-top: 16px;
+            space-y: 8px;
+        }
+
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.02);
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+
+        .file-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .file-info i {
+            color: #667eea;
+            font-size: 16px;
+        }
+
+        .file-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .file-name {
+            font-weight: 500;
+            color: #2d3748;
+            font-size: 14px;
+        }
+
+        .file-size {
+            font-size: 12px;
+            color: #718096;
+        }
+
+        .remove-file {
+            background: none;
+            border: none;
+            color: #f56565;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 4px;
+            transition: background 0.2s ease;
+        }
+
+        .remove-file:hover {
+            background: rgba(245, 101, 101, 0.1);
+        }
+
+        .submission-checklist {
+            background: rgba(0, 0, 0, 0.02);
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .submission-checklist h4 {
+            margin: 0 0 16px 0;
+            font-size: 16px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #4a5568;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            display: none;
+        }
+
+        .checkmark {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #cbd5e0;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .checkbox-item input[type="checkbox"]:checked + .checkmark {
+            background: #667eea;
+            border-color: #667eea;
+        }
+
+        .checkbox-item input[type="checkbox"]:checked + .checkmark::after {
+            content: '✓';
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-top: 24px;
+        }
+
+        .date-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .date-info span {
+            font-weight: 500;
+            color: #2d3748;
+        }
+
+        .date-info small {
+            color: #718096;
+            font-size: 12px;
+        }
+
+        .grade-badge {
+            padding: 4px 8px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .grade-badge.grade-a {
+            background: rgba(72, 187, 120, 0.1);
+            color: #48bb78;
+        }
+
+        .grade-badge.grade-b {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+        }
+
+        .grade-badge.pending {
+            background: rgba(237, 137, 54, 0.1);
+            color: #ed8936;
+        }
+    </style>
+</body>
+</html>

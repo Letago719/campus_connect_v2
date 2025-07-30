@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Assignment - Campus Connect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h2>Campus Connect</h2>
+                </div>
+                <div class="user-info">
+                    <p>Teacher Name</p>
+                    <span class="role">teacher</span>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <div class="nav-section-title">Dashboard</div>
+                    <a href="../dashboards/teacher.html" class="nav-item">
+                        <i class="fas fa-home"></i>
+                        <span>Overview</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Teaching</div>
+                    <a href="submissions.html" class="nav-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Submissions</span>
+                    </a>
+                    <a href="attendance.html" class="nav-item">
+                        <i class="fas fa-user-check"></i>
+                        <span>Attendance</span>
+                    </a>
+                    <a href="post-assignment.html" class="nav-item active">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Post Assignment</span>
+                    </a>
+                    <a href="performance.html" class="nav-item">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Student Performance</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Communication</div>
+                    <a href="announcements.html" class="nav-item">
+                        <i class="fas fa-bullhorn"></i>
+                        <span>Announcements</span>
+                    </a>
+                    <a href="messages.html" class="nav-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>Messages</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Schedule</div>
+                    <a href="schedule.html" class="nav-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>My Schedule</span>
+                    </a>
+                </div>
+            </nav>
+
+            <a href="#" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1>Post New Assignment</h1>
+                <div class="header-actions">
+                    <button class="btn btn-secondary" onclick="saveDraft()">
+                        <i class="fas fa-save"></i>
+                        Save Draft
+                    </button>
+                    <button class="btn btn-primary" onclick="publishAssignment()">
+                        <i class="fas fa-paper-plane"></i>
+                        Publish
+                    </button>
+                </div>
+            </div>
+
+            <!-- Assignment Form -->
+            <div class="card-grid">
+                <div class="card assignment-form-card">
+                    <div class="card-header">
+                        <h3>Assignment Details</h3>
+                    </div>
+                    <div class="card-content">
+                        <form id="assignmentForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Course *</label>
+                                    <select class="form-select" id="courseSelect" required>
+                                        <option value="">Select Course</option>
+                                        <option value="CS101">CS101 - Introduction to Programming</option>
+                                        <option value="CS201">CS201 - Data Structures</option>
+                                        <option value="CS301">CS301 - Database Systems</option>
+                                        <option value="CS401">CS401 - Software Engineering</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Assignment Type *</label>
+                                    <select class="form-select" id="assignmentType" required>
+                                        <option value="">Select Type</option>
+                                        <option value="programming">Programming Assignment</option>
+                                        <option value="essay">Essay/Report</option>
+                                        <option value="project">Project</option>
+                                        <option value="quiz">Quiz</option>
+                                        <option value="lab">Lab Exercise</option>
+                                        <option value="presentation">Presentation</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Assignment Title *</label>
+                                <input type="text" class="form-input" id="assignmentTitle" placeholder="Enter assignment title" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Description *</label>
+                                <textarea class="form-textarea" id="assignmentDescription" rows="6" placeholder="Provide detailed assignment description, requirements, and instructions..." required></textarea>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Total Points *</label>
+                                    <input type="number" class="form-input" id="totalPoints" min="1" max="1000" placeholder="100" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Weight (%)</label>
+                                    <input type="number" class="form-input" id="assignmentWeight" min="1" max="100" placeholder="10">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Due Date *</label>
+                                    <input type="datetime-local" class="form-input" id="dueDate" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Late Submission</label>
+                                    <select class="form-select" id="lateSubmission">
+                                        <option value="allowed">Allow with penalty</option>
+                                        <option value="not-allowed">Not allowed</option>
+                                        <option value="grace-period">Grace period (24 hours)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Submission Format</label>
+                                <div class="checkbox-group">
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="submissionFormat" value="file-upload" checked>
+                                        <span class="checkmark"></span>
+                                        File Upload
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="submissionFormat" value="text-entry">
+                                        <span class="checkmark"></span>
+                                        Text Entry
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="submissionFormat" value="url-submission">
+                                        <span class="checkmark"></span>
+                                        URL Submission
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Allowed File Types</label>
+                                <div class="file-types">
+                                    <div class="file-type-tags">
+                                        <span class="file-tag active" data-type="pdf">PDF</span>
+                                        <span class="file-tag active" data-type="doc">DOC/DOCX</span>
+                                        <span class="file-tag active" data-type="txt">TXT</span>
+                                        <span class="file-tag" data-type="zip">ZIP</span>
+                                        <span class="file-tag" data-type="image">Images</span>
+                                        <span class="file-tag" data-type="code">Code Files</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Rubric & Grading</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="rubric-section">
+                            <div class="form-group">
+                                <label class="form-label">Grading Method</label>
+                                <select class="form-select" id="gradingMethod">
+                                    <option value="points">Points-based</option>
+                                    <option value="rubric">Rubric-based</option>
+                                    <option value="letter">Letter grades</option>
+                                    <option value="pass-fail">Pass/Fail</option>
+                                </select>
+                            </div>
+
+                            <div class="rubric-items" id="rubricItems">
+                                <div class="rubric-item">
+                                    <div class="rubric-row">
+                                        <input type="text" class="form-input" placeholder="Criteria name (e.g., Code Quality)" value="Code Quality">
+                                        <input type="number" class="form-input points-input" placeholder="Points" value="25">
+                                        <button class="btn btn-secondary btn-sm" onclick="removeRubricItem(this)">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                    <textarea class="form-textarea" placeholder="Description of this criteria..." rows="2">Quality of code structure, readability, and best practices</textarea>
+                                </div>
+                                <div class="rubric-item">
+                                    <div class="rubric-row">
+                                        <input type="text" class="form-input" placeholder="Criteria name" value="Functionality">
+                                        <input type="number" class="form-input points-input" placeholder="Points" value="35">
+                                        <button class="btn btn-secondary btn-sm" onclick="removeRubricItem(this)">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                    <textarea class="form-textarea" placeholder="Description of this criteria..." rows="2">Program meets all requirements and functions correctly</textarea>
+                                </div>
+                                <div class="rubric-item">
+                                    <div class="rubric-row">
+                                        <input type="text" class="form-input" placeholder="Criteria name" value="Documentation">
+                                        <input type="number" class="form-input points-input" placeholder="Points" value="25">
+                                        <button class="btn btn-secondary btn-sm" onclick="removeRubricItem(this)">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                    <textarea class="form-textarea" placeholder="Description of this criteria..." rows="2">Comments, documentation, and explanation of approach</textarea>
+                                </div>
+                                <div class="rubric-item">
+                                    <div class="rubric-row">
+                                        <input type="text" class="form-input" placeholder="Criteria name" value="Testing">
+                                        <input type="number" class="form-input points-input" placeholder="Points" value="15">
+                                        <button class="btn btn-secondary btn-sm" onclick="removeRubricItem(this)">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                    <textarea class="form-textarea" placeholder="Description of this criteria..." rows="2">Evidence of testing and validation</textarea>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-secondary btn-sm" onclick="addRubricItem()">
+                                <i class="fas fa-plus"></i>
+                                Add Criteria
+                            </button>
+
+                            <div class="rubric-total">
+                                <strong>Total Points: <span id="rubricTotal">100</span></strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Additional Settings</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="settings-group">
+                            <div class="setting-item">
+                                <label class="setting-label">
+                                    <input type="checkbox" id="enablePeerReview">
+                                    <span class="checkmark"></span>
+                                    Enable Peer Review
+                                </label>
+                                <small>Students will review each other's submissions</small>
+                            </div>
+
+                            <div class="setting-item">
+                                <label class="setting-label">
+                                    <input type="checkbox" id="enableAnonymousGrading">
+                                    <span class="checkmark"></span>
+                                    Anonymous Grading
+                                </label>
+                                <small>Hide student names during grading</small>
+                            </div>
+
+                            <div class="setting-item">
+                                <label class="setting-label">
+                                    <input type="checkbox" id="enableTurnitin">
+                                    <span class="checkmark"></span>
+                                    Plagiarism Detection
+                                </label>
+                                <small>Check submissions for plagiarism</small>
+                            </div>
+
+                            <div class="setting-item">
+                                <label class="setting-label">
+                                    <input type="checkbox" id="notifyStudents" checked>
+                                    <span class="checkmark"></span>
+                                    Notify Students
+                                </label>
+                                <small>Send email notification when published</small>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Special Instructions</label>
+                            <textarea class="form-textarea" id="specialInstructions" rows="3" placeholder="Any special instructions, resources, or notes for students..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Assignments -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Recent Assignments</h3>
+                    <div class="card-actions">
+                        <button class="btn btn-secondary btn-sm">
+                            <i class="fas fa-eye"></i>
+                            View All
+                        </button>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="recent-assignments">
+                        <div class="assignment-item">
+                            <div class="assignment-info">
+                                <strong>Database Design Project</strong>
+                                <div class="assignment-meta">
+                                    <span class="course-tag">CS301</span>
+                                    <span class="due-date">Due: Mar 15, 2024</span>
+                                    <span class="status-badge published">Published</span>
+                                </div>
+                            </div>
+                            <div class="assignment-stats">
+                                <div class="stat">
+                                    <span class="stat-value">23</span>
+                                    <span class="stat-label">Submissions</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value">100</span>
+                                    <span class="stat-label">Points</span>
+                                </div>
+                            </div>
+                            <div class="assignment-actions">
+                                <button class="btn btn-secondary btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                    Edit
+                                </button>
+                                <button class="btn btn-secondary btn-sm">
+                                    <i class="fas fa-copy"></i>
+                                    Duplicate
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="assignment-item">
+                            <div class="assignment-info">
+                                <strong>Algorithm Analysis Report</strong>
+                                <div class="assignment-meta">
+                                    <span class="course-tag">CS201</span>
+                                    <span class="due-date">Due: Mar 8, 2024</span>
+                                    <span class="status-badge draft">Draft</span>
+                                </div>
+                            </div>
+                            <div class="assignment-stats">
+                                <div class="stat">
+                                    <span class="stat-value">0</span>
+                                    <span class="stat-label">Submissions</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value">75</span>
+                                    <span class="stat-label">Points</span>
+                                </div>
+                            </div>
+                            <div class="assignment-actions">
+                                <button class="btn btn-primary btn-sm">
+                                    <i class="fas fa-paper-plane"></i>
+                                    Publish
+                                </button>
+                                <button class="btn btn-secondary btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                    Edit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/auth.js"></script>
+    <script>
+        // Set default due date to next week
+        const nextWeek = new Date();
+        nextWeek.setDate(nextWeek.getDate() + 7);
+        nextWeek.setHours(23, 59);
+        document.getElementById('dueDate').value = nextWeek.toISOString().slice(0, 16);
+
+        // File type toggle functionality
+        document.querySelectorAll('.file-tag').forEach(tag => {
+            tag.addEventListener('click', function() {
+                this.classList.toggle('active');
+            });
+        });
+
+        function addRubricItem() {
+            const rubricItems = document.getElementById('rubricItems');
+            const newItem = document.createElement('div');
+            newItem.className = 'rubric-item';
+            newItem.innerHTML = `
+                <div class="rubric-row">
+                    <input type="text" class="form-input" placeholder="Criteria name">
+                    <input type="number" class="form-input points-input" placeholder="Points" onchange="updateRubricTotal()">
+                    <button class="btn btn-secondary btn-sm" onclick="removeRubricItem(this)">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+                <textarea class="form-textarea" placeholder="Description of this criteria..." rows="2"></textarea>
+            `;
+            rubricItems.appendChild(newItem);
+        }
+
+        function removeRubricItem(button) {
+            const rubricItem = button.closest('.rubric-item');
+            rubricItem.remove();
+            updateRubricTotal();
+        }
+
+        function updateRubricTotal() {
+            const pointInputs = document.querySelectorAll('.points-input');
+            let total = 0;
+            pointInputs.forEach(input => {
+                const value = parseInt(input.value) || 0;
+                total += value;
+            });
+            document.getElementById('rubricTotal').textContent = total;
+            document.getElementById('totalPoints').value = total;
+        }
+
+        // Update total when rubric points change
+        document.addEventListener('change', function(e) {
+            if (e.target.classList.contains('points-input')) {
+                updateRubricTotal();
+            }
+        });
+
+        function saveDraft() {
+            if (!validateForm(false)) return;
+            
+            showSuccessMessage('Assignment saved as draft!');
+        }
+
+        function publishAssignment() {
+            if (!validateForm(true)) return;
+            
+            const course = document.getElementById('courseSelect').value;
+            const title = document.getElementById('assignmentTitle').value;
+            
+            if (confirm(`Publish assignment "${title}" for ${course}? Students will be notified immediately.`)) {
+                showSuccessMessage('Assignment published successfully! Students have been notified.');
+            }
+        }
+
+        function validateForm(isPublishing) {
+            const requiredFields = ['courseSelect', 'assignmentType', 'assignmentTitle', 'assignmentDescription', 'totalPoints', 'dueDate'];
+            
+            for (let fieldId of requiredFields) {
+                const field = document.getElementById(fieldId);
+                if (!field.value.trim()) {
+                    field.focus();
+                    showErrorMessage(`Please fill in the ${field.previousElementSibling.textContent.replace('*', '').trim()}`);
+                    return false;
+                }
+            }
+            
+            // Check if due date is in the future
+            const dueDate = new Date(document.getElementById('dueDate').value);
+            if (dueDate <= new Date()) {
+                showErrorMessage('Due date must be in the future');
+                document.getElementById('dueDate').focus();
+                return false;
+            }
+            
+            return true;
+        }
+
+        // Initialize rubric total
+        updateRubricTotal();
+    </script>
+    <style>
+        .assignment-form-card {
+            grid-column: 1 / -1;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            display: none;
+        }
+
+        .checkmark {
+            width: 18px;
+            height: 18px;
+            border: 2px solid #cbd5e0;
+            border-radius: 4px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-item input[type="checkbox"]:checked + .checkmark {
+            background: #667eea;
+            border-color: #667eea;
+        }
+
+        .checkbox-item input[type="checkbox"]:checked + .checkmark::after {
+            content: '✓';
+            position: absolute;
+            top: -2px;
+            left: 2px;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .file-types {
+            margin-top: 8px;
+        }
+
+        .file-type-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .file-tag {
+            padding: 6px 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+            color: #4a5568;
+        }
+
+        .file-tag.active {
+            background: #667eea;
+            border-color: #667eea;
+            color: white;
+        }
+
+        .rubric-section {
+            space-y: 20px;
+        }
+
+        .rubric-items {
+            space-y: 16px;
+            margin: 20px 0;
+        }
+
+        .rubric-item {
+            padding: 16px;
+            background: rgba(0, 0, 0, 0.02);
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+
+        .rubric-row {
+            display: grid;
+            grid-template-columns: 1fr auto auto;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .points-input {
+            width: 80px;
+        }
+
+        .rubric-total {
+            text-align: right;
+            padding: 16px;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 8px;
+            color: #667eea;
+            margin-top: 20px;
+        }
+
+        .settings-group {
+            space-y: 16px;
+        }
+
+        .setting-item {
+            margin-bottom: 16px;
+        }
+
+        .setting-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-bottom: 4px;
+        }
+
+        .setting-item small {
+            color: #718096;
+            font-size: 12px;
+            margin-left: 30px;
+        }
+
+        .recent-assignments {
+            space-y: 16px;
+        }
+
+        .assignment-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            background: rgba(0, 0, 0, 0.02);
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+
+        .assignment-info strong {
+            display: block;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 8px;
+        }
+
+        .assignment-meta {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .course-tag {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .due-date {
+            font-size: 12px;
+            color: #718096;
+        }
+
+        .status-badge.published {
+            background: rgba(72, 187, 120, 0.1);
+            color: #48bb78;
+        }
+
+        .status-badge.draft {
+            background: rgba(237, 137, 54, 0.1);
+            color: #ed8936;
+        }
+
+        .assignment-stats {
+            display: flex;
+            gap: 20px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            display: block;
+            font-size: 18px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: #718096;
+        }
+
+        .assignment-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .checkbox-group {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .rubric-row {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .assignment-item {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+
+            .assignment-meta {
+                justify-content: center;
+            }
+        }
+    </style>
+</body>
+</html>

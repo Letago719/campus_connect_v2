@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Modules - Campus Connect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h2>Campus Connect</h2>
+                </div>
+                <div class="user-info">
+                    <p>Student Name</p>
+                    <span class="role">student</span>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <div class="nav-section-title">Dashboard</div>
+                    <a href="../dashboards/student.html" class="nav-item">
+                        <i class="fas fa-home"></i>
+                        <span>Overview</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Academic</div>
+                    <a href="modules.html" class="nav-item active">
+                        <i class="fas fa-book"></i>
+                        <span>My Modules</span>
+                    </a>
+                    <a href="performance.html" class="nav-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Performance</span>
+                    </a>
+                    <a href="upload-assignment.html" class="nav-item">
+                        <i class="fas fa-upload"></i>
+                        <span>Submit Assignment</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Campus Life</div>
+                    <a href="book-room.html" class="nav-item">
+                        <i class="fas fa-door-open"></i>
+                        <span>Book Room</span>
+                    </a>
+                    <a href="communities.html" class="nav-item">
+                        <i class="fas fa-users"></i>
+                        <span>Communities</span>
+                    </a>
+                    <a href="dining.html" class="nav-item">
+                        <i class="fas fa-utensils"></i>
+                        <span>Dining</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Information</div>
+                    <a href="announcements.html" class="nav-item">
+                        <i class="fas fa-bullhorn"></i>
+                        <span>Announcements</span>
+                    </a>
+                </div>
+            </nav>
+
+            <a href="#" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1>My Modules</h1>
+                <div class="header-actions">
+                    <button class="btn btn-secondary">
+                        <i class="fas fa-download"></i>
+                        Export Schedule
+                    </button>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-calendar-plus"></i>
+                        Add to Calendar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Module Cards -->
+            <div class="card-grid">
+                <div class="card module-card">
+                    <div class="card-header">
+                        <div class="card-icon blue">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">CS101 - Introduction to Programming</h3>
+                            <p class="card-subtitle">3 Credits • Dr. Smith</p>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="module-info">
+                            <div class="info-item">
+                                <span class="label">Schedule:</span>
+                                <span class="value">Mon, Wed, Fri 09:00-10:30</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Room:</span>
+                                <span class="value">Computer Lab A101</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Current Grade:</span>
+                                <span class="value grade-good">90%</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Attendance:</span>
+                                <span class="value">95% (19/20)</span>
+                            </div>
+                        </div>
+                        <div class="module-description">
+                            <p>Introduction to programming concepts using Python. Covers variables, control structures, functions, and basic data structures.</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-secondary btn-sm">View Materials</button>
+                        <button class="btn btn-primary btn-sm">Join Class</button>
+                    </div>
+                </div>
+
+                <div class="card module-card">
+                    <div class="card-header">
+                        <div class="card-icon green">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">CS201 - Data Structures</h3>
+                            <p class="card-subtitle">4 Credits • Prof. Johnson</p>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="module-info">
+                            <div class="info-item">
+                                <span class="label">Schedule:</span>
+                                <span class="value">Tue, Thu 11:00-12:30</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Room:</span>
+                                <span class="value">Lecture Hall B205</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Current Grade:</span>
+                                <span class="value grade-average">82%</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Attendance:</span>
+                                <span class="value">88% (15/17)</span>
+                            </div>
+                        </div>
+                        <div class="module-description">
+                            <p>Advanced data structures including trees, graphs, hash tables, and their applications in algorithm design.</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-secondary btn-sm">View Materials</button>
+                        <button class="btn btn-primary btn-sm">Join Class</button>
+                    </div>
+                </div>
+
+                <div class="card module-card">
+                    <div class="card-header">
+                        <div class="card-icon orange">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">CS301 - Database Systems</h3>
+                            <p class="card-subtitle">3 Credits • Dr. Brown</p>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="module-info">
+                            <div class="info-item">
+                                <span class="label">Schedule:</span>
+                                <span class="value">Mon, Wed 14:00-15:30</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Room:</span>
+                                <span class="value">Computer Lab C301</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Current Grade:</span>
+                                <span class="value grade-excellent">92%</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Attendance:</span>
+                                <span class="value">100% (18/18)</span>
+                            </div>
+                        </div>
+                        <div class="module-description">
+                            <p>Comprehensive study of database design, SQL, normalization, and database management systems.</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-secondary btn-sm">View Materials</button>
+                        <button class="btn btn-primary btn-sm">Join Class</button>
+                    </div>
+                </div>
+
+                <div class="card module-card">
+                    <div class="card-header">
+                        <div class="card-icon purple">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">CS401 - Software Engineering</h3>
+                            <p class="card-subtitle">4 Credits • Prof. Davis</p>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="module-info">
+                            <div class="info-item">
+                                <span class="label">Schedule:</span>
+                                <span class="value">Tue, Thu 09:00-10:30</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Room:</span>
+                                <span class="value">Seminar Room D102</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Current Grade:</span>
+                                <span class="value grade-good">87%</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Attendance:</span>
+                                <span class="value">92% (16/17)</span>
+                            </div>
+                        </div>
+                        <div class="module-description">
+                            <p>Software development lifecycle, project management, testing methodologies, and team collaboration.</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-secondary btn-sm">View Materials</button>
+                        <button class="btn btn-primary btn-sm">Join Class</button>
+                    </div>
+                </div>
+
+                <div class="card module-card">
+                    <div class="card-header">
+                        <div class="card-icon teal">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">CS501 - Machine Learning</h3>
+                            <p class="card-subtitle">3 Credits • Dr. Wilson</p>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="module-info">
+                            <div class="info-item">
+                                <span class="label">Schedule:</span>
+                                <span class="value">Fri 14:00-17:00</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Room:</span>
+                                <span class="value">AI Lab E201</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Current Grade:</span>
+                                <span class="value grade-good">89%</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Attendance:</span>
+                                <span class="value">90% (9/10)</span>
+                            </div>
+                        </div>
+                        <div class="module-description">
+                            <p>Introduction to machine learning algorithms, neural networks, and artificial intelligence applications.</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-secondary btn-sm">View Materials</button>
+                        <button class="btn btn-primary btn-sm">Join Class</button>
+                    </div>
+                </div>
+
+                <div class="card module-card">
+                    <div class="card-header">
+                        <div class="card-icon red">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">CS302 - Cybersecurity</h3>
+                            <p class="card-subtitle">3 Credits • Prof. Martinez</p>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="module-info">
+                            <div class="info-item">
+                                <span class="label">Schedule:</span>
+                                <span class="value">Wed 16:00-18:30</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Room:</span>
+                                <span class="value">Security Lab F105</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Current Grade:</span>
+                                <span class="value grade-good">85%</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Attendance:</span>
+                                <span class="value">94% (8/8)</span>
+                            </div>
+                        </div>
+                        <div class="module-description">
+                            <p>Network security, cryptography, ethical hacking, and cybersecurity best practices.</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-secondary btn-sm">View Materials</button>
+                        <button class="btn btn-primary btn-sm">Join Class</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Weekly Schedule -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon blue">
+                        <i class="fas fa-calendar-week"></i>
+                    </div>
+                    <div>
+                        <h3 class="card-title">Weekly Schedule</h3>
+                        <p class="card-subtitle">Your class timetable</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="schedule-table">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Time</th>
+                                    <th>Monday</th>
+                                    <th>Tuesday</th>
+                                    <th>Wednesday</th>
+                                    <th>Thursday</th>
+                                    <th>Friday</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="time-slot">09:00-10:30</td>
+                                    <td class="class-slot cs101">
+                                        <strong>CS101</strong>
+                                        <small>Programming</small>
+                                        <span>A101</span>
+                                    </td>
+                                    <td class="class-slot cs401">
+                                        <strong>CS401</strong>
+                                        <small>Software Eng</small>
+                                        <span>D102</span>
+                                    </td>
+                                    <td class="class-slot cs101">
+                                        <strong>CS101</strong>
+                                        <small>Programming</small>
+                                        <span>A101</span>
+                                    </td>
+                                    <td class="class-slot cs401">
+                                        <strong>CS401</strong>
+                                        <small>Software Eng</small>
+                                        <span>D102</span>
+                                    </td>
+                                    <td class="class-slot cs101">
+                                        <strong>CS101</strong>
+                                        <small>Programming</small>
+                                        <span>A101</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="time-slot">11:00-12:30</td>
+                                    <td class="empty-slot"></td>
+                                    <td class="class-slot cs201">
+                                        <strong>CS201</strong>
+                                        <small>Data Structures</small>
+                                        <span>B205</span>
+                                    </td>
+                                    <td class="empty-slot"></td>
+                                    <td class="class-slot cs201">
+                                        <strong>CS201</strong>
+                                        <small>Data Structures</small>
+                                        <span>B205</span>
+                                    </td>
+                                    <td class="empty-slot"></td>
+                                </tr>
+                                <tr>
+                                    <td class="time-slot">14:00-15:30</td>
+                                    <td class="class-slot cs301">
+                                        <strong>CS301</strong>
+                                        <small>Database</small>
+                                        <span>C301</span>
+                                    </td>
+                                    <td class="empty-slot"></td>
+                                    <td class="class-slot cs301">
+                                        <strong>CS301</strong>
+                                        <small>Database</small>
+                                        <span>C301</span>
+                                    </td>
+                                    <td class="empty-slot"></td>
+                                    <td class="class-slot cs501">
+                                        <strong>CS501</strong>
+                                        <small>Machine Learning</small>
+                                        <span>E201</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="time-slot">16:00-18:30</td>
+                                    <td class="empty-slot"></td>
+                                    <td class="empty-slot"></td>
+                                    <td class="class-slot cs302">
+                                        <strong>CS302</strong>
+                                        <small>Cybersecurity</small>
+                                        <span>F105</span>
+                                    </td>
+                                    <td class="empty-slot"></td>
+                                    <td class="empty-slot"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/auth.js"></script>
+    <style>
+        .module-card {
+            border-left: 4px solid #667eea;
+        }
+
+        .module-info {
+            margin-bottom: 16px;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .label {
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .value {
+            color: #2d3748;
+        }
+
+        .grade-excellent { color: #48bb78; font-weight: 600; }
+        .grade-good { color: #667eea; font-weight: 600; }
+        .grade-average { color: #ed8936; font-weight: 600; }
+
+        .module-description {
+            font-size: 14px;
+            color: #718096;
+            line-height: 1.5;
+        }
+
+        .btn-sm {
+            padding: 8px 16px;
+            font-size: 12px;
+        }
+
+        .schedule-table {
+            overflow-x: auto;
+        }
+
+        .time-slot {
+            font-weight: 600;
+            color: #667eea;
+            font-size: 12px;
+        }
+
+        .class-slot {
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 8px;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .class-slot strong {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .class-slot small {
+            display: block;
+            font-size: 10px;
+            color: #718096;
+            margin: 2px 0;
+        }
+
+        .class-slot span {
+            display: block;
+            font-size: 10px;
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        .empty-slot {
+            background: rgba(0, 0, 0, 0.02);
+        }
+
+        .cs101 { background: rgba(102, 126, 234, 0.1); }
+        .cs201 { background: rgba(72, 187, 120, 0.1); }
+        .cs301 { background: rgba(237, 137, 54, 0.1); }
+        .cs401 { background: rgba(159, 122, 234, 0.1); }
+        .cs501 { background: rgba(79, 209, 199, 0.1); }
+        .cs302 { background: rgba(245, 101, 101, 0.1); }
+    </style>
+</body>
+</html>

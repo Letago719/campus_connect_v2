@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance - Campus Connect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h2>Campus Connect</h2>
+                </div>
+                <div class="user-info">
+                    <p>Teacher Name</p>
+                    <span class="role">teacher</span>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <div class="nav-section-title">Dashboard</div>
+                    <a href="../dashboards/teacher.html" class="nav-item">
+                        <i class="fas fa-home"></i>
+                        <span>Overview</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Teaching</div>
+                    <a href="submissions.html" class="nav-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Submissions</span>
+                    </a>
+                    <a href="attendance.html" class="nav-item active">
+                        <i class="fas fa-user-check"></i>
+                        <span>Attendance</span>
+                    </a>
+                    <a href="post-assignment.html" class="nav-item">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Post Assignment</span>
+                    </a>
+                    <a href="performance.html" class="nav-item">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Student Performance</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Communication</div>
+                    <a href="announcements.html" class="nav-item">
+                        <i class="fas fa-bullhorn"></i>
+                        <span>Announcements</span>
+                    </a>
+                    <a href="messages.html" class="nav-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>Messages</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Schedule</div>
+                    <a href="schedule.html" class="nav-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>My Schedule</span>
+                    </a>
+                </div>
+            </nav>
+
+            <a href="#" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1>Attendance Management</h1>
+                <div class="header-actions">
+                    <button class="btn btn-secondary">
+                        <i class="fas fa-download"></i>
+                        Export Report
+                    </button>
+                    <button class="btn btn-primary" onclick="startNewSession()">
+                        <i class="fas fa-plus"></i>
+                        New Session
+                    </button>
+                </div>
+            </div>
+
+            <!-- Session Selection -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Select Class Session</h3>
+                </div>
+                <div class="card-content">
+                    <div class="session-filters">
+                        <div class="filter-group">
+                            <label class="filter-label">Course</label>
+                            <select class="form-select" id="courseSelect" onchange="loadStudents()">
+                                <option value="">Select Course</option>
+                                <option value="CS101">CS101 - Introduction to Programming</option>
+                                <option value="CS201">CS201 - Data Structures</option>
+                                <option value="CS301">CS301 - Database Systems</option>
+                                <option value="CS401">CS401 - Software Engineering</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">Date</label>
+                            <input type="date" class="form-input" id="sessionDate" value="">
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">Session Type</label>
+                            <select class="form-select" id="sessionType">
+                                <option value="lecture">Lecture</option>
+                                <option value="lab">Lab Session</option>
+                                <option value="tutorial">Tutorial</option>
+                                <option value="exam">Exam</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="stats-grid" id="attendanceStats" style="display: none;">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalStudents">35</div>
+                    <div class="stat-label">Total Students</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="presentCount">0</div>
+                    <div class="stat-label">Present</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="absentCount">0</div>
+                    <div class="stat-label">Absent</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="attendanceRate">0%</div>
+                    <div class="stat-label">Attendance Rate</div>
+                </div>
+            </div>
+
+            <!-- Attendance Taking -->
+            <div class="card" id="attendanceCard" style="display: none;">
+                <div class="card-header">
+                    <h3>Mark Attendance</h3>
+                    <div class="attendance-actions">
+                        <button class="btn btn-secondary" onclick="markAllPresent()">
+                            <i class="fas fa-check-double"></i>
+                            Mark All Present
+                        </button>
+                        <button class="btn btn-secondary" onclick="markAllAbsent()">
+                            <i class="fas fa-times"></i>
+                            Mark All Absent
+                        </button>
+                        <button class="btn btn-primary" onclick="saveAttendance()">
+                            <i class="fas fa-save"></i>
+                            Save Attendance
+                        </button>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="attendance-list" id="attendanceList">
+                        <!-- Student attendance items will be populated here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Attendance History -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Recent Attendance Records</h3>
+                    <div class="card-actions">
+                        <button class="btn btn-secondary btn-sm">
+                            <i class="fas fa-filter"></i>
+                            Filter
+                        </button>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="table-container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Course</th>
+                                    <th>Session Type</th>
+                                    <th>Present</th>
+                                    <th>Absent</th>
+                                    <th>Rate</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Feb 23, 2024</td>
+                                    <td>CS101</td>
+                                    <td>Lecture</td>
+                                    <td><span class="attendance-count present">32</span></td>
+                                    <td><span class="attendance-count absent">3</span></td>
+                                    <td><span class="attendance-rate good">91%</span></td>
+                                    <td>
+                                        <button class="btn btn-secondary btn-sm">
+                                            <i class="fas fa-eye"></i>
+                                            View
+                                        </button>
+                                        <button class="btn btn-secondary btn-sm">
+                                            <i class="fas fa-edit"></i>
+                                            Edit
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Feb 22, 2024</td>
+                                    <td>CS301</td>
+                                    <td>Lab</td>
+                                    <td><span class="attendance-count present">26</span></td>
+                                    <td><span class="attendance-count absent">2</span></td>
+                                    <td><span class="attendance-rate excellent">93%</span></td>
+                                    <td>
+                                        <button class="btn btn-secondary btn-sm">
+                                            <i class="fas fa-eye"></i>
+                                            View
+                                        </button>
+                                        <button class="btn btn-secondary btn-sm">
+                                            <i class="fas fa-edit"></i>
+                                            Edit
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Feb 21, 2024</td>
+                                    <td>CS201</td>
+                                    <td>Tutorial</td>
+                                    <td><span class="attendance-count present">28</span></td>
+                                    <td><span class="attendance-count absent">7</span></td>
+                                    <td><span class="attendance-rate average">80%</span></td>
+                                    <td>
+                                        <button class="btn btn-secondary btn-sm">
+                                            <i class="fas fa-eye"></i>
+                                            View
+                                        </button>
+                                        <button class="btn btn-secondary btn-sm">
+                                            <i class="fas fa-edit"></i>
+                                            Edit
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/auth.js"></script>
+    <script>
+        // Set today's date as default
+        document.getElementById('sessionDate').value = new Date().toISOString().split('T')[0];
+
+        const students = {
+            'CS101': [
+                { id: 1, name: 'John Smith', email: 'john.smith@student.usercampus.ac.za', studentId: 'ST001' },
+                { id: 2, name: 'Sarah Johnson', email: 'sarah.johnson@student.usercampus.ac.za', studentId: 'ST002' },
+                { id: 3, name: 'Mike Davis', email: 'mike.davis@student.usercampus.ac.za', studentId: 'ST003' },
+                { id: 4, name: 'Emily Brown', email: 'emily.brown@student.usercampus.ac.za', studentId: 'ST004' },
+                { id: 5, name: 'Alex Wilson', email: 'alex.wilson@student.usercampus.ac.za', studentId: 'ST005' }
+            ],
+            'CS201': [
+                { id: 6, name: 'Lisa Chen', email: 'lisa.chen@student.usercampus.ac.za', studentId: 'ST006' },
+                { id: 7, name: 'David Lee', email: 'david.lee@student.usercampus.ac.za', studentId: 'ST007' },
+                { id: 8, name: 'Maria Garcia', email: 'maria.garcia@student.usercampus.ac.za', studentId: 'ST008' }
+            ],
+            'CS301': [
+                { id: 9, name: 'James Taylor', email: 'james.taylor@student.usercampus.ac.za', studentId: 'ST009' },
+                { id: 10, name: 'Emma White', email: 'emma.white@student.usercampus.ac.za', studentId: 'ST010' }
+            ],
+            'CS401': [
+                { id: 11, name: 'Robert Brown', email: 'robert.brown@student.usercampus.ac.za', studentId: 'ST011' },
+                { id: 12, name: 'Jennifer Davis', email: 'jennifer.davis@student.usercampus.ac.za', studentId: 'ST012' }
+            ]
+        };
+
+        function loadStudents() {
+            const courseSelect = document.getElementById('courseSelect');
+            const selectedCourse = courseSelect.value;
+            
+            if (!selectedCourse) {
+                document.getElementById('attendanceStats').style.display = 'none';
+                document.getElementById('attendanceCard').style.display = 'none';
+                return;
+            }
+
+            const courseStudents = students[selectedCourse] || [];
+            
+            // Show stats
+            document.getElementById('attendanceStats').style.display = 'grid';
+            document.getElementById('attendanceCard').style.display = 'block';
+            document.getElementById('totalStudents').textContent = courseStudents.length;
+            
+            // Populate attendance list
+            const attendanceList = document.getElementById('attendanceList');
+            attendanceList.innerHTML = '';
+            
+            courseStudents.forEach(student => {
+                const attendanceItem = document.createElement('div');
+                attendanceItem.className = 'attendance-item';
+                attendanceItem.innerHTML = `
+                    <div class="student-info">
+                        <div class="student-avatar">${student.name.split(' ').map(n => n[0]).join('')}</div>
+                        <div class="student-details">
+                            <strong>${student.name}</strong>
+                            <small>${student.studentId} • ${student.email}</small>
+                        </div>
+                    </div>
+                    <div class="attendance-controls">
+                        <label class="attendance-option">
+                            <input type="radio" name="attendance_${student.id}" value="present" onchange="updateStats()">
+                            <span class="option-label present">
+                                <i class="fas fa-check"></i>
+                                Present
+                            </span>
+                        </label>
+                        <label class="attendance-option">
+                            <input type="radio" name="attendance_${student.id}" value="absent" onchange="updateStats()">
+                            <span class="option-label absent">
+                                <i class="fas fa-times"></i>
+                                Absent
+                            </span>
+                        </label>
+                        <label class="attendance-option">
+                            <input type="radio" name="attendance_${student.id}" value="late" onchange="updateStats()">
+                            <span class="option-label late">
+                                <i class="fas fa-clock"></i>
+                                Late
+                            </span>
+                        </label>
+                    </div>
+                `;
+                attendanceList.appendChild(attendanceItem);
+            });
+            
+            updateStats();
+        }
+
+        function updateStats() {
+            const presentInputs = document.querySelectorAll('input[value="present"]:checked');
+            const absentInputs = document.querySelectorAll('input[value="absent"]:checked');
+            const lateInputs = document.querySelectorAll('input[value="late"]:checked');
+            
+            const presentCount = presentInputs.length + lateInputs.length; // Late counts as present
+            const absentCount = absentInputs.length;
+            const totalStudents = parseInt(document.getElementById('totalStudents').textContent);
+            const attendanceRate = totalStudents > 0 ? Math.round((presentCount / totalStudents) * 100) : 0;
+            
+            document.getElementById('presentCount').textContent = presentCount;
+            document.getElementById('absentCount').textContent = absentCount;
+            document.getElementById('attendanceRate').textContent = attendanceRate + '%';
+        }
+
+        function markAllPresent() {
+            const presentRadios = document.querySelectorAll('input[value="present"]');
+            presentRadios.forEach(radio => {
+                radio.checked = true;
+            });
+            updateStats();
+        }
+
+        function markAllAbsent() {
+            const absentRadios = document.querySelectorAll('input[value="absent"]');
+            absentRadios.forEach(radio => {
+                radio.checked = true;
+            });
+            updateStats();
+        }
+
+        function saveAttendance() {
+            const course = document.getElementById('courseSelect').value;
+            const date = document.getElementById('sessionDate').value;
+            const sessionType = document.getElementById('sessionType').value;
+            
+            if (!course || !date) {
+                alert('Please select course and date');
+                return;
+            }
+            
+            // Check if all students have attendance marked
+            const totalStudents = parseInt(document.getElementById('totalStudents').textContent);
+            const markedAttendance = document.querySelectorAll('input[type="radio"]:checked').length;
+            
+            if (markedAttendance < totalStudents) {
+                if (!confirm('Not all students have attendance marked. Save anyway?')) {
+                    return;
+                }
+            }
+            
+            // Simulate saving attendance
+            showSuccessMessage('Attendance saved successfully!');
+        }
+
+        function startNewSession() {
+            // Reset form
+            document.getElementById('courseSelect').value = '';
+            document.getElementById('sessionDate').value = new Date().toISOString().split('T')[0];
+            document.getElementById('sessionType').value = 'lecture';
+            
+            // Hide attendance sections
+            document.getElementById('attendanceStats').style.display = 'none';
+            document.getElementById('attendanceCard').style.display = 'none';
+        }
+    </script>
+    <style>
+        .session-filters {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .filter-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .attendance-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .attendance-list {
+            space-y: 16px;
+        }
+
+        .attendance-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            background: rgba(0, 0, 0, 0.02);
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+
+        .student-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .student-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .student-details strong {
+            display: block;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 4px;
+        }
+
+        .student-details small {
+            color: #718096;
+            font-size: 12px;
+        }
+
+        .attendance-controls {
+            display: flex;
+            gap: 12px;
+        }
+
+        .attendance-option {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .attendance-option input[type="radio"] {
+            display: none;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .option-label.present {
+            background: rgba(72, 187, 120, 0.1);
+            color: #48bb78;
+        }
+
+        .option-label.absent {
+            background: rgba(245, 101, 101, 0.1);
+            color: #f56565;
+        }
+
+        .option-label.late {
+            background: rgba(237, 137, 54, 0.1);
+            color: #ed8936;
+        }
+
+        .attendance-option input[type="radio"]:checked + .option-label {
+            border-color: currentColor;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .attendance-count {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .attendance-count.present {
+            background: rgba(72, 187, 120, 0.1);
+            color: #48bb78;
+        }
+
+        .attendance-count.absent {
+            background: rgba(245, 101, 101, 0.1);
+            color: #f56565;
+        }
+
+        .attendance-rate {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .attendance-rate.excellent {
+            background: rgba(72, 187, 120, 0.1);
+            color: #48bb78;
+        }
+
+        .attendance-rate.good {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+        }
+
+        .attendance-rate.average {
+            background: rgba(237, 137, 54, 0.1);
+            color: #ed8936;
+        }
+
+        @media (max-width: 768px) {
+            .session-filters {
+                flex-direction: column;
+            }
+
+            .attendance-item {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+
+            .attendance-controls {
+                justify-content: center;
+            }
+
+            .attendance-actions {
+                justify-content: center;
+            }
+        }
+    </style>
+</body>
+</html>
