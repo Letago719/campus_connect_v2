@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Campus Connect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h2>Campus Connect</h2>
+                </div>
+                <div class="user-info">
+                    <p>Admin Name</p>
+                    <span class="role">admin</span>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <div class="nav-section-title">Dashboard</div>
+                    <a href="admin.html" class="nav-item active">
+                        <i class="fas fa-home"></i>
+                        <span>Overview</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">User Management</div>
+                    <a href="#users" class="nav-item">
+                        <i class="fas fa-users"></i>
+                        <span>Manage Users</span>
+                    </a>
+                    <a href="#permissions" class="nav-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Access Permissions</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Academic</div>
+                    <a href="#schedules" class="nav-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Academic Schedules</span>
+                    </a>
+                    <a href="#notifications" class="nav-item">
+                        <i class="fas fa-bell"></i>
+                        <span>Send Notifications</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Analytics</div>
+                    <a href="#reports" class="nav-item">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Generate Reports</span>
+                    </a>
+                    <a href="#monitoring" class="nav-item">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Site Monitoring</span>
+                    </a>
+                    <a href="#activity" class="nav-item">
+                        <i class="fas fa-activity"></i>
+                        <span>Platform Activity</span>
+                    </a>
+                </div>
+            </nav>
+
+            <a href="#" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1>Admin Dashboard</h1>
+                <div class="header-actions">
+                    <button class="btn btn-secondary">
+                        <i class="fas fa-bell"></i>
+                        Notifications
+                    </button>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-plus"></i>
+                        Quick Action
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Overview -->
+            <div class="stats-grid" id="statsContainer">
+                <!-- Stats will be loaded dynamically -->
+            </div>
+
+            <!-- Manage Users (Students & Teachers) -->
+            <section id="users" class="dashboard-section">
+                <h2>User Management</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon blue">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div>
+                                <div class="card-title">User Directory</div>
+                                <div class="card-subtitle">Manage students and teachers</div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="search-box">
+                                <input type="text" class="form-input" placeholder="Search users by name, email, or ID">
+                            </div>
+                            <div class="table-container">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>User ID</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Role</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>STU001</td>
+                                            <td>John Smith</td>
+                                            <td>john.smith@student.usercampus.ac.za</td>
+                                            <td>Student</td>
+                                            <td><span class="badge success">Active</span></td>
+                                            <td>
+                                                <button class="btn btn-primary btn-sm">Edit</button>
+                                                <button class="btn btn-secondary btn-sm">View</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>TCH001</td>
+                                            <td>Dr. Sarah Johnson</td>
+                                            <td>sarah.johnson@teacher.usercampus.ac.za</td>
+                                            <td>Teacher</td>
+                                            <td><span class="badge success">Active</span></td>
+                                            <td>
+                                                <button class="btn btn-primary btn-sm">Edit</button>
+                                                <button class="btn btn-secondary btn-sm">View</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>STU002</td>
+                                            <td>Mike Davis</td>
+                                            <td>mike.davis@student.usercampus.ac.za</td>
+                                            <td>Student</td>
+                                            <td><span class="badge warning">Suspended</span></td>
+                                            <td>
+                                                <button class="btn btn-primary btn-sm">Edit</button>
+                                                <button class="btn btn-secondary btn-sm">View</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>TCH002</td>
+                                            <td>Prof. Emily Wilson</td>
+                                            <td>emily.wilson@teacher.usercampus.ac.za</td>
+                                            <td>Teacher</td>
+                                            <td><span class="badge success">Active</span></td>
+                                            <td>
+                                                <button class="btn btn-primary btn-sm">Edit</button>
+                                                <button class="btn btn-secondary btn-sm">View</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon green">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <div>
+                                <div class="card-title">Add New User</div>
+                                <div class="card-subtitle">Create new user accounts</div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <form id="userForm">
+                                <div class="form-group">
+                                    <label class="form-label">User Type</label>
+                                    <select class="form-input">
+                                        <option>Student</option>
+                                        <option>Teacher</option>
+                                        <option>Admin</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">First Name</label>
+                                    <input type="text" class="form-input" placeholder="Enter first name">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Last Name</label>
+                                    <input type="text" class="form-input" placeholder="Enter last name">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="form-input" placeholder="Enter email address">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Department</label>
+                                    <select class="form-input">
+                                        <option>Computer Science</option>
+                                        <option>Mathematics</option>
+                                        <option>Physics</option>
+                                        <option>Engineering</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Create User</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Control Access Permissions -->
+            <section id="permissions" class="dashboard-section">
+                <h2>Access Permissions</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon purple">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div>
+                                <div class="card-title">Permission Management</div>
+                                <div class="card-subtitle">Control user access levels</div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="permission-list">
+                                <div class="permission-item">
+                                    <div class="permission-info">
+                                        <h4>Student Permissions</h4>
+                                        <p>View modules, submit assignments, book rooms</p>
+                                    </div>
+                                    <div class="permission-actions">
+                                        <button class="btn btn-primary btn-sm">Edit</button>
+                                        <button class="btn btn-secondary btn-sm">View</button>
+                                    </div>
+                                </div>
+                                <div class="permission-item">
+                                    <div class="permission-info">
+                                        <h4>Teacher Permissions</h4>
+                                        <p>Manage grades, create assignments, post announcements</p>
+                                    </div>
+                                    <div class="permission-actions">
+                                        <button class="btn btn-primary btn-sm">Edit</button>
+                                        <button class="btn btn-secondary btn-sm">View</button>
+                                    </div>
+                                </div>
+                                <div class="permission-item">
+                                    <div class="permission-info">
+                                        <h4>Admin Permissions</h4>
+                                        <p>Full system access, user management, reports</p>
+                                    </div>
+                                    <div class="permission-actions">
+                                        <button class="btn btn-primary btn-sm">Edit</button>
+                                        <button class="btn btn-secondary btn-sm">View</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon orange">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <div>
+                                <div class="card-title">Role-Based Access</div>
+                                <div class="card-subtitle">Configure role permissions</div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <form>
+                                <div class="form-group">
+                                    <label class="form-label">Select Role</label>
+                                    <select class="form-input">
+                                        <option>Student</option>
+                                        <option>Teacher</option>
+                                        <option>Admin</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Permissions</label>
+                                    <div class="checkbox-group">
+                                        <label class="checkbox-item">
+                                            <input type="checkbox" checked> View Dashboard
+                                        </label>
+                                        <label class="checkbox-item">
+                                            <input type="checkbox" checked> Manage Profile
+                                        </label>
+                                        <label class="checkbox-item">
+                                            <input type="checkbox"> User Management
+                                        </label>
+                                        <label class="checkbox-item">
+                                            <input type="checkbox"> System Settings
+                                        </label>
+                                        <label class="checkbox-item">
+                                            <input type="checkbox"> Generate Reports
+                                        </label>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Update Permissions</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Upload Academic Schedules -->
+            <section id="schedules" class="dashboard-section">
+                <h2>Academic Schedules</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon teal">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div>
+                                <div class="card-title">Upload Schedule</div>
+                                <div class="card-subtitle">Upload academic schedules</div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <form>
+                                <div class="form-group">
+                                    <label class="form-label">Schedule Type</label>
+                                    <select class="form-input">
+                                        <option>Class Schedule</option>
+                                        <option>Exam Schedule</option>
+                                        <option>Holiday Calendar</option>
+                                        <option>Events Calendar</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Academic Year</label>
+                                    <select class="form-input">
+                                        <option>2024</option>
+                                        <option>2023</option>
+                                        <option>2022</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Semester</label>
+                                    <select class="form-input">
+                                        <option>Fall 2024</option>
+                                        <option>Spring 2024</option>
+                                        <option>Summer 2024</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Upload File</label>
+                                    <input type="file" class="form-input" accept=".csv,.xlsx,.pdf">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Description</label>
+                                    <textarea class="form-textarea" placeholder="Enter schedule description"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Upload Schedule</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon blue">
+                                <i class="fas fa-list"></i>
+                            </div>
+                            <div>
+                                <div class="card-title">Current Schedules</div>
+                                <div class="card-subtitle">Manage uploaded schedules</div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="schedule-list">
+                                <div class="schedule-item">
+                                    <div class="schedule-info">
+                                        <h4>Fall 2024 Class Schedule</h4>
+                                        <p>Computer Science Department • Updated: Jan 15, 2024</p>
+                                        <span class="file-size">2.1 MB</span>
+                                    </div>
+                                    <div class="schedule-actions">
+                                        <button class="btn btn-primary btn-sm">View</button>
+                                        <button class="btn btn-secondary btn-sm">Edit</button>
+                                        <button class="btn btn-danger btn-sm">Delete</button>
+                                    </div>
+                                </div>
+                                <div class="schedule-item">
+                                    <div class="schedule-info">
+                                        <h4>Exam Schedule 2024</h4>
+                                        <p>All Departments • Updated: Jan 10, 2024</p>
+                                        <span class="file-size">1.8 MB</span>
+                                    </div>
+                                    <div class="schedule-actions">
+                                        <button class="btn btn-primary btn-sm">View</button>
+                                        <button class="btn btn-secondary btn-sm">Edit</button>
+                                        <button class="btn btn-danger btn-sm">Delete</button>
+                                    </div>
+                                </div>
+                                <div class="schedule-item">
+                                    <div class="schedule-info">
+                                        <h4>Holiday Calendar 2024</h4>
+                                        <p>University-wide • Updated: Dec 20, 2023</p>
+                                        <span class="file-size">0.5 MB</span>
+                                    </div>
+                                    <div class="schedule-actions">
+                                        <button class="btn btn-primary btn-sm">View</button>
+                                        <button class="btn btn-secondary btn-sm">Edit</button>
+                                        <button class="btn btn-danger btn-sm">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Send Notifications -->
+            <section id="notifications" class="dashboard-section">
+                <h2>Send Notifications</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon red">
+                                <i class="fas fa-bell"></i>
+                            </div>
+                            <div>
+                                <div class="card-title">Create Notification</div>
+                                <div class="card-subtitle">Send notifications to users</div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <form id="notificationForm">
+                                <div class="form-group">
+                                    <label class="form-label">Notification Type</label>
+                                    <select class="form-input">
+                                        <option>General Announcement</option>
+                                        <option>System Maintenance</option>
+                                        <option>Emergency Alert</option>
+                                        <option>Event Reminder</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Target Audience</label>
+                                    <select class="form-input">
+                                        <option>All Users</option>
+                                        <option>Students Only</option>
+                                        <option>Teachers Only</option>
+                                        <option>Admins Only</option>
+                                        <option>Specific Department</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Title</label>
+                                    <input type="text" class="form-input" placeholder="Enter notification title">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Message</label>
+                                    <textarea class="form-textarea" placeholder="Enter notification message"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Priority</label>
+                                    <select class="form-input">
+                                        <option>Low</option>
+                                        <option>Normal</option>
+                                        <option>High</option>
+                                        <option>Urgent</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Schedule</label>
+                                    <input type="datetime-local" class="form-input">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Send Notification</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon orange">
+                                <i class="fas fa-history"></i>
+                            </div>
+                            <div>
+                                <div class="card-title">Notification History</div>
+                                <div class="card-subtitle">Recent notifications sent</div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="notification-list">
+                                <div class="notification-item">
+                                    <div class="notification-header">
+                                        <h4>System Maintenance Notice</h4>
+                                        <span class="badge urgent">Urgent</span>
+                                    </div>
+                                    <p>Scheduled maintenance on Sunday, January 21st from 2-4 AM.</p>
+                                    <small>Sent to: All Users • Jan 15, 2024</small>
+                                </div>
+                                <div class="notification-item">
+                                    <div class="notification-header">
+                                        <h4>New Course Registration</h4>
+                                        <span class="badge normal">Normal</span>
+                                    </div>
+                                    <p>Course registration for Spring 2024 is now open.</p>
+                                    <small>Sent to: Students • Jan 12, 2024</small>
+                                </div>
+                                <div class="notification-item">
+                                    <div class="notification-header">
+                                        <h4>Faculty Meeting Reminder</h4>
+                                        <span class="badge important">Important</span>
+                                    </div>
+                                    <p>Faculty meeting scheduled for Friday at 3 PM in Conference Room A.</p>
+                                    <small>Sent to: Teachers • Jan 10, 2024</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Generate Reports -->
+            <section id="reports" class="dashboard-section">
+                <h2>Generate Reports</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon green">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <div>
+                                <div class="card-title">Report Generator</div>
+                                <div class="card-subtitle">Create custom reports</div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <form>
+                                <div class="form-group">
+                                    <label class="form-label">Report Type</label>
+                                    <select class="form-input">
+                                        <option>User Activity Report</option>
+                                        <option>Academic Performance Report</option>
+                                        <option>System Usage Report</option>
+                                        <option>Financial Report</option>
+                                        <option>Attendance Report</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Date Range</label>
+                                    <div style="display: flex; gap: 10px;">
+                                        <input type="date" class="form-input" placeholder="Start Date">
+                                        <input type="date" class="form-input" placeholder="End Date">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Department</label>
+                                    <select class="form-input">
+                                        <option>All Departments</option>
+                                        <option>Computer Science</option>
+                                        <option>Mathematics</option>
+                                        <option>Physics</option>
+                                        <option>Engineering</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Format</label>
+                                    <select class="form-input">
+                                        <option>PDF</option>
+                                        <option>Excel</option>
+                                        <option>CSV</option>
+                                        <option>HTML</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Generate Report</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon purple">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <div>
+                                <div class="card-title">Recent Reports</div>
+                                <div class="card-subtitle">Recently generated reports</div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="report-list">
+                                <div class="report-item">
+                                    <div class="report-info">
+                                        <h4>User Activity Report - January 2024</h4>
+                                        <p>Generated: Jan 15, 2024 • Format: PDF</p>
+                                        <span class="file-size">3.2 MB</span>
+                                    </div>
+                                    <div class="report-actions">
+                                        <button class="btn btn-primary btn-sm">Download</button>
+                                        <button class="btn btn-secondary btn-sm">View</button>
+                                    </div>
+                                </div>
+                                <div class="report-item">
+                                    <div class="report-info">
+                                        <h4>Academic Performance Report - Fall 2023</h4>
+                                        <p>Generated: Jan 10, 2024 • Format: Excel</p>
+                                        <span class="file-size">2.8 MB</span>
+                                    </div>
+                                    <div class="report-actions">
+                                        <button class="btn btn-primary btn-sm">Download</button>
+                                        <button class="btn btn-secondary btn-sm">View</button>
+                                    </div>
+                                </div>
+                                <div class="report-item">
+                                    <div class="report-info">
+                                        <h4>System Usage Report - December 2023</h4>
+                                        <p>Generated: Jan 5, 2024 • Format: PDF</p>
+                                        <span class="file-size">1.5 MB</span>
+                                    </div>
+                                    <div class="report-actions">
+                                        <button class="btn btn-primary btn-sm">Download</button>
+                                        <button class="btn btn-secondary btn-sm">View</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Monitor Site Usage -->
+            <section id="monitoring" class="dashboard-section">
+                <h2>Site Monitoring</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon blue">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>
+                            <div>
+                                <div class="card-title">System Performance</div>
+                                <div class="card-subtitle">Real-time system metrics</div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="performance-metrics">
+                                <div class="metric-item">
+                                    <span class="metric-label">CPU Usage</span>
+                                    <span class="metric-value">45%</span>
+                                    <div class="metric-bar">
+                                        <div class="metric-fill" style="width: 45%"></div>
+                                    </div>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-label">Memory Usage</span>
+                                    <span class="metric-value">62%</span>
+                                    <div class="metric-bar">
+                                        <div class="metric-fill" style="width: 62%"></div>
+                                    </div>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-label">Disk Usage</span>
+                                    <span class="metric-value">78%</span>
+                                    <div class="metric-bar">
+                                        <div class="metric-fill" style="width: 78%"></div>
+                                    </div>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-label">Network Traffic</span>
+                                    <span class="metric-value">23%</span>
+                                    <div class="metric-bar">
+                                        <div class="metric-fill" style="width: 23%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon green">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div>
+                                <div class="card-title">User Activity</div>
+                                <div class="card-subtitle">Current user statistics</div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="activity-stats">
+                                <div class="activity-item">
+                                    <span class="activity-label">Active Users</span>
+                                    <span class="activity-value">1,247</span>
+                                </div>
+                                <div class="activity-item">
+                                    <span class="activity-label">Online Now</span>
+                                    <span class="activity-value">156</span>
+                                </div>
+                                <div class="activity-item">
+                                    <span class="activity-label">New Users Today</span>
+                                    <span class="activity-value">23</span>
+                                </div>
+                                <div class="activity-item">
+                                    <span class="activity-label">Page Views</span>
+                                    <span class="activity-value">45,892</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Oversee All Platform Activity -->
+            <section id="activity" class="dashboard-section">
+                <h2>Platform Activity</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon purple">
+                                <i class="fas fa-activity"></i>
+                            </div>
+                            <div>
+                                <div class="card-title">Recent Activity</div>
+                                <div class="card-subtitle">Latest platform activities</div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="activity-log">
+                                <div class="activity-item">
+                                    <div class="activity-icon">
+                                        <i class="fas fa-user-plus"></i>
+                                    </div>
+                                    <div class="activity-info">
+                                        <h4>New user registered</h4>
+                                        <p>John Smith (STU001) joined the platform</p>
+                                        <small>2 minutes ago</small>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-icon">
+                                        <i class="fas fa-upload"></i>
+                                    </div>
+                                    <div class="activity-info">
+                                        <h4>Assignment submitted</h4>
+                                        <p>Sarah Johnson submitted CS201 Assignment 3</p>
+                                        <small>15 minutes ago</small>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-icon">
+                                        <i class="fas fa-bell"></i>
+                                    </div>
+                                    <div class="activity-info">
+                                        <h4>Notification sent</h4>
+                                        <p>System maintenance notice sent to all users</p>
+                                        <small>1 hour ago</small>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-icon">
+                                        <i class="fas fa-chart-line"></i>
+                                    </div>
+                                    <div class="activity-info">
+                                        <h4>Grades updated</h4>
+                                        <p>Dr. Wilson updated grades for CS301 midterm</p>
+                                        <small>2 hours ago</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon orange">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div>
+                                <div class="card-title">System Alerts</div>
+                                <div class="card-subtitle">Important system notifications</div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="alert-list">
+                                <div class="alert-item warning">
+                                    <div class="alert-icon">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                    </div>
+                                    <div class="alert-info">
+                                        <h4>High Memory Usage</h4>
+                                        <p>System memory usage is at 85%</p>
+                                        <small>5 minutes ago</small>
+                                    </div>
+                                </div>
+                                <div class="alert-item info">
+                                    <div class="alert-icon">
+                                        <i class="fas fa-info-circle"></i>
+                                    </div>
+                                    <div class="alert-info">
+                                        <h4>Backup Completed</h4>
+                                        <p>Daily backup completed successfully</p>
+                                        <small>1 hour ago</small>
+                                    </div>
+                                </div>
+                                <div class="alert-item success">
+                                    <div class="alert-icon">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <div class="alert-info">
+                                        <h4>System Update</h4>
+                                        <p>Security patches installed successfully</p>
+                                        <small>3 hours ago</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="auth.js"></script>
+</body>
+</html>
